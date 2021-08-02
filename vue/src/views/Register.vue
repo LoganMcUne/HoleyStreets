@@ -90,4 +90,15 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+#register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  height: 75vh;
+  margin: 100px 200px;
+}
+
+</style>
