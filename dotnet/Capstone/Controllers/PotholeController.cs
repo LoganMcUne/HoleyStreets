@@ -20,32 +20,16 @@ namespace Capstone.Controllers
         [HttpPost("/add")]
         public IActionResult AddNewPothole(Pothole pothole)
         {
-            pothole.ReportingUserId = 5; //User.FindFirst("iat")?.Value;
-
-            IActionResult result = Unauthorized();
-
-            /*
-            // Default to bad username/password message
-            IActionResult result = Unauthorized(new { message = "Username or password is incorrect" });
-
-            // Get the user by username
-            User user = userDao.GetUser(userParam.Username);
-
-            // If we found a user and the password hash matches
-            if (user != null && passwordHasher.VerifyHashMatch(user.PasswordHash, userParam.Password, user.Salt))
+            pothole.ReportingUserId = int.Parse(User.FindFirst("sub")?.Value);
+            pothole.ReportedDate = System.DateTime.Now.Date;
+            bool addResult = potholeDao.AddPothole(pothole);
+            if (addResult)
             {
-                // Create an authentication token
-                string token = tokenGenerator.GenerateToken(user.UserId, user.Username, user.Role);
-
-                // Create a ReturnUser object to return to the client
-                LoginResponse retUser = new LoginResponse() { User = new ReturnUser() { UserId = user.UserId, Username = user.Username, Role = user.Role }, Token = token };
-
-                // Switch to 200 OK
-                result = Ok(retUser);
+                return Ok();
+            } else
+            {
+                return StatusCode(500);
             }
-
-            */
-            return result;
         }
     }
 }

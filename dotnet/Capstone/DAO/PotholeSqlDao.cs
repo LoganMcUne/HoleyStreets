@@ -28,21 +28,29 @@ namespace Capstone.DAO
                     string addNewPotholeSqlStatement = "INSERT INTO potholes (latitude, longitude, image_link, reported_date, reporting_user_id, repair_status) " +
                                                         "VALUES(@latitude, @longitude, @image_link, @reported_date, @reporting_user_id, @repair_status);";
 
-                    SqlCommand cmd = new SqlCommand("SELECT user_id, username, password_hash, salt, user_role FROM users WHERE username = @username", conn);
+                    SqlCommand cmd = new SqlCommand(addNewPotholeSqlStatement, conn);
                     cmd.Parameters.AddWithValue("@latitude", pothole.Latitude);
                     cmd.Parameters.AddWithValue("@longitude", pothole.Longitude);
-                    cmd.Parameters.AddWithValue("@image_link", pothole.ImageLink);
+                    if (string.IsNullOrEmpty(pothole.ImageLink))
+                    {
+                        cmd.Parameters.AddWithValue("@image_link", DBNull.Value);
+                    } 
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@image_link", pothole.ImageLink);
+                    }
+                    
                     cmd.Parameters.AddWithValue("@reported_date", pothole.ReportedDate);
                     cmd.Parameters.AddWithValue("@reporting_user_id", pothole.ReportingUserId);
                     cmd.Parameters.AddWithValue("@repair_status", pothole.RepairStatus);
 
                     cmd.ExecuteNonQuery();
-
+                    addSuccessful = true;
                 }
             }
-            catch (SqlException)
+            catch (SqlException e)
             {
-                throw;
+                Console.WriteLine(e.Message);
             }
 
             return addSuccessful;

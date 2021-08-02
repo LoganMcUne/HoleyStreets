@@ -9,22 +9,22 @@ namespace Capstone.Models
     {
         public int Id { get; }
 
-        public decimal Latitude { get; }
+        public decimal Latitude { get; set; }
 
-        public decimal Longitude { get; }
+        public decimal Longitude { get; set; }
 
-        public string ImageLink { get; }
+        public string? ImageLink { get; set; }
 
-        public DateTime ReportedDate { get; }
+        public DateTime ReportedDate { get; set; }
 
         public int ReportingUserId { get; set; }
 
-        public DateTime InspectedDate { get; }
+        public DateTime? InspectedDate { get; set; }
 
-        public DateTime RepairedDate { get; }
+        public DateTime? RepairedDate { get; set; }
 
-        public string RepairStatus { get; }
+        public string RepairStatus { get; set; }
 
-        public int Severity { get; }
+        public int Severity { get; set; }
     }
 }
