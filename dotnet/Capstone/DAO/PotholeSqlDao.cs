@@ -39,8 +39,14 @@ namespace Capstone.DAO
                     {
                         cmd.Parameters.AddWithValue("@image_link", pothole.ImageLink);
                     }
+                    if (pothole.ReportedDate == DateTime.Parse("01/01/0001 00:00:00"))
+                    {
+                        cmd.Parameters.AddWithValue("@reported_date", DBNull.Value);
+                    } else
+                    {
+                        cmd.Parameters.AddWithValue("@reported_date", pothole.ReportedDate);
+                    }
                     
-                    cmd.Parameters.AddWithValue("@reported_date", pothole.ReportedDate);
                     cmd.Parameters.AddWithValue("@reporting_user_id", pothole.ReportingUserId);
                     cmd.Parameters.AddWithValue("@repair_status", pothole.RepairStatus);
 

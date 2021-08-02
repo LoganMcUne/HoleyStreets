@@ -22,6 +22,7 @@ namespace Capstone.Controllers
         {
             pothole.ReportingUserId = int.Parse(User.FindFirst("sub")?.Value);
             pothole.ReportedDate = System.DateTime.Now.Date;
+            pothole.RepairStatus = "Reported";
             bool addResult = potholeDao.AddPothole(pothole);
             if (addResult)
             {
