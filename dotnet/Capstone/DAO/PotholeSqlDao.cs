@@ -80,30 +80,8 @@ namespace Capstone.DAO
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        Pothole pothole = new Pothole();
-                        pothole.Latitude = Convert.ToDecimal(reader["latitude"]);
-                        pothole.Longitude = Convert.ToDecimal(reader["longitude"]);
-                        if(reader["image_link"] != DBNull.Value) {
-                            pothole.ImageLink = Convert.ToString(reader["image_link"]);
-                        }
-                        
-                        pothole.ReportedDate = Convert.ToDateTime(reader["reported_date"]);
-                        pothole.ReportingUserId = Convert.ToInt32(reader["reporting_user_id"]);
-                        pothole.RepairStatus = Convert.ToString(reader["repair_status"]);
-                        pothole.Id = Convert.ToInt32(reader["pothole_id"]);
-                        if(reader["inspected_date"] != DBNull.Value)
-                        {
-                            pothole.InspectedDate = Convert.ToDateTime(reader["inspected_date"]);
-                        }
-                        if(reader["repaired_date"] != DBNull.Value)
-                        {
-                            pothole.RepairedDate = Convert.ToDateTime(reader["repaired_date"]);
-                        }
-                        if(reader["severity"] != DBNull.Value)
-                        {
-                            pothole.Severity = Convert.ToInt32(reader["severity"]);
-                        }
-                        
+                        Pothole pothole = GetPotholeFromReader(reader);
+
                         allPotholes.Add(pothole);
                     }
                 }
@@ -114,6 +92,36 @@ namespace Capstone.DAO
             }
 
             return allPotholes;
+        }
+
+        private Pothole GetPotholeFromReader(SqlDataReader reader)
+        {
+            Pothole pothole = new Pothole();
+            pothole.Latitude = Convert.ToDecimal(reader["latitude"]);
+            pothole.Longitude = Convert.ToDecimal(reader["longitude"]);
+            if (reader["image_link"] != DBNull.Value)
+            {
+                pothole.ImageLink = Convert.ToString(reader["image_link"]);
+            }
+
+            pothole.ReportedDate = Convert.ToDateTime(reader["reported_date"]);
+            pothole.ReportingUserId = Convert.ToInt32(reader["reporting_user_id"]);
+            pothole.RepairStatus = Convert.ToString(reader["repair_status"]);
+            pothole.Id = Convert.ToInt32(reader["pothole_id"]);
+            if (reader["inspected_date"] != DBNull.Value)
+            {
+                pothole.InspectedDate = Convert.ToDateTime(reader["inspected_date"]);
+            }
+            if (reader["repaired_date"] != DBNull.Value)
+            {
+                pothole.RepairedDate = Convert.ToDateTime(reader["repaired_date"]);
+            }
+            if (reader["severity"] != DBNull.Value)
+            {
+                pothole.Severity = Convert.ToInt32(reader["severity"]);
+            }
+
+            return pothole;
         }
     }
 }
