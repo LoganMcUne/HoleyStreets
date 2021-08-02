@@ -141,3 +141,6 @@ obj/
 packages/
 .vs/
 /target/
+
+#ignore connection strings
+/dotnet/Capstone/appsettings.json
