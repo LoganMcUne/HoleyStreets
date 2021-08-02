@@ -20,6 +20,7 @@ namespace Capstone.Controllers
             userDao = _userDao;
         }
 
+        //Default endpoint: /login
         [HttpPost]
         public IActionResult Authenticate(LoginUser userParam)
         {
@@ -45,6 +46,7 @@ namespace Capstone.Controllers
             return result;
         }
 
+        //Endpoint: /register
         [HttpPost("/register")]
         public IActionResult Register(RegisterUser userParam)
         {
