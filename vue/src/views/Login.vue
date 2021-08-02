@@ -74,3 +74,16 @@ export default {
   }
 };
 </script>
+
+<style>
+
+#login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  height: 75vh;
+  margin: 100px 200px;
+}
+
+</style>
