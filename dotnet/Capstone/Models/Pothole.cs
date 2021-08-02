@@ -7,7 +7,7 @@ namespace Capstone.Models
 {
     public class Pothole
     {
-        public int Id { get; }
+        public int Id { get; set; }
 
         public decimal Latitude { get; set; }
 

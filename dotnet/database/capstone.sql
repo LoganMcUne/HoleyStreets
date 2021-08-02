@@ -55,7 +55,7 @@ CREATE TABLE potholes (
 --populate default data
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
-INSERT INTO potholes(latitude,longitude,reported_date, reporting_user_id) VALUES (39.159490, -84.455277, '8/2/2021',1);
+INSERT INTO potholes(latitude,longitude,reported_date, reporting_user_id, repair_status) VALUES (39.159490, -84.455277, '8/2/2021',1, 'Reported');
 
 
 GO

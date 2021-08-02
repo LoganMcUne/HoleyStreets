@@ -2,6 +2,7 @@
 using Capstone.DAO;
 using Capstone.Models;
 using Capstone.Security;
+using System.Collections.Generic;
 
 namespace Capstone.Controllers
 {
@@ -27,7 +28,21 @@ namespace Capstone.Controllers
             if (addResult)
             {
                 return Ok();
-            } else
+            }
+            else
+            {
+                return StatusCode(500);
+            }
+        }
+        [HttpGet("/list")]
+        public ActionResult<List<Pothole>> ListAllPotholes()
+        {
+            List<Pothole> allPotholes = potholeDao.ListPotholes();
+            if (allPotholes != null)
+            {
+                return Ok(allPotholes);
+            }
+            else
             {
                 return StatusCode(500);
             }
