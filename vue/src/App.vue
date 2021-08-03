@@ -3,13 +3,23 @@
     <div>
       <b-nav class = "nav">
         <router-link v-bind:to="{ name: 'home' }" class = "holey-streets">HOLEY STREETS</router-link>
-        <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''" class = "logout">Logout</router-link>
-        <router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''" class = "login">Login</router-link>
+        <dropdown />
       </b-nav>
     </div>
     <router-view />
   </div>
 </template>
+
+<script>
+import Dropdown from './views/UserDropdown.vue'
+
+export default {
+  components:{
+    Dropdown
+} ,
+}
+</script>
+
 
 <style>
 
