@@ -4,6 +4,7 @@ import router from './router/index'
 import store from './store/index'
 import axios from 'axios'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import './scss/main.scss'
 
 Vue.config.productionTip = false
 
