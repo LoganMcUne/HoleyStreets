@@ -46,35 +46,35 @@ namespace Capstone.DAO
             return changeSuccessful;
         }
 
-        public List<ReturnUser> ListUsersByRole(string role)
-        {
-            List<Pothole> allPotholes = new List<Pothole>();
+        //public List<ReturnUser> ListUsersByRole(string role)
+        //{
+        //    List<Pothole> allPotholes = new List<Pothole>();
 
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
+        //    try
+        //    {
+        //        using (SqlConnection conn = new SqlConnection(connectionString))
+        //        {
+        //            conn.Open();
 
-                    string getAllPotholesSqlStatement = "SELECT pothole_id, latitude, longitude, image_link, reported_date, reporting_user_id, inspected_date, repaired_date, repair_status, severity FROM potholes;";
+        //            string getAllPotholesSqlStatement = "SELECT pothole_id, latitude, longitude, image_link, reported_date, reporting_user_id, inspected_date, repaired_date, repair_status, severity FROM potholes;";
 
-                    SqlCommand cmd = new SqlCommand(getAllPotholesSqlStatement, conn);
+        //            SqlCommand cmd = new SqlCommand(getAllPotholesSqlStatement, conn);
 
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        Pothole pothole = GetPotholeFromReader(reader);
+        //            SqlDataReader reader = cmd.ExecuteReader();
+        //            while (reader.Read())
+        //            {
+        //                Pothole pothole = GetPotholeFromReader(reader);
 
-                        allPotholes.Add(pothole);
-                    }
-                }
-            }
-            catch (SqlException)
-            {
-                return null;
-            }
+        //                allPotholes.Add(pothole);
+        //            }
+        //        }
+        //    }
+        //    catch (SqlException)
+        //    {
+        //        return null;
+        //    }
 
-            return allPotholes;
-        }
+        //    return allPotholes;
+        //}
     }
 }
