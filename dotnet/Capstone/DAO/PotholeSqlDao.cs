@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using Capstone.Models;
-using Capstone.Security;
-using Capstone.Security.Models;
+
 
 namespace Capstone.DAO
 {
@@ -150,6 +149,76 @@ namespace Capstone.DAO
             }
 
             return deleteSuccessful;
+        }
+
+        public bool UpdatePothole(Pothole pothole)
+        {
+            bool updateSuccessful = false;
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    string updatePotholeSqlStatement = "UPDATE potholes " +
+                        "SET latitude = @latitude, longitude = @longitude, image_link = @image_link, reported_date = @reported_date, reporting_user_id = @reporting_user_id, inspected_date = @inspected_date, repaired_date = @repaired_date, repair_status = @repair_status, severity = @severity " +
+                        "WHERE pothole_id = @pothole_id;";
+
+                    SqlCommand cmd = new SqlCommand(updatePotholeSqlStatement, conn);
+                    cmd.Parameters.AddWithValue("@pothole_id", pothole.Id);
+                    cmd.Parameters.AddWithValue("@latitude", pothole.Latitude);
+                    cmd.Parameters.AddWithValue("@longitude", pothole.Longitude);
+                    if (string.IsNullOrEmpty(pothole.ImageLink))
+                    {
+                        cmd.Parameters.AddWithValue("@image_link", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@image_link", pothole.ImageLink);
+                    }
+
+                    cmd.Parameters.AddWithValue("@reported_date", pothole.ReportedDate);
+                    
+                    if (pothole.InspectedDate == null)
+                    {
+                        cmd.Parameters.AddWithValue("@inspected_date", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@inspected_date", pothole.InspectedDate);
+                    }
+                    if (pothole.RepairedDate == null)
+                    {
+                        cmd.Parameters.AddWithValue("@repaired_date", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@repaired_date", pothole.RepairedDate);
+                    }
+
+                    cmd.Parameters.AddWithValue("@reporting_user_id", pothole.ReportingUserId);
+                    cmd.Parameters.AddWithValue("@repair_status", pothole.RepairStatus);
+                    if (pothole.Severity == 0)
+                    {
+                        cmd.Parameters.AddWithValue("@severity", DBNull.Value);
+                    } 
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@severity", pothole.Severity);
+                    }
+                    
+                    cmd.ExecuteNonQuery();
+
+                    updateSuccessful = true;
+                }
+            }
+            catch (SqlException e)
+            {
+                return updateSuccessful;
+            }
+
+            return updateSuccessful;
         }
     }
 }

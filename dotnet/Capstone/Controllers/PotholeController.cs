@@ -66,5 +66,22 @@ namespace Capstone.Controllers
                 return StatusCode(500);
             }
         }
+
+        //connect to our update method
+        [HttpPut]
+        //[Authorize(Roles = "admin, employee")]
+        public IActionResult UpdatePothole(Pothole pothole)
+        {
+            bool updateSuccessful = potholeDao.UpdatePothole(pothole);
+
+            if (updateSuccessful)
+            {
+                return NoContent();
+            }
+            else
+            {
+                return StatusCode(500);
+            }
+        }
     }
 }
