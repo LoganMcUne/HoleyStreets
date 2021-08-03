@@ -1,6 +1,6 @@
 <template>
   <div>
-      <active-requests/>
+      <active-requests />
   </div>
 </template>
 
@@ -9,7 +9,7 @@ import ActiveRequests from '../components/ActiveRequests.vue'
 export default {
   components: {
     ActiveRequests
-  },
+  }
 }
 </script>
 

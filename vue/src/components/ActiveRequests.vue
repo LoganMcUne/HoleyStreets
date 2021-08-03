@@ -1,11 +1,11 @@
 <template>
   <div>
     <table>
-
       <thead>
         <tr>
-          <th>User ID</th>
-          <th>Username</th>
+          <th>User Id</th>
+          <th>User Name</th>
+          <th>User Email</th>
           <th>Approve</th>
           <th>Deny</th>
         </tr>
@@ -13,18 +13,20 @@
 
       <tbody>
         <tr
-          v-for="user in usersTest"
-          v-bind:key="user.id"
+          v-for="request in $store.state.requests"
+          v-bind:key="request.userid"
         >
-          <td>{{ user.id }}</td>
-          <td>{{ user.username }}</td>
+          <td>{{ request.userId }}</td>
+          <td>REPLACE ME WITH A USERNAME</td>
+          <td>REPLACE ME WITH A USER'S EMAIL ADDRESS</td>
           <td>
-            <button v-on:click="flipStatus()">
+            <!--TODO: Add v-on:click="function()" to buttons -->
+            <button >
               Approve
             </button>
           </td>
           <td>
-            <button v-on:click="flipStatus()">
+            <button>
               Deny
             </button>
           </td>
@@ -36,50 +38,40 @@
 </template>
 
 <script>
-//import userManagementService from "@/services/UserManagementService.js";
+import userManagementService from "@/services/UserManagementService.js";
+
 export default {
   name: "active-requests",
-  created:{
-    // getActiveRequests() {
-    //   userManagementService.listOfRequests().then((r) => {
-    //     if (r.status === 201) {
-    //         this.$store.commit("SET_REQUESTS_LIST", r.data);
-    //     }
-    //   });
-    // },
-  },
-  methods : {
-    flipStatus() {}
-  },
   data() {
     return {
-      usersTest: [
-        {
-          id: 1,
-          firstName: "John",
-          lastName: "Smith",
-          username: "jsmith",
-          emailAddress: "jsmith@gmail.com",
-          status: "Active",
-        },
-      ],
+      displayRequests: []
     };
   },
+  created() {
+    userManagementService.getListOfRequests().then(response => {
+        if (response.status === 200) {
+          this.$store.commit('SET_REQUESTS_LIST', response.data);
+        }
+    });
+    //PROBLEM: The "Requests" from the database only provide the requestId and the userId.
+    //We probably want the admin to be able to see the username and the email address of users requesting employee access
+    //And, right now, the admin can see duplicate requests. We probably want to filter the requests to only show the
+    //admin one request per person.
+  }
 };
 </script>
 
-<style scoped>
+<style>
 table {
   margin-top: 20px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   margin-bottom: 20px;
 }
 th {
   text-transform: uppercase;
+  padding: 10px;
 }
 td {
-  padding: 10px;
+  padding: 5px 10px;
 }
 button {
   margin-right: 5px;
