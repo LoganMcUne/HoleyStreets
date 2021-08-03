@@ -26,7 +26,7 @@ import { latLng } from "leaflet";
 import { LMap, LTileLayer, LMarker} from "vue2-leaflet";
 
 export default {
-  name: "Example",
+  name: "Map",
   components: {
     LMap,
     LTileLayer,
@@ -39,10 +39,10 @@ export default {
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       attribution:
         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      withPopup: latLng(47.41322, -1.219482),
-      withTooltip: latLng(47.41422, -1.250482),
+      withPopup: latLng(39.15949,	-84.455277),
+      withTooltip: latLng(39.15949,	-84.455277),
       currentZoom: 11.5,
-      currentCenter: latLng(47.41322, -1.219482),
+      currentCenter: latLng(39.15949,	-84.455277),
       showParagraph: false,
       mapOptions: {
         zoomSnap: 0.5
@@ -64,6 +64,7 @@ export default {
       alert("Click!");
     },
     makeLatLng(lat, lng){
+      console.log(latLng(lat,lng));
       return latLng(lat, lng);
     }
   }
