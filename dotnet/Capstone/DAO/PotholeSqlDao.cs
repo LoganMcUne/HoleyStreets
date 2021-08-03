@@ -73,9 +73,9 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    string addNewPotholeSqlStatement = "SELECT pothole_id, latitude, longitude, image_link, reported_date, reporting_user_id, inspected_date, repaired_date, repair_status, severity FROM potholes;";
+                    string getAllPotholesSqlStatement = "SELECT pothole_id, latitude, longitude, image_link, reported_date, reporting_user_id, inspected_date, repaired_date, repair_status, severity FROM potholes;";
 
-                    SqlCommand cmd = new SqlCommand(addNewPotholeSqlStatement, conn);
+                    SqlCommand cmd = new SqlCommand(getAllPotholesSqlStatement, conn);
                     
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
@@ -122,6 +122,34 @@ namespace Capstone.DAO
             }
 
             return pothole;
+        }
+
+        public bool DeletePothole(int potholeId)
+        {
+            bool deleteSuccessful = false;
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    string deletePotholeSqlStatement = "DELETE FROM potholes WHERE pothole_id = @pothole_id;";
+
+                    SqlCommand cmd = new SqlCommand(deletePotholeSqlStatement, conn);
+                    cmd.Parameters.AddWithValue("@pothole_id", potholeId);
+
+                    cmd.ExecuteNonQuery();
+
+                    deleteSuccessful = true;
+                }
+            }
+            catch (SqlException)
+            {
+                return deleteSuccessful;
+            }
+
+            return deleteSuccessful;
         }
     }
 }
