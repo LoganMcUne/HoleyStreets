@@ -10,5 +10,7 @@ namespace Capstone.DAO
         public List<Pothole> ListPotholes();
 
         public bool DeletePothole(int potholeId);
+
+        public bool UpdatePothole(Pothole pothole);
     }
 }

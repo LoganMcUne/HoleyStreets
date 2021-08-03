@@ -84,6 +84,7 @@ export default {
   border: 2px solid black;
   height: 75vh;
   margin: 100px 200px;
+  background-color: #f0ead2;
 }
 
 </style>

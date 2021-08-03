@@ -53,6 +53,14 @@ const router = new Router({
         requiresAuth: false
       }
     },
+    // {
+    //   path: "/admin",
+    //   name: "admin",
+    //   component: Admin,
+    //      meta: {
+    //        requiresAuth: true
+    //      }
+    // // }
   ]
 })
 
