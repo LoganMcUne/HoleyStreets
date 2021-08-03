@@ -7,8 +7,9 @@
 <script>
 import ActiveRequests from '../components/ActiveRequests.vue'
 export default {
-  components: { ActiveRequests },
-
+  components: {
+    ActiveRequests
+  },
 }
 </script>
 

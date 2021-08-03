@@ -1,6 +1,7 @@
 <template>
-  <div class="container">
-    <table id="tblUsers">
+  <div>
+    <table>
+
       <thead>
         <tr>
           <th>User ID</th>
@@ -9,10 +10,10 @@
           <th>Deny</th>
         </tr>
       </thead>
+
       <tbody>
-        
         <tr
-          v-for="user in $store.state.requests"
+          v-for="user in usersTest"
           v-bind:key="user.id"
         >
           <td>{{ user.id }}</td>
@@ -23,12 +24,13 @@
             </button>
           </td>
           <td>
-              <button v-on:click="flipStatus()">
+            <button v-on:click="flipStatus()">
               Deny
             </button>
-        </td>
+          </td>
         </tr>
       </tbody>
+
     </table>
   </div>
 </template>
@@ -46,6 +48,9 @@ export default {
     //   });
     // },
   },
+  methods : {
+    flipStatus() {}
+  },
   data() {
     return {
       usersTest: [
@@ -59,15 +64,6 @@ export default {
         },
       ],
     };
-  },
-  methods: {
-
-    flipStatus() {
-
-    },
-  },
-  computed: {
-
   },
 };
 </script>
@@ -85,33 +81,7 @@ th {
 td {
   padding: 10px;
 }
-tr.disabled {
-  color: red;
-}
-input,
-select {
-  font-size: 16px;
-}
-
-form {
-  margin: 20px;
-  width: 350px;
-}
-.field {
-  padding: 10px 0px;
-}
-label {
-  width: 140px;
-  display: inline-block;
-}
 button {
   margin-right: 5px;
-}
-.all-actions {
-  margin-bottom: 40px;
-}
-.btn.save {
-  margin: 20px;
-  float: right;
 }
 </style>
