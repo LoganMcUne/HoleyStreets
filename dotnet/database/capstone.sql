@@ -41,6 +41,15 @@ CREATE TABLE potholes (
 	CONSTRAINT FK_user_to_pothole FOREIGN KEY (reporting_user_id) REFERENCES users(user_id)
 )
 
+-- Requests for users to become employees table
+CREATE TABLE requests (
+	request_id int IDENTITY(1,1) NOT NULL,
+	user_id int NOT NULL,
+	active_status bit NOT NULL,
+	CONSTRAINT PK_requests PRIMARY KEY (request_id),
+	CONSTRAINT FK_requests_to_users FOREIGN KEY (user_id) REFERENCES users(user_id)
+)
+
 --joiner of user and pothole
 --CREATE TABLE user_pothole (
 --	user_id int NOT NULL,
@@ -48,14 +57,12 @@ CREATE TABLE potholes (
 --	CONSTRAINT PK_user_pothole PRIMARY KEY (user_id, pothole_id),
 --	CONSTRAINT FK_user_to_pothole FOREIGN KEY (user_id) REFERENCES users(user_id),
 --	CONSTRAINT FK_pothole_to_user FOREIGN KEY (pothole_id) REFERENCES potholes(pothole_id)
-
-
 --)
 
 --populate default data
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
 INSERT INTO potholes(latitude,longitude,reported_date, reporting_user_id, repair_status) VALUES (39.159490, -84.455277, '8/2/2021',1, 'Reported');
-
+INSERT INTO requests (user_id, active_status) VALUES (1, 1);
 
 GO
