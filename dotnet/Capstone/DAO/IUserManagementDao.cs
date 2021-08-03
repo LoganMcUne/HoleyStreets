@@ -7,7 +7,12 @@ namespace Capstone.DAO
     {
         public bool ChangeUserRole(ReturnUser user);
 
+        public List<ReturnUser> ListUsersByRole(string role);
 
+        public bool RequestEmployeeAccess(ReturnUser user);
 
+        public bool SetRequestStatusToInactive(int userId);
+
+        public List<AccessChangeRequest> ListAllActiveChangeRequests();
     }
 }
