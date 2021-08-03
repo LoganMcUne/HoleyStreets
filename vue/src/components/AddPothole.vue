@@ -1,7 +1,7 @@
 <template>
   <div class="form">
     <div>
-      <b-button v-b-toggle.sidebar-1 class = "add-new">Add A Pothole</b-button>
+      <b-button v-b-toggle.sidebar-1 class="add-new">Add A Pothole</b-button>
       <b-sidebar id="sidebar-1" title="New Pothole" shadow>
         <div class="px-3 py-2">
           <form class="add-pothole" v-if="$store.state.token != ''">
@@ -54,9 +54,7 @@ export default {
     addNewPothole() {
       potholeService.addPothole(this.pothole).then((r) => {
         if (r.status === 201) {
-          potholeService.list().then((r) => {
-            this.$store.commit("SET_POTHOLE_LIST", r.data);
-          });
+          this.setPotholes();
         }
         this.resetPothole();
       });
@@ -64,19 +62,20 @@ export default {
     resetPothole() {
       this.pothole = {};
     },
+    setPotholes() {
+      potholeService.list().then((r) => {
+        this.$store.commit("SET_POTHOLE_LIST", r.data);
+      });
+    },
   },
   updated() {
-    potholeService.list().then((r) => {
-      this.$store.commit("SET_POTHOLE_LIST", r.data);
-    });
+    this.setPotholes();
   },
 };
 </script>
 
 <style>
-
 .add-new {
-  margin: 5px;
+  margin: 0px 244px;
 }
-
 </style>
