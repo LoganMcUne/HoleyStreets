@@ -44,17 +44,4 @@ export default {
   margin: 0px 10px;
 }
 
-.logout {
-  text-decoration: none;
-  color: black;
-  justify-content: flex-end;
-  margin: 0px 10px;
-}
-
-.login {
-  text-decoration: none;
-  color: black;
-  justify-content: flex-end;
-  margin: 0px 10px;
-}
 </style>
