@@ -3,7 +3,7 @@
     <b-table :items="this.$store.state.potholes"
        bordered 
        striped
-       class = "b-table-lightbrown">
+       >
     </b-table>
   </div>
 </template>

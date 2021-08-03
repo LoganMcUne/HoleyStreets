@@ -45,7 +45,7 @@ export default {
   }
 
   .login {
-        text-decoration: none;
+    text-decoration: none;
     color: black;
     justify-content: flex-end;
     margin: 0px 10px;
