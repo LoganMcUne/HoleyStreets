@@ -3,6 +3,7 @@ using Capstone.DAO;
 using Capstone.Models;
 using Capstone.Security;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Capstone.Controllers
 {
@@ -17,8 +18,8 @@ namespace Capstone.Controllers
             potholeDao = _potholeDao;
         }
 
-        //NEED TO REPLACE BELOW THIS LINE
         [HttpPost("/add")]
+        [Authorize]
         public IActionResult AddNewPothole(Pothole pothole)
         {
             pothole.ReportingUserId = int.Parse(User.FindFirst("sub")?.Value);
@@ -34,6 +35,7 @@ namespace Capstone.Controllers
                 return StatusCode(500);
             }
         }
+
         [HttpGet("/list")]
         public ActionResult<List<Pothole>> ListAllPotholes()
         {
@@ -41,6 +43,23 @@ namespace Capstone.Controllers
             if (allPotholes != null)
             {
                 return Ok(allPotholes);
+            }
+            else
+            {
+                return StatusCode(500);
+            }
+        }
+
+        //URL: pothole/<potholeId>
+        [HttpDelete("{potholeId}")]
+        //[Authorize(Roles = "admin, employee")]
+        public IActionResult DeletePothole(int potholeId)
+        {
+            bool deleteSuccessful = potholeDao.DeletePothole(potholeId);
+
+            if (deleteSuccessful)
+            {
+                return NoContent();
             }
             else
             {
