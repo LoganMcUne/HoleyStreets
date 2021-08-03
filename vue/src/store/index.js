@@ -22,7 +22,7 @@ export default new Vuex.Store({
     currentUser: JSON.parse(localStorage.getItem('user')),
     token: currentToken || '',
     user: currentUser || {},
-    potholes: [1]
+    potholes: []
   },
     mutations: {
         SET_AUTH_TOKEN(state, token) {
