@@ -16,6 +16,11 @@ export default {
     denyRequest(userId) {
         return http.put(`/usermanagement/request/${userId}?approved=false`);
     },
+
+    requestEmployment() {
+        return http.post(`/usermanagement/request`)
+    },
+
     getListOfEmployees() {
         return http.get('/usermanagement/employee');
     },
