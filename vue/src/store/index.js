@@ -12,35 +12,41 @@ Vue.use(Vuex)
 const currentToken = localStorage.getItem('token')
 const currentUser = JSON.parse(localStorage.getItem('user'));
 
-if(currentToken != null) {
-  axios.defaults.headers.common['Authorization'] = `Bearer ${currentToken}`;
+if (currentToken != null) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${currentToken}`;
 }
 
 export default new Vuex.Store({
-  state: {
-    token: currentToken || '',
-    user: currentUser || {},
-    potholes: [1]
-  },
-  mutations: {
-    SET_AUTH_TOKEN(state, token) {
-      state.token = token;
-      localStorage.setItem('token', token);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+    state: {
+        currentToken : localStorage.getItem('token'),
+        currentUser: JSON.parse(localStorage.getItem('user')),
+        token: currentToken || '',
+        user: currentUser || {},
+        potholes: [],
+        requests: []
     },
-    SET_USER(state, user) {
-      state.user = user;
-      localStorage.setItem('user',JSON.stringify(user));
-    },
-    LOGOUT(state) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      state.token = '';
-      state.user = {};
-      axios.defaults.headers.common = {};
-    },
-    SET_POTHOLE_LIST(state, potholes){
-      state.potholes = potholes;
+    mutations: {
+        SET_AUTH_TOKEN(state, token) {
+            state.token = token;
+            localStorage.setItem('token', token);
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+        },
+        SET_USER(state, user) {
+            state.user = user;
+            localStorage.setItem('user', JSON.stringify(user));
+        },
+        LOGOUT(state) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            state.token = '';
+            state.user = {};
+            axios.defaults.headers.common = {};
+        },
+        SET_POTHOLE_LIST(state, potholes) {
+            state.potholes = potholes;
+        },
+        SET_REQUESTS_LIST(state, requests) {
+            state.requests = requests;
+        }
     }
-  }
 })

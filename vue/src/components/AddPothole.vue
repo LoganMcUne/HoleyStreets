@@ -76,6 +76,6 @@ export default {
 
 <style>
 .add-new {
-  margin: 5px;
+  margin: 0px 254px;
 }
 </style>

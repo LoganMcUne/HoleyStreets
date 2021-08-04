@@ -149,7 +149,7 @@ namespace Capstone.DAO
 
         public List<AccessChangeRequest> ListAllActiveChangeRequests()
         {
-            List<AccessChangeRequest> allallActiveChangeRequests = new List<AccessChangeRequest>();
+            List<AccessChangeRequest> allActiveChangeRequests = new List<AccessChangeRequest>();
 
             try
             {
@@ -157,7 +157,10 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    string getAllActiveChangeRequestsSqlStatement = "SELECT request_id, user_id, active_status FROM requests WHERE active_status = @active_status;";
+                    string getAllActiveChangeRequestsSqlStatement = "SELECT r.request_id AS 'request_id', r.user_id AS 'user_id', r.active_status AS 'active_status', u.username AS 'username', u.user_role AS 'user_role' " +
+                                                                    "FROM requests r " +
+                                                                    "JOIN users u ON r.user_id = u.user_id " +
+                                                                    "WHERE active_status = @active_status;";
 
                     //A status is active if it has a value of true/1
                     int activeStatus = 1;
@@ -173,9 +176,11 @@ namespace Capstone.DAO
 
                         request.RequestId = Convert.ToInt32(reader["request_id"]);
                         request.UserId = Convert.ToInt32(reader["user_id"]);
+                        request.Username = Convert.ToString(reader["username"]);
+                        request.Role = Convert.ToString(reader["user_role"]);
                         request.ActiveStatus = Convert.ToBoolean(reader["active_status"]);
 
-                        allallActiveChangeRequests.Add(request);
+                        allActiveChangeRequests.Add(request);
                     }
                 }
             }
@@ -184,7 +189,7 @@ namespace Capstone.DAO
                 return null;
             }
 
-            return allallActiveChangeRequests;
+            return allActiveChangeRequests;
         }
     }
 }
