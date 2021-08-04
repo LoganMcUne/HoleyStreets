@@ -1,117 +1,97 @@
 <template>
-  <div class="container">
-    <table id="tblUsers">
+  <div>
+    <h1 class="admin-h1">Users Requesting Employee Access</h1>
+
+    <table>
       <thead>
         <tr>
-          <th>User ID</th>
-          <th>Username</th>
+          <th>User Id</th>
+          <th>User Name</th>
           <th>Approve</th>
           <th>Deny</th>
         </tr>
       </thead>
+
       <tbody>
-        
         <tr
-          v-for="user in $store.state.requests"
-          v-bind:key="user.id"
+          v-for="request in displayRequests"
+          v-bind:key="request.userid"
         >
-          <td>{{ user.id }}</td>
-          <td>{{ user.username }}</td>
+          <td>{{ request.userId }}</td>
+          <td>{{ request.username}}</td>
           <td>
-            <button v-on:click="flipStatus()">
+            <!--TODO: Add v-on:click="function()" to buttons -->
+            <button >
               Approve
             </button>
           </td>
           <td>
-              <button v-on:click="flipStatus()">
+            <button>
               Deny
             </button>
-        </td>
+          </td>
         </tr>
       </tbody>
+
     </table>
   </div>
 </template>
 
 <script>
-//import userManagementService from "@/services/UserManagementService.js";
+import userManagementService from "@/services/UserManagementService.js";
+
 export default {
   name: "active-requests",
-  created:{
-    // getActiveRequests() {
-    //   userManagementService.listOfRequests().then((r) => {
-    //     if (r.status === 201) {
-    //         this.$store.commit("SET_REQUESTS_LIST", r.data);
-    //     }
-    //   });
-    // },
-  },
   data() {
     return {
-      usersTest: [
-        {
-          id: 1,
-          firstName: "John",
-          lastName: "Smith",
-          username: "jsmith",
-          emailAddress: "jsmith@gmail.com",
-          status: "Active",
-        },
-      ],
+      displayRequests: []
     };
   },
   methods: {
+    //Some users may have submitted multiple requests for employee access.
+    //This method filters out all the requests so that each user only has
+    //one request for employee access displayed on the screen.
+    getDisplayRequests() {
+        const allUserIdsInActiveRequests = [];
 
-    flipStatus() {
+        this.$store.state.requests.forEach(element => allUserIdsInActiveRequests.push(element.userId));   
+        
+        const userIdsOfUniqueRequests = [];
 
-    },
+        for (let i = 0; i < allUserIdsInActiveRequests.length; i++) {
+          if (!userIdsOfUniqueRequests.includes(allUserIdsInActiveRequests[i])) {
+            userIdsOfUniqueRequests.push(allUserIdsInActiveRequests[i]);
+            this.displayRequests.push(this.$store.state.requests[i]);
+          }
+        }
+    }
   },
-  computed: {
+  created() {
+    userManagementService.getListOfRequests().then(response => {
+        if (response.status === 200) {
+          this.$store.commit('SET_REQUESTS_LIST', response.data);
 
-  },
+          this.getDisplayRequests();
+        }
+    });
+  }
 };
 </script>
 
-<style scoped>
-table {
-  margin-top: 20px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  margin-bottom: 20px;
+<style>
+h1.admin-h1 {
+  margin: 50px 10px 10px 10px;
+  font-size: 24px;
 }
 th {
   text-transform: uppercase;
+  padding: 10px;
+  margin-top: 10px;
 }
 td {
-  padding: 10px;
-}
-tr.disabled {
-  color: red;
-}
-input,
-select {
-  font-size: 16px;
-}
-
-form {
-  margin: 20px;
-  width: 350px;
-}
-.field {
-  padding: 10px 0px;
-}
-label {
-  width: 140px;
-  display: inline-block;
+  padding: 5px 10px;
 }
 button {
   margin-right: 5px;
-}
-.all-actions {
-  margin-bottom: 40px;
-}
-.btn.save {
-  margin: 20px;
-  float: right;
 }
 </style>

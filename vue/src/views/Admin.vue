@@ -1,14 +1,15 @@
 <template>
   <div>
-      <active-requests/>
+      <active-requests />
   </div>
 </template>
 
 <script>
 import ActiveRequests from '../components/ActiveRequests.vue'
 export default {
-  components: { ActiveRequests },
-
+  components: {
+    ActiveRequests
+  }
 }
 </script>
 

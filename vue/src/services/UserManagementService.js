@@ -1,7 +1,11 @@
 import axios from 'axios';
 
+const http = axios.create({
+    baseURL: "https://localhost:44315"
+  });
+
 export default {
-    listOfRequests() {
-        return axios.get('/usermanagement/request');
+    getListOfRequests() {
+        return http.get('/usermanagement/request');
     }
 }
