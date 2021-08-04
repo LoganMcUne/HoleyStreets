@@ -33,7 +33,7 @@ export default {
 .nav {
   display: flex;
   background-color: #adc178;
-  height: 5vh;
+  height: 60px;
   align-items: center;
   justify-content: space-between;
 }
@@ -41,7 +41,9 @@ export default {
 .holey-streets {
   text-decoration: none;
   color: black;
+  font-size: 25px;
   margin: 0px 10px;
+  font-family: 'Luckiest Guy', cursive;
 }
 
 </style>
