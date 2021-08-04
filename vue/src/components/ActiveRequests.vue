@@ -1,11 +1,12 @@
 <template>
   <div>
+    <h1 class="admin-h1">Users Requesting Employee Access</h1>
+
     <table>
       <thead>
         <tr>
           <th>User Id</th>
           <th>User Name</th>
-          <th>User Email</th>
           <th>Approve</th>
           <th>Deny</th>
         </tr>
@@ -13,12 +14,11 @@
 
       <tbody>
         <tr
-          v-for="request in $store.state.requests"
+          v-for="request in displayRequests"
           v-bind:key="request.userid"
         >
           <td>{{ request.userId }}</td>
-          <td>REPLACE ME WITH A USERNAME</td>
-          <td>REPLACE ME WITH A USER'S EMAIL ADDRESS</td>
+          <td>{{ request.username}}</td>
           <td>
             <!--TODO: Add v-on:click="function()" to buttons -->
             <button >
@@ -47,28 +47,46 @@ export default {
       displayRequests: []
     };
   },
+  methods: {
+    //Some users may have submitted multiple requests for employee access.
+    //This method filters out all the requests so that each user only has
+    //one request for employee access displayed on the screen.
+    getDisplayRequests() {
+        const allUserIdsInActiveRequests = [];
+
+        this.$store.state.requests.forEach(element => allUserIdsInActiveRequests.push(element.userId));   
+        
+        const userIdsOfUniqueRequests = [];
+
+        for (let i = 0; i < allUserIdsInActiveRequests.length; i++) {
+          if (!userIdsOfUniqueRequests.includes(allUserIdsInActiveRequests[i])) {
+            userIdsOfUniqueRequests.push(allUserIdsInActiveRequests[i]);
+            this.displayRequests.push(this.$store.state.requests[i]);
+          }
+        }
+    }
+  },
   created() {
     userManagementService.getListOfRequests().then(response => {
         if (response.status === 200) {
           this.$store.commit('SET_REQUESTS_LIST', response.data);
+
+          this.getDisplayRequests();
         }
     });
-    //PROBLEM: The "Requests" from the database only provide the requestId and the userId.
-    //We probably want the admin to be able to see the username and the email address of users requesting employee access
-    //And, right now, the admin can see duplicate requests. We probably want to filter the requests to only show the
-    //admin one request per person.
   }
 };
 </script>
 
 <style>
-table {
-  margin-top: 20px;
-  margin-bottom: 20px;
+h1.admin-h1 {
+  margin: 50px 10px 10px 10px;
+  font-size: 24px;
 }
 th {
   text-transform: uppercase;
   padding: 10px;
+  margin-top: 10px;
 }
 td {
   padding: 5px 10px;
