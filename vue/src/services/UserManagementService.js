@@ -7,5 +7,13 @@ const http = axios.create({
 export default {
     getListOfRequests() {
         return http.get('/usermanagement/request');
+    },
+
+    approveRequest(userId) {
+        return http.put(`/usermanagement/request/${userId}?approved=true`);
+    },
+
+    denyRequest(userId) {
+        return http.put(`/usermanagement/request/${userId}?approved=false`);
     }
 }
