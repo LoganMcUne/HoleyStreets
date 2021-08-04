@@ -12,7 +12,7 @@
         class="alert alert-success"
         role="alert"
         v-if="this.$route.query.registration"
-      >Thank you for registering, please sign in.</div>
+      >Thank you for registering, please sign in.</div><br>
       <label for="username" class="sr-only">Username</label>
       <input
         type="text"
@@ -22,7 +22,7 @@
         v-model="user.username"
         required
         autofocus
-      />
+      /><br>
       <label for="password" class="sr-only">Password</label>
       <input
         type="password"
@@ -31,8 +31,8 @@
         placeholder="Password"
         v-model="user.password"
         required
-      />
-      <button class = "btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      /><br/>
+      <button class="button" type="submit">Sign in</button>
     </form>
   </div>
 </template>
@@ -85,6 +85,18 @@ export default {
   height: 75vh;
   margin: 100px 200px;
   background-color: #f0ead2;
+}
+
+button {
+  background-color: #adc178;
+  border: none;
+  padding: 15px 32px;
+}
+
+.button:active {
+  background-color: lightblue;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 </style>
