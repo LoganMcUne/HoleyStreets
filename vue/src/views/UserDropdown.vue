@@ -30,14 +30,19 @@
         </router-link>
       </b-dropdown-item>
       <b-dropdown-item v-if="$store.state.user.role == 'user'" class="dropdown-btn">
-          Request Employment
+          <request-employment/>
       </b-dropdown-item>
     </b-dropdown>
   </div>
 </template>
 
 <script>
-export default {};
+import RequestEmployment from "../components/RequestEmployment.vue";
+
+export default{
+  components: { RequestEmployment }
+}
+
 </script>
 
 <style>

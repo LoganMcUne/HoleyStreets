@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="button" type="submit" v-on:click.prevent="requestEmployment">
+    <button class="button" v-on:click="requestEmployment()">
       Request Employment
     </button>
   </div>
@@ -11,12 +11,12 @@ import userManagementService from "@/services/UserManagementService.js";
 
 export default {
   methods: {
-    requestEmployment() {
-      userManagementService
-        .requestEmployment()
 
-        .then((response) => {
-          if (response.status === 201) {
+    requestEmployment() {
+
+      userManagementService
+        .requestEmployment().then((response) => {
+          if (response.status === 200) {
             alert("Submission Complete");
           }
         })
@@ -24,7 +24,7 @@ export default {
             console.log(response.status)
         });
     },
-  },
+  }
 };
 </script>
 
