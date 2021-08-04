@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const http = axios.create({
     baseURL: "https://localhost:44315"
-  });
+});
 
 export default {
     getListOfRequests() {
@@ -15,5 +15,11 @@ export default {
 
     denyRequest(userId) {
         return http.put(`/usermanagement/request/${userId}?approved=false`);
+    },
+    getListOfEmployees() {
+        return http.get('/usermanagement/employee');
+    },
+    removeEmployeeRole(userId) {
+        return http.put(`/usermanagement/${userId}?newrole=user`);
     }
 }

@@ -5,7 +5,7 @@ namespace Capstone.DAO
 {
     public interface IUserManagementDao
     {
-        public bool ChangeUserRole(ReturnUser user);
+        public bool ChangeUserRole(int userId, string newRole);
 
         public List<ReturnUser> ListUsersByRole(string role);
 

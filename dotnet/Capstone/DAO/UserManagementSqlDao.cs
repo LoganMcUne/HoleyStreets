@@ -15,7 +15,7 @@ namespace Capstone.DAO
         }
 
         //method to change user role
-        public bool ChangeUserRole(ReturnUser user)
+        public bool ChangeUserRole(int userId, string newRole)
         {
             bool changeSuccessful = false;
 
@@ -30,8 +30,8 @@ namespace Capstone.DAO
                         "WHERE user_id = @user_id; ";
 
                     SqlCommand cmd = new SqlCommand(changeUserRoleSqlStatement, conn);
-                    cmd.Parameters.AddWithValue("@user_role", user.Role);
-                    cmd.Parameters.AddWithValue("@user_id", user.UserId);
+                    cmd.Parameters.AddWithValue("@user_role", newRole);
+                    cmd.Parameters.AddWithValue("@user_id", userId);
 
                     cmd.ExecuteNonQuery();
                     changeSuccessful = true;

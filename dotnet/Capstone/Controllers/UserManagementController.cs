@@ -17,12 +17,12 @@ namespace Capstone.Controllers
         {
             userDao = _userDao;
         }
-
-        [HttpPut]
+        //URL: .../usermanagement/{userId}?newrole=employee
+        [HttpPut("{userId}")]
         [Authorize(Roles = "admin")]
-        public IActionResult UpdateUserRole(ReturnUser user)
+        public IActionResult UpdateUserRole(int userId, string newRole)
         {
-            bool updateSuccessful = userDao.ChangeUserRole(user);
+            bool updateSuccessful = userDao.ChangeUserRole(userId, newRole);
 
             if (updateSuccessful)
             {
@@ -72,7 +72,7 @@ namespace Capstone.Controllers
             }
         }
 
-        //URL: .../usermanagement/request?approved=true/false
+        //URL: .../usermanagement/request/{userId}?approved=true/false
         //The admin approves an access change request
         [HttpPut("request/{userId}")]
         [Authorize(Roles = "admin")]
@@ -92,7 +92,7 @@ namespace Capstone.Controllers
             {
                 user.Role = "employee";
 
-                roleChangeSuccessful = userDao.ChangeUserRole(user);
+                roleChangeSuccessful = userDao.ChangeUserRole(user.UserId, user.Role);
             }
             else
             {
