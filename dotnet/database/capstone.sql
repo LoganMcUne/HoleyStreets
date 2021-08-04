@@ -62,7 +62,20 @@ CREATE TABLE requests (
 --populate default data
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
-INSERT INTO potholes(latitude,longitude,reported_date, reporting_user_id, repair_status) VALUES (39.159490, -84.455277, '8/2/2021',1, 'Reported');
-INSERT INTO requests (user_id, active_status) VALUES (1, 1);
+INSERT INTO users (username, password_hash, salt, user_role) VALUES ('employee','+evA40KNSwa/H67KO3dyrIGCRCc=','ERHtn4EGU9k=','employee');
+INSERT INTO users (username, password_hash, salt, user_role) VALUES ('rejected','bJpe3BopB1nJs94HePre1Gchktw=','v5wtylq92QU=','user');
+INSERT INTO users (username, password_hash, salt, user_role) VALUES ('pending1','ppX+UEfBTBjHB9oHBKt4hsIjHcM=','670msKfgokE=','user');
+INSERT INTO users (username, password_hash, salt, user_role) VALUES ('pending2','V2CyqQMj78DWAhvPV1e/iJ9RN6o=','pbcLS6SbOqg=','user');
+INSERT INTO users (username, password_hash, salt, user_role) VALUES ('pending3','IAM7JZf3uYcDVIGKrJBr388Wonc=','X3i9WS023/o=','user');
 
+INSERT INTO potholes(latitude,longitude,reported_date, reporting_user_id, repair_status) VALUES (39.159490, -84.455277, '8/2/2021',1, 'Reported');
+INSERT INTO potholes(latitude,longitude,reported_date, reporting_user_id, repair_status) VALUES (39.145706, -84.527141, '8/2/2021',2, 'Reported');
+INSERT INTO potholes(latitude,longitude,reported_date, reporting_user_id, repair_status) VALUES (39.180460, -84.501135, '8/2/2021',3, 'Reported');
+INSERT INTO potholes(latitude,longitude,reported_date, reporting_user_id, repair_status) VALUES (39.133231, -84.413645, '8/2/2021',3, 'Reported');
+INSERT INTO potholes(latitude,longitude,reported_date, reporting_user_id, repair_status) VALUES (39.158086, -84.463604, '8/2/2021',4, 'Reported');
+
+INSERT INTO requests (user_id, active_status) VALUES (1, 1);
+INSERT INTO requests (user_id, active_status) VALUES (5, 1);
+INSERT INTO requests (user_id, active_status) VALUES (6, 1);
+INSERT INTO requests (user_id, active_status) VALUES (7, 1);
 GO
