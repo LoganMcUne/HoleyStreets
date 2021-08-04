@@ -18,8 +18,6 @@ if (currentToken != null) {
 
 export default new Vuex.Store({
     state: {
-        currentToken : localStorage.getItem('token'),
-        currentUser: JSON.parse(localStorage.getItem('user')),
         token: currentToken || '',
         user: currentUser || {},
         potholes: [],

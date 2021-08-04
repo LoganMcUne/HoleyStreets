@@ -15,8 +15,8 @@ export default {
   computed: {
     filteredPotholes(){
       return this.$store.state.potholes.filter(x => {
-
-        return x.reportingUserId === this.$store.state.currentUser.userId;
+        // filters to a list of potholes the current logged in user has reported
+        return x.reportingUserId === this.$store.state.user.userId;
 
       })
     }
