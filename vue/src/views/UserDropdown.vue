@@ -25,6 +25,14 @@
           View Account
         </router-link>
       </b-dropdown-item>
+       <b-dropdown-item>
+        <router-link
+          v-bind:to="{ name: 'admin' }"
+          v-if="$store.state.user.role == 'admin'"
+          class="dropdown-btn">
+          View Admin Page
+        </router-link>
+      </b-dropdown-item>
     </b-dropdown>
   </div>
 </template>
