@@ -18,7 +18,7 @@ namespace Capstone.Controllers
             potholeDao = _potholeDao;
         }
 
-        [HttpPost("/add")]
+        [HttpPost("add")]
         [Authorize]
         public IActionResult AddNewPothole(Pothole pothole)
         {
@@ -36,7 +36,7 @@ namespace Capstone.Controllers
             }
         }
 
-        [HttpGet("/list")]
+        [HttpGet("list")]
         public ActionResult<List<Pothole>> ListAllPotholes()
         {
             List<Pothole> allPotholes = potholeDao.ListPotholes();
