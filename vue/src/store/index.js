@@ -21,7 +21,8 @@ export default new Vuex.Store({
         token: currentToken || '',
         user: currentUser || {},
         potholes: [],
-        requests: []
+        requests: [],
+        employees: []
     },
     mutations: {
         SET_AUTH_TOKEN(state, token) {
@@ -45,6 +46,9 @@ export default new Vuex.Store({
         },
         SET_REQUESTS_LIST(state, requests) {
             state.requests = requests;
+        },
+        SET_EMPLOYEES_LIST(state, employees) {
+            state.employees = employees;
         }
     }
 })
