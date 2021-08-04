@@ -14,113 +14,76 @@
 
       <tbody>
         <tr
-          v-for="request in requestsToDisplay"
+          v-for="request in this.$store.state.requests"
           v-bind:key="request.userid"
         >
           <td>{{ request.userId }}</td>
-          <td>{{ request.username}}</td>
+          <td>{{ request.username }}</td>
           <td>
             <!--TODO: Add v-on:click="function()" to buttons -->
-            <button @click="approveRequest(request.userId)">
-              Approve
-            </button>
+            <button @click="approveRequest(request.userId)">Approve</button>
           </td>
           <td>
-            <button @click="denyRequest(request.userId)">
-              Deny
-            </button>
+            <button @click="denyRequest(request.userId)">Deny</button>
           </td>
         </tr>
       </tbody>
-
     </table>
   </div>
 </template>
-
 <script>
 import userManagementService from "@/services/UserManagementService.js";
-import viewEmployees from './ViewEmployees.vue'
 
 export default {
   name: "active-requests",
-  data() {
-    return {
-      requestsToDisplay: []
-    };
-  },
   methods: {
-    getAllActiveRequests() {
-        userManagementService.getListOfRequests()
-          .then(response => {
-            if (response.status === 200) {
-              this.$store.commit('SET_REQUESTS_LIST', response.data);
-
-              this.getRequestsToDisplay();
-            }
-          })
-          .catch(error => {
-            this.handleError(error);
-          });
-    },
-    clearRequestsToDisplay() {
-      this.requestsToDisplay = [];
-    },
-    //Some users may have submitted multiple requests for employee access.
-    //This method filters out all the requests so that each user only has
-    //one request for employee access displayed on the screen.
-    getRequestsToDisplay() {
-        this.clearRequestsToDisplay();
-
-        const allUserIdsInActiveRequests = [];
-
-        this.$store.state.requests.forEach(element => allUserIdsInActiveRequests.push(element.userId));
-        
-        const userIdsOfUniqueRequests = [];
-
-        for (let i = 0; i < allUserIdsInActiveRequests.length; i++) {
-          if (!userIdsOfUniqueRequests.includes(allUserIdsInActiveRequests[i])) {
-            userIdsOfUniqueRequests.push(allUserIdsInActiveRequests[i]);
-            this.requestsToDisplay.push(this.$store.state.requests[i]);
-          }
-        }
-    },
     approveRequest(userId) {
-      userManagementService.approveRequest(userId)
-      .then((response) => {
-
+      userManagementService
+        .approveRequest(userId)
+        .then((response) => {
           if (response.status === 200) {
-            this.getAllActiveRequests();
-            viewEmployees.getAllEmployees();
+            this.$parent.getAllActiveRequests();
+            this.$parent.getAllEmployees();
           }
-      })
-      .catch((error) => {
-        this.handleError(error);
-      });
+        })
+        .catch((error) => {
+          this.$parent.handleError(error);
+        });
     },
     denyRequest(userId) {
-      userManagementService.denyRequest(userId)
-      .then((response) => {
+      userManagementService
+        .denyRequest(userId)
+        .then((response) => {
           if (response.status === 200) {
-            this.getAllActiveRequests();
+            this.$parent.getAllActiveRequests();
           }
-      })
-      .catch((error) => {
-        this.handleError(error);
-      });
+        })
+        .catch((error) => {
+          this.$parent.handleError(error);
+        });
     },
-    handleError(error) {
-      if (error.response) {
-        console.log('Response was not a 2xx');
-      } else if (error.request) {
-        console.log('Request was made, no response was received');
-      } else {
-        console.log('Request was not made');
-      }
-    }
   },
-  created() {
-    this.getAllActiveRequests();
-  }
+  // // Some users may have submitted multiple requests for employee access.
+  // // This method filters out all the requests so that each user only has
+  // // one request for employee access displayed on the screen.
+  // getRequestsToDisplay() {
+  //   this.clearRequestsToDisplay();
+
+  //   const allUserIdsInActiveRequests = [];
+
+  //   this.$store.state.requests.forEach((element) =>
+  //     allUserIdsInActiveRequests.push(element.userId)
+  //   );
+
+  //   const userIdsOfUniqueRequests = [];
+
+  //   for (let i = 0; i < allUserIdsInActiveRequests.length; i++) {
+  //     if (!userIdsOfUniqueRequests.includes(allUserIdsInActiveRequests[i])) {
+  //       userIdsOfUniqueRequests.push(allUserIdsInActiveRequests[i]);
+  //       this.requestsToDisplay.push(this.$store.state.requests[i]);
+  //     }
+  //   }
+  // },
 };
 </script>
 
