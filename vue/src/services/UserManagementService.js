@@ -18,6 +18,6 @@ export default {
     },
 
     requestEmployment() {
-        return http.post(`/request`)
+        return http.post(`/usermanagement/request`)
     }
 }
