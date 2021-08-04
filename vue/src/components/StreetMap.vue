@@ -12,7 +12,7 @@
       <l-tile-layer :url="url" :attribution="attribution" />
       <l-marker
         v-bind:key="pothole.id"
-        v-for="pothole in $store.state.potholes"
+        v-for="pothole in markers"
         :lat-lng="makeLatLng(pothole.latitude, pothole.longitude)"
       >
       </l-marker>
@@ -27,6 +27,7 @@ import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 
 export default {
   name: "Map",
+  props: ["markers"],
   components: {
     LMap,
     LTileLayer,

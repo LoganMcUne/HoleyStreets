@@ -1,6 +1,6 @@
 <template>
   <div class="list-of-potholes">
-    <b-table :items="filteredPotholes"
+    <b-table :items="potholes"
        bordered 
        striped
        >
@@ -12,15 +12,7 @@
 
 export default {
   name: "hole-list",
-  computed: {
-    filteredPotholes(){
-      return this.$store.state.potholes.filter(x => {
-        // filters to a list of potholes the current logged in user has reported
-        return x.reportingUserId === this.$store.state.user.userId;
-
-      })
-    }
-  }
+  props: ["potholes"]
 };
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <street-map />
+    <street-map :markers="this.$store.state.potholes"/>
     <add-pothole />
 
   </div>
