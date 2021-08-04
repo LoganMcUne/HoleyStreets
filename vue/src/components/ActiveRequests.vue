@@ -39,6 +39,7 @@
 
 <script>
 import userManagementService from "@/services/UserManagementService.js";
+import viewEmployees from './ViewEmployees.vue'
 
 export default {
   name: "active-requests",
@@ -86,8 +87,10 @@ export default {
     approveRequest(userId) {
       userManagementService.approveRequest(userId)
       .then((response) => {
+
           if (response.status === 200) {
             this.getAllActiveRequests();
+            viewEmployees.getAllEmployees();
           }
       })
       .catch((error) => {

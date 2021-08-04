@@ -1,30 +1,26 @@
 import axios from 'axios';
 
-const http = axios.create({
-    baseURL: "https://localhost:44315"
-});
-
 export default {
     getListOfRequests() {
-        return http.get('/usermanagement/request');
+        return axios.get('/usermanagement/request');
     },
 
     approveRequest(userId) {
-        return http.put(`/usermanagement/request/${userId}?approved=true`);
+        return axios.put(`/usermanagement/request/${userId}?approved=true`);
     },
 
     denyRequest(userId) {
-        return http.put(`/usermanagement/request/${userId}?approved=false`);
+        return axios.put(`/usermanagement/request/${userId}?approved=false`);
     },
 
     requestEmployment() {
-        return http.post(`/usermanagement/request`)
+        return axios.post(`/usermanagement/request`)
     },
 
     getListOfEmployees() {
-        return http.get('/usermanagement/employee');
+        return axios.get('/usermanagement/employee');
     },
     removeEmployeeRole(userId) {
-        return http.put(`/usermanagement/${userId}?newrole=user`);
+        return axios.put(`/usermanagement/${userId}?newrole=user`);
     }
 }

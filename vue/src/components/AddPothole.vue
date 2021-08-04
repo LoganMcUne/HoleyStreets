@@ -53,7 +53,7 @@ export default {
   methods: {
     addNewPothole() {
       potholeService.addPothole(this.pothole).then((r) => {
-        if (r.status === 201) {
+        if (r.status === 200) {
           this.setPotholes();
         }
         this.resetPothole();
@@ -67,9 +67,6 @@ export default {
         this.$store.commit("SET_POTHOLE_LIST", r.data);
       });
     },
-  },
-  updated() {
-    this.setPotholes();
   },
 };
 </script>

@@ -13,7 +13,7 @@
 
       <tbody>
         <tr
-          v-for="employee in currentEmployees"
+          v-for="employee in $store.state.employees"
           v-bind:key="employee.userid"
         >
           <td>{{ employee.userId }}</td>
@@ -68,15 +68,10 @@ methods: {
       });
     }
 },
-created() {
+  created() {
     this.getAllEmployees();
-},
-computed: {
-    currentEmployees(){
-        this.getAllEmployees();
-        return this.$store.state.employees;
-    }
-}
+    
+  },
 }
 </script>
 
