@@ -33,7 +33,7 @@ export default {
 .nav {
   display: flex;
   background-color: #adc178;
-  height: 5vh;
+  height: 70px;
   align-items: center;
   justify-content: space-between;
 }

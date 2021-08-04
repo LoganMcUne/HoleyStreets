@@ -1,37 +1,36 @@
 <template>
   <div>
-    <b-dropdown id="dropdown-1" text="User Options" variant="light" class="m-md-2">
-      <b-dropdown-item>
+    <b-dropdown id="dropdown-right" right text="User Options" variant="light" class="m-md-2">
+      <b-dropdown-item v-if="$store.state.token != ''">
         <router-link
           v-bind:to="{ name: 'logout' }"
-          v-if="$store.state.token != ''"
           class="dropdown-btn">
           Logout
         </router-link>
       </b-dropdown-item>
-      <b-dropdown-item>
+      <b-dropdown-item  v-if="$store.state.token == ''">
         <router-link
           v-bind:to="{ name: 'login' }"
-          v-if="$store.state.token == ''"
           class="dropdown-btn">
           Login
         </router-link>
       </b-dropdown-item>
-      <b-dropdown-item>
+      <b-dropdown-item  v-if="$store.state.token != ''">
         <router-link
           v-bind:to="{ name: 'account' }"
-          v-if="$store.state.token != ''"
           class="dropdown-btn">
           View Account
         </router-link>
       </b-dropdown-item>
-       <b-dropdown-item>
+       <b-dropdown-item v-if="$store.state.user.role == 'admin'">
         <router-link
           v-bind:to="{ name: 'admin' }"
-          v-if="$store.state.user.role == 'admin'"
           class="dropdown-btn">
           View Admin Page
         </router-link>
+      </b-dropdown-item>
+      <b-dropdown-item v-if="$store.state.user.role == 'user'" class="dropdown-btn">
+          Request Employment
       </b-dropdown-item>
     </b-dropdown>
   </div>
