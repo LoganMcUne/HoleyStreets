@@ -32,6 +32,13 @@
       <b-dropdown-item v-if="$store.state.user.role == 'user'">
           <request-employment/>
       </b-dropdown-item>
+      <b-dropdown-item v-if="$store.state.user.role == 'employee'">
+        <router-link
+          v-bind:to="{ name: 'employee' }"
+          class="dropdown-btn">
+          View Employee Page
+        </router-link>
+      </b-dropdown-item>
     </b-dropdown>
   </div>
 </template>
