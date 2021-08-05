@@ -14,6 +14,7 @@
         v-bind:key="pothole.id"
         v-for="pothole in markers"
         :lat-lng="makeLatLng(pothole.latitude, pothole.longitude)"
+        :opacity="pothole.opacity"
       >
       </l-marker>
     </l-map>

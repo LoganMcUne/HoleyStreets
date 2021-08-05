@@ -1,6 +1,6 @@
 <template>
   <div>
-    <street-map :markers="filteredPotholes" />
+    <street-map :markers="filteredMarkers" />
     <hole-list :potholes="filteredPotholes" />
   </div>
 </template>
@@ -21,6 +21,18 @@ export default {
         return x.reportingUserId === this.$store.state.user.userId;
       });
     },
+    filteredMarkers(){
+      return this.$store.state.potholes.map(p => {
+        if (p.reportingUserId === this.$store.state.user.userId){
+          p.opacity = 1
+        }
+        else{
+          p.opacity = 0.5
+        }
+         
+         return p
+      })
+    }
   },
 };
 </script>
