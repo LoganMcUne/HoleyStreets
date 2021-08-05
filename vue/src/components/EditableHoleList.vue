@@ -29,15 +29,15 @@
             <td>{{pothole.imageLink}}</td>
             <td>{{pothole.reportedDate}}</td>
             <td>{{pothole.reportingUserId}}</td>
-            <td contenteditable="true"><input v-model="pothole.inspectedDate">{{pothole.inspectedDate}}</td>
-            <td contenteditable="true">{{pothole.repairedDate}}</td>
-            <td contenteditable="true">{{pothole.repairStatus}}</td>
-            <td contenteditable="true">{{pothole.severity}}</td>
+            <td contenteditable="true"><input type="date" v-model="pothole.inspectedDate">{{pothole.inspectedDate}}</td>
+            <td contenteditable="true"><input type="date" v-model="pothole.repairedDate">{{pothole.repairedDate}}</td>
+            <td contenteditable="true"><select name="Reported"><option value="Reported">Reported</option><option value="Inspected">Inspected</option><option value="Repaired">Repaired</option></select>{{pothole.repairStatus}}</td>
+            <td contenteditable="true"><input type="range" min="1" max="10" v-model="pothole.severity">{{pothole.severity}}</td>
             <td><a href class="edit-delete" v-on:click.prevent="updatePothole(pothole)"><img src="/pencil.ico" class="ico"></a><a href class="edit-delete" v-on:click.prevent="deletePothole(pothole.id)"><img src="/trash.ico" class="ico"></a></td>
           </tr>
         </tbody>
         </table>
-        </div>
+        </div> 
   </div>
 </template>
 
