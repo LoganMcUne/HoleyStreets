@@ -2,6 +2,6 @@ import axios from 'axios';
 
 export default {
     uploadFile(formData) {
-        return axios.post('/fileupload', formData, { headers: {'Content-Type': 'multipart/form-data'}});
+        return axios.post('http://storage.googleapis.com/pothole-pics-1', formData, { headers: {'Content-Type': 'multipart/form-data'}});
     }
 }
