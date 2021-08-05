@@ -2,9 +2,12 @@
   <div id="app">
     <div>
       <b-nav class="nav">
-        <router-link v-bind:to="{ name: 'home' }" class="holey-streets"
-          >HOLEY STREETS</router-link
-        >
+        <div class="logo-and-name">
+          <a href="http://localhost:8080/"><img class='logo-image' src="../public/pothole.svg" alt="Holey Streets Logo" /></a>
+          <router-link v-bind:to="{ name: 'home' }" class="holey-streets">
+            HOLEY STREETS
+          </router-link>
+        </div>
         <dropdown />
       </b-nav>
     </div>
@@ -17,6 +20,7 @@ import Dropdown from "./views/UserDropdown.vue";
 import potholeService from "./services/PotholeService.js";
 
 export default {
+  name: 'app',
   components: {
     Dropdown,
   },
@@ -46,4 +50,10 @@ export default {
   font-family: 'Luckiest Guy', cursive;
 }
 
+.logo-image {
+  height: 25px;
+  width: auto;
+  margin-left: 15px;
+  margin-bottom: 11px;
+}
 </style>
