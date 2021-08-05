@@ -22,7 +22,11 @@ export default {
   },
   created() {
     potholeService.list().then((r) => {
-      this.$store.commit("SET_POTHOLE_LIST", r.data);
+      const newR = r.data.map((p) => {
+        p.iconUrl = "";
+        return p;
+      });
+      this.$store.commit("SET_POTHOLE_LIST", newR);
     });
   },
 };
@@ -43,7 +47,6 @@ export default {
   color: black;
   font-size: 25px;
   margin: 0px 10px;
-  font-family: 'Luckiest Guy', cursive;
+  font-family: "Luckiest Guy", cursive;
 }
-
 </style>

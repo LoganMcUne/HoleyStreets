@@ -11,8 +11,8 @@
     >
       <l-tile-layer :url="url" :attribution="attribution" />
       <l-marker
-        v-bind:key="pothole.id"
         v-for="pothole in markers"
+        v-bind:key="pothole.id"
         :lat-lng="makeLatLng(pothole.latitude, pothole.longitude)"
         :opacity="pothole.opacity"
         :icon="makeIcon(pothole.iconUrl)"
@@ -45,7 +45,7 @@ export default {
         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       withPopup: latLng(39.15949, -84.455277),
       withTooltip: latLng(39.15949, -84.455277),
-      currentZoom: 11.5,
+      currentZoom: 10,
       currentCenter: latLng(39.15949, -84.455277),
       showParagraph: false,
       mapOptions: {
@@ -56,11 +56,19 @@ export default {
   },
   methods: {
     makeIcon(s) {
-      return L.icon({
-        iconUrl: s,
-        iconSize: [25,41],
-        iconAnchor: [12.5, 41]
-      });
+      if (s) {
+        return L.icon({
+          iconUrl: s,
+          iconSize: [25, 41],
+          iconAnchor: [12.5, 41],
+        });
+      } else {
+        return L.icon({
+          iconUrl: "marker-icon-blue.png",
+          iconSize: [25, 41],
+          iconAnchor: [12.5, 41],
+        });
+      }
     },
     zoomUpdate(zoom) {
       this.currentZoom = zoom;

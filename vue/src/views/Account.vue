@@ -21,18 +21,16 @@ export default {
         return x.reportingUserId === this.$store.state.user.userId;
       });
     },
-    filteredMarkers(){
-      return this.$store.state.potholes.map(p => {
-        if (p.reportingUserId === this.$store.state.user.userId){
-          p.iconUrl = "marker-icon-green.png"
+    filteredMarkers() {
+      return this.$store.state.potholes.map((p) => {
+        if (p.reportingUserId === this.$store.state.user.userId) {
+          p.iconUrl = "marker-icon-green.png";
+        } else {
+          p.iconUrl = "marker-icon-grey.png";
         }
-        else{
-          p.iconUrl = "marker-icon-grey.png"
-        }
-         
-         return p
-      })
-    }
+        return p;
+      });
+    },
   },
 };
 </script>

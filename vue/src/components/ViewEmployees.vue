@@ -39,8 +39,9 @@ export default {
       userManagementService
         .removeEmployeeRole(userId)
         .then((response) => {
+          console.log(response.status)
           if (response.status === 204) {
-            this.$parent.getAllEmployees();
+            this.$store.commit("DELETE_EMPLOYEE", userId)
           }
         })
         .catch((error) => {

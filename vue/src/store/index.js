@@ -44,18 +44,24 @@ export default new Vuex.Store({
         SET_POTHOLE_LIST(state, potholes) {
             state.potholes = potholes;
         },
+        DELETE_POTHOLE(state, id) {
+            let index = state.potholes.findIndex((p) => {
+                return p.id == id
+            })
+            state.potholes.splice(index, 1)
+        },
         SET_REQUESTS_LIST(state, requests) {
             state.requests = requests;
+        },
+        DELETE_REQUEST(state, id) {
+            state.requests.splice(state.requests.findIndex(r => r.userId == id), 1)
         },
         SET_EMPLOYEES_LIST(state, employees) {
             state.employees = employees;
         },
-        DELETE_POTHOLE(state, id){
-            let index = state.potholes.findIndex((p) => {
-               return p.id == id
-            })
-
-            state.potholes.splice(index, 1)
+        DELETE_EMPLOYEE(state, id) {
+            state.employees.splice(state.employees.findIndex(e => e.userId == id), 1)
         }
+
     }
 })
