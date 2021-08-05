@@ -1,7 +1,7 @@
 <template>
   <div class="form">
     <div>
-      <b-button v-b-toggle.sidebar-1 class="add-new">Add A Pothole</b-button>
+      <b-button v-b-toggle.sidebar-1 class="add-new" v-if="$store.state.token != ''">Add A Pothole</b-button>
       <b-sidebar id="sidebar-1" title="New Pothole" shadow>
         <div class="px-3 py-2">
           <form class="add-pothole" v-if="$store.state.token != ''">
