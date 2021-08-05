@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default{
+export default {
     list() {
         return axios.get('/pothole/list')
     },
@@ -11,5 +11,9 @@ export default{
 
     deletePothole(id) {
         return axios.delete(`/pothole/${id}`)
+    },
+
+    updatePothole(pothole) {
+        return axios.put('/pothole', pothole)
     }
 }
