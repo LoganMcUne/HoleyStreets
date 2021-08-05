@@ -56,7 +56,6 @@ export default {
   },
   methods: {
     makeIcon(s) {
-      console.log(s)
       return L.icon({
         iconUrl: s,
         iconSize: [25,41],
