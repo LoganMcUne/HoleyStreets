@@ -24,10 +24,10 @@ export default {
     filteredMarkers(){
       return this.$store.state.potholes.map(p => {
         if (p.reportingUserId === this.$store.state.user.userId){
-          p.opacity = 1
+          p.iconUrl = "marker-icon-green.png"
         }
         else{
-          p.opacity = 0.5
+          p.iconUrl = "marker-icon-grey.png"
         }
          
          return p

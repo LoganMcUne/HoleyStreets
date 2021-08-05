@@ -1,5 +1,5 @@
 <template>
-  <div id="ourmap" style="height: 80vh; width: 80vw">
+  <div id="ourmap" style="height: 80vh; width: 70vw">
     <l-map
       v-if="showMap"
       :zoom="zoom"
@@ -15,6 +15,7 @@
         v-for="pothole in markers"
         :lat-lng="makeLatLng(pothole.latitude, pothole.longitude)"
         :opacity="pothole.opacity"
+        :icon="makeIcon(pothole.iconUrl)"
       >
       </l-marker>
     </l-map>
@@ -24,6 +25,7 @@
 
 <script>
 import { latLng } from "leaflet";
+import L from "leaflet";
 import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 
 export default {
@@ -36,7 +38,7 @@ export default {
   },
   data() {
     return {
-      zoom: 13,
+      zoom: 10,
       center: latLng(39.15949, -84.455277),
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
@@ -53,6 +55,14 @@ export default {
     };
   },
   methods: {
+    makeIcon(s) {
+      console.log(s)
+      return L.icon({
+        iconUrl: s,
+        iconSize: [25,41],
+        iconAnchor: [12.5, 41]
+      });
+    },
     zoomUpdate(zoom) {
       this.currentZoom = zoom;
     },
