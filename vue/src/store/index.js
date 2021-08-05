@@ -61,7 +61,12 @@ export default new Vuex.Store({
         },
         DELETE_EMPLOYEE(state, id) {
             state.employees.splice(state.employees.findIndex(e => e.userId == id), 1)
+        },
+        UPDATE_POTHOLE(state, pothole) {
+            let i = state.potholes.findIndex((p) => {
+                return p.id == pothole.id
+            })
+            state.potholes[i] = pothole
         }
-
     }
 })
