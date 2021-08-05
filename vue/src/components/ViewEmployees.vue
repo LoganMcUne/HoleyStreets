@@ -20,7 +20,7 @@
           <td>{{ employee.username }}</td>
           <td>
             <!--TODO: Add v-on:click="function()" to buttons -->
-            <button @click="removeEmployeeRole(employee.userId)">
+            <button @click="removeEmployeeRole(employee.userId)" class="remove">
               Remove Employee
             </button>
           </td>
@@ -52,4 +52,9 @@ export default {
 </script>
 
 <style>
+
+.remove{
+   background-color: rgb(248, 86, 86);
+}
+
 </style>

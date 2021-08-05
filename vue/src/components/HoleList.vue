@@ -3,6 +3,7 @@
     <b-table :items="potholes"
        bordered 
        striped
+       sticky-header
        >
     </b-table>
   </div>

@@ -24,7 +24,7 @@
             <button @click="approveRequest(request.userId)">Approve</button>
           </td>
           <td>
-            <button @click="denyRequest(request.userId)">Deny</button>
+            <button @click="denyRequest(request.userId)" class="deny">Deny</button>
           </td>
         </tr>
       </tbody>
@@ -63,27 +63,6 @@ export default {
         });
     },
   },
-  // // Some users may have submitted multiple requests for employee access.
-  // // This method filters out all the requests so that each user only has
-  // // one request for employee access displayed on the screen.
-  // getRequestsToDisplay() {
-  //   this.clearRequestsToDisplay();
-
-  //   const allUserIdsInActiveRequests = [];
-
-  //   this.$store.state.requests.forEach((element) =>
-  //     allUserIdsInActiveRequests.push(element.userId)
-  //   );
-
-  //   const userIdsOfUniqueRequests = [];
-
-  //   for (let i = 0; i < allUserIdsInActiveRequests.length; i++) {
-  //     if (!userIdsOfUniqueRequests.includes(allUserIdsInActiveRequests[i])) {
-  //       userIdsOfUniqueRequests.push(allUserIdsInActiveRequests[i]);
-  //       this.requestsToDisplay.push(this.$store.state.requests[i]);
-  //     }
-  //   }
-  // },
 };
 </script>
 
@@ -107,5 +86,9 @@ div.employee-access-requests {
   margin: 3vh;
   border: 1px solid black;
   border-radius: 10px;
+}
+
+.deny {
+  background-color: rgb(248, 86, 86);
 }
 </style>
