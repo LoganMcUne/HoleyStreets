@@ -7,5 +7,9 @@ export default{
 
     addPothole(pothole) {
         return axios.post('/pothole/add', pothole)
+    },
+
+    deletePothole(id) {
+        return axios.delete(`/pothole/${id}`)
     }
 }

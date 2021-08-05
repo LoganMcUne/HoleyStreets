@@ -13,12 +13,27 @@
             <th class="text-center">Longitude</th>
             <th class="text-center">Image Link</th>
             <th class="text-center">Reported Date</th>
-            <th class="text-center">Sort</th>
-            <th class="text-center">Remove</th>
+            <th class="text-center">Reporting User ID</th>
+            <th class="text-center">Inspected Date</th>
+            <th class="text-center">Repaired Date</th>
+            <th class="text-center">Repair Status</th>
+            <th class="text-center">Severity</th>
+            <th class="text-center">Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr v-for="pothole in potholes" :key="pothole.id">
+            <td>{{pothole.id}}</td>
+            <td>{{pothole.latitude}}</td>
+            <td>{{pothole.longitude}}</td>
+            <td>{{pothole.imageLink}}</td>
+            <td>{{pothole.reportedDate}}</td>
+            <td>{{pothole.reportingUserId}}</td>
+            <td contenteditable="true">{{pothole.inspectedDate}}</td>
+            <td contenteditable="true">{{pothole.repairedDate}}</td>
+            <td contenteditable="true">{{pothole.repairStatus}}</td>
+            <td contenteditable="true">{{pothole.severity}}</td>
+            <td><a href class="edit-delete"><img src="/pencil.ico" class="ico"></a><a href class="edit-delete" v-on:click.prevent="deletePothole(pothole.id)"><img src="/trash.ico" class="ico"></a></td>
           </tr>
         </tbody>
         </table>
@@ -27,10 +42,22 @@
 </template>
 
 <script>
+import potholeService from '../services/PotholeService.js'
 
 export default {
   name: "hole-list",
-  props: ["potholes"]
+  props: ["potholes"],
+  methods: {
+    deletePothole(id) {
+      potholeService.deletePothole(id).then(() =>
+      {
+          this.$store.commit("DELETE_POTHOLE", id)
+      })
+      .catch((e) =>{
+        console.log(e.status)
+      })
+    },
+  }
 };
 </script>
 
@@ -40,4 +67,15 @@ export default {
   margin: 5px;
 }
 
+.edit-delete {
+  text-decoration: none;
+  color: black;
+  justify-content: flex-end;
+  margin: 0px 10px;
+}
+
+.ico {
+  width: 1em;
+  height: 1em;
+}
 </style>

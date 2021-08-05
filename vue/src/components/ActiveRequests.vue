@@ -63,27 +63,6 @@ export default {
         });
     },
   },
-  // // Some users may have submitted multiple requests for employee access.
-  // // This method filters out all the requests so that each user only has
-  // // one request for employee access displayed on the screen.
-  // getRequestsToDisplay() {
-  //   this.clearRequestsToDisplay();
-
-  //   const allUserIdsInActiveRequests = [];
-
-  //   this.$store.state.requests.forEach((element) =>
-  //     allUserIdsInActiveRequests.push(element.userId)
-  //   );
-
-  //   const userIdsOfUniqueRequests = [];
-
-  //   for (let i = 0; i < allUserIdsInActiveRequests.length; i++) {
-  //     if (!userIdsOfUniqueRequests.includes(allUserIdsInActiveRequests[i])) {
-  //       userIdsOfUniqueRequests.push(allUserIdsInActiveRequests[i]);
-  //       this.requestsToDisplay.push(this.$store.state.requests[i]);
-  //     }
-  //   }
-  // },
 };
 </script>
 
