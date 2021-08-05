@@ -5,7 +5,7 @@
         ><a href="#!" class="text-success"
           ><i class="fas fa-plus fa-2x" aria-hidden="true"></i></a
       ></span>
-      <table class="table table-bordered table-responsive-md table-striped text-center">
+      <table id="grid" class="table table-bordered table-responsive-md table-striped text-center">
         <thead>
           <tr>
             <th class="text-center">Pothole ID</th>
@@ -29,11 +29,11 @@
             <td>{{pothole.imageLink}}</td>
             <td>{{pothole.reportedDate}}</td>
             <td>{{pothole.reportingUserId}}</td>
-            <td contenteditable="true">{{pothole.inspectedDate}}</td>
+            <td contenteditable="true"><input v-model="pothole.inspectedDate">{{pothole.inspectedDate}}</td>
             <td contenteditable="true">{{pothole.repairedDate}}</td>
             <td contenteditable="true">{{pothole.repairStatus}}</td>
             <td contenteditable="true">{{pothole.severity}}</td>
-            <td><a href class="edit-delete"><img src="/pencil.ico" class="ico"></a><a href class="edit-delete" v-on:click.prevent="deletePothole(pothole.id)"><img src="/trash.ico" class="ico"></a></td>
+            <td><a href class="edit-delete" v-on:click.prevent="updatePothole(pothole)"><img src="/pencil.ico" class="ico"></a><a href class="edit-delete" v-on:click.prevent="deletePothole(pothole.id)"><img src="/trash.ico" class="ico"></a></td>
           </tr>
         </tbody>
         </table>
@@ -57,8 +57,18 @@ export default {
         console.log(e.status)
       })
     },
+    updatePothole(pothole) {
+        console.log("we have reached the right method")
+        potholeService.updatePothole(pothole).then(()=> {
+            this.$store.commit("UPDATE_POTHOLE", pothole)
+            console.log(pothole.id)
+        })
+        .catch((e) =>{
+        console.log(e.status)
+      })
+    }
   }
-};
+}
 </script>
 
 <style>

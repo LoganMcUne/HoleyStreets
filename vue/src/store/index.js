@@ -50,12 +50,18 @@ export default new Vuex.Store({
         SET_EMPLOYEES_LIST(state, employees) {
             state.employees = employees;
         },
-        DELETE_POTHOLE(state, id){
+        DELETE_POTHOLE(state, id) {
             let index = state.potholes.findIndex((p) => {
-               return p.id == id
+                return p.id == id
             })
 
             state.potholes.splice(index, 1)
+        },
+        UPDATE_POTHOLE(state, pothole) {
+            let i = state.potholes.findIndex((p) => {
+                return p.id == pothole.id
+            })
+            state.potholes[i] = pothole
         }
     }
 })
