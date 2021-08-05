@@ -24,7 +24,7 @@
             <button @click="approveRequest(request.userId)">Approve</button>
           </td>
           <td>
-            <button @click="denyRequest(request.userId)">Deny</button>
+            <button @click="denyRequest(request.userId)" class="deny">Deny</button>
           </td>
         </tr>
       </tbody>
@@ -107,5 +107,9 @@ div.employee-access-requests {
   margin: 3vh;
   border: 1px solid black;
   border-radius: 10px;
+}
+
+.deny {
+  background-color: rgb(248, 86, 86);
 }
 </style>

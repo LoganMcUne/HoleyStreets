@@ -29,7 +29,7 @@
           View Admin Page
         </router-link>
       </b-dropdown-item>
-      <b-dropdown-item v-if="$store.state.user.role == 'user'" class="dropdown-btn">
+      <b-dropdown-item v-if="$store.state.user.role == 'user'">
           <request-employment/>
       </b-dropdown-item>
     </b-dropdown>
