@@ -83,7 +83,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 8vh 20vw 0 20vw;
+  margin-top: 8vh;
   padding: 10vh;
   border-radius: 10px;
   background-image: url("../../public/road_pic_3.jpg");
