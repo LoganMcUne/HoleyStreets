@@ -34,25 +34,21 @@
             @mouseover="mouseOn(pothole.id)"
             @mouseleave="mouseOff(pothole.id)"
           >
-            <td>{{ pothole.id }}</td>
+            <!-- <td>{{ pothole.id }}</td>
             <td>{{ pothole.latitude }}</td>
             <td>{{ pothole.longitude }}</td>
             <td>{{ pothole.imageLink }}</td>
-            <td>{{pothole.reportedDate.length > 10 ? pothole.reportedDate = pothole.reportedDate.substring(0,10): pothole.reportedDate}}</td>
+            <td>{{ pothole.reportedDate.length > 10 ? pothole.reportedDate = pothole.reportedDate.substring(0,10): pothole.reportedDate }}</td>
             <td>{{ pothole.reportingUserId }}</td>
             <td>
               <input type="date" v-model="pothole.inspectedDate" v-if= "isEditClicked"/>
               <br v-if= "isEditClicked">
-              {{
-                pothole.inspectedDate
-              }}
+              {{ pothole.inspectedDate }}
             </td>
             <td>
               <input type="date" v-model="pothole.repairedDate" v-if= "isEditClicked"/>
               <br v-if= "isEditClicked">
-              {{
-                pothole.repairedDate
-              }}
+              {{ pothole.repairedDate }}
             </td>
             <td>
               <select name="Reported" 
@@ -61,7 +57,8 @@
                 <option value="Reported">Reported</option>
                 <option value="Inspected">Inspected</option>
                 <option value="Repaired">Repaired</option></select
-              >{{ pothole.repairStatus }}
+              ><br v-if= "isEditClicked">
+              {{ pothole.repairStatus }}
             </td>
             <td>
               <input
@@ -70,7 +67,8 @@
                 max="10"
                 v-model.number="pothole.severity"
                 v-if= "isEditClicked"
-              />{{ pothole.severity }}
+              /><br v-if= "isEditClicked">
+              {{ pothole.severity }}
             </td>
             <td>
               <a
@@ -90,7 +88,7 @@
                 ><img src="/trash.ico" class="ico"
               /> Delete</a>
             </td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>
