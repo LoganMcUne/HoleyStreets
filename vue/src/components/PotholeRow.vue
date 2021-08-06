@@ -4,32 +4,28 @@
     <td>{{ pothole.latitude }}</td>
     <td>{{ pothole.longitude }}</td>
     <td>{{ pothole.imageLink }}</td>
-    <td>{{ pothole.reportedDate }}</td>
-    <!--<td>{{ pothole.reportedDate.length > 10 ? pothole.reportedDate = pothole.reportedDate.substring(0,10): pothole.reportedDate }}</td>-->
+    <td>{{ truncateTime }}</td>
     <td>{{ pothole.reportingUserId }}</td>
     <td>
       <input type="date" v-if="isEditClicked" />
       <br v-if="isEditClicked" />
-      {{ pothole.inspectedDate }}
+      <div v-if="!isEditClicked">{{ pothole.inspectedDate }}</div>
     </td>
     <td>
       <input type="date" v-if="isEditClicked" />
-      <br v-if="isEditClicked" />
-      {{ pothole.repairedDate }}
+      <div v-if="!isEditClicked">{{ pothole.repairedDate }}</div>
     </td>
     <td>
       <select name="Reported" v-if="isEditClicked">
         <option value="Reported">Reported</option>
         <option value="Inspected">Inspected</option>
         <option value="Repaired">Repaired</option></select
-      ><br v-if="isEditClicked" />
-      {{ pothole.repairStatus }}
+      >
+      <div v-if="!isEditClicked">{{ pothole.repairStatus }}</div>
     </td>
     <td>
-      <input type="range" min="1" max="10" v-if="isEditClicked" /><br
-        v-if="isEditClicked"
-      />
-      {{ pothole.severity }}
+      <input type="range" min="1" max="10" v-if="isEditClicked" />
+      <div v-if="!isEditClicked">{{ pothole.severity }}</div>
     </td>
     <td>
       <a
@@ -115,6 +111,11 @@ export default {
       this.$emit("mouse-off-tr", i - 1);
     },
   },
+  computed: {
+    truncateTime(){
+      return this.pothole.reportedDate.substring(0,10)
+    }
+  }
 };
 </script>
 
