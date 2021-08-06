@@ -25,8 +25,10 @@ export default {
       return this.$store.state.potholes.map((p) => {
         if (p.reportingUserId === this.$store.state.user.userId) {
           p.iconUrl = "marker-icon-green.png";
+          p.opacity = 1
         } else {
           p.iconUrl = "marker-icon-grey.png";
+          p.opacity = 0.5
         }
         return p;
       });

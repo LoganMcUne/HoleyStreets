@@ -19,6 +19,7 @@ export default {
     markers() {
       return this.$store.state.potholes.map((p) => {
         p.iconUrl = "marker-icon-blue.png";
+        p.opacity = 1
         return p;
       });
     },

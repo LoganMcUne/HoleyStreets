@@ -18,23 +18,29 @@ export default {
     EditableHoleList,
     AdminMap,
   },
+  data() {
+    return {
+      startColor: "marker-icon-red.png",
+      emColor: "marker-icon-violet.png",
+    };
+  },
   computed: {
     markers() {
       return this.$store.state.potholes.map((p) => {
-        p.iconUrl = "marker-icon-grey.png";
+        p.iconUrl = this.startColor;
+        p.opacity = 1;
         return p;
       });
     },
   },
   methods: {
     mouseOn(i) {
-      console.log(i)
       this.markers[i].isBig = true;
-      this.markers[i].iconUrl = "marker-icon-green.png"
+      this.markers[i].iconUrl = this.emColor;
     },
     mouseOff(i) {
       this.markers[i].isBig = false;
-      this.markers[i].iconUrl = "marker-icon-grey.png"
+      this.markers[i].iconUrl = this.startColor;
     },
   },
 };
