@@ -2,8 +2,8 @@
   <div class="form">
     <div>
       <b-button v-b-toggle.sidebar-1 class="add-new" v-if="$store.state.token != ''">Add A Pothole</b-button>
-      <b-sidebar id="sidebar-1" title="New Pothole" width="275px" shadow>
-        <div class="px-3 py-2">
+      <b-sidebar id="sidebar-1" sidebar-class="border-right border-dark" title="New Pothole" width="250px">
+        <div class="px-4 py-2">
           <form class="add-pothole" v-if="$store.state.token != ''">
             <label for="latitude">Latitude:</label><br />
             <input
@@ -41,7 +41,7 @@ import potholeService from "@/services/PotholeService.js";
 
 export default {
   name: "add-pothole",
-  props: ["getcoords", "currentCenter"],
+  props: ["currentCenter"],
   data() {
     return {
       pothole: {
@@ -74,7 +74,6 @@ export default {
           this.setPotholes();
         }
         this.resetPothole();
-        this.$emit('addedpothole', true);
       });
     },
     resetPothole() {

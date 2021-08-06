@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-sm-2"></div>
       <div class="col-sm-10">
-        <add-pothole @setcoords="getCoordinates" @addedpothole="resetIsGetCoordinates" v-bind:currentCenter="currentCenter" v-bind:getcoords="isGetCoordinates" />
+        <add-pothole v-bind:currentCenter="currentCenter" />
       </div>
     </div>
   </div>

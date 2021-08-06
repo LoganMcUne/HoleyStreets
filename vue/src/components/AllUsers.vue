@@ -1,26 +1,26 @@
 <template>
   <div class="employee-access-requests">
-    <h1 class="admin-h1">All Current Employees</h1>
+    <h1 class="admin-h1">All Users Without Employee Access</h1>
 
     <table>
       <thead>
         <tr>
           <th>User Id</th>
           <th>User Name</th>
-          <th>Remove Employee Access</th>
+          <th>Grant Employee Access</th>
         </tr>
       </thead>
 
       <tbody>
         <tr
-          v-for="employee in $store.state.employees"
-          v-bind:key="employee.userid"
+          v-for="user in $store.state.nonEmployeeUsers"
+          v-bind:key="user.userid"
         >
-          <td>{{ employee.userId }}</td>
-          <td>{{ employee.username }}</td>
+          <td>{{ user.userId }}</td>
+          <td>{{ user.username }}</td>
           <td>
-            <button @click="removeEmployeeRole(employee.userId)" class="remove">
-              Remove Employee
+            <button @click="giveUserEmployeeRole(user.userId)" class="give-access">
+              Give Employee Access
             </button>
           </td>
         </tr>
@@ -34,25 +34,24 @@ import userManagementService from "@/services/UserManagementService.js";
 export default {
   name: "view-employees",
   methods: {
-    removeEmployeeRole(userId) {
+    giveUserEmployeeRole(userId) {
       userManagementService
-        .removeEmployeeRole(userId)
+        .approveRequest(userId)
         .then((response) => {
-          if (response.status === 204) {
-            this.$store.commit("DELETE_EMPLOYEE", userId)
+          if (response.status === 200) {
+            this.$parent.getAllEmployees();
           }
         })
         .catch((error) => {
           this.$parent.handleError(error);
         });
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style>
-.remove{
-   background-color: rgb(248, 86, 86);
+.give-access {
+  background-color: #adc178;
 }
-
 </style>

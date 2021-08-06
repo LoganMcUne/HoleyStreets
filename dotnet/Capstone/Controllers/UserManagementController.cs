@@ -17,6 +17,7 @@ namespace Capstone.Controllers
         {
             userDao = _userDao;
         }
+
         //URL: .../usermanagement/{userId}?newrole=employee
         [HttpPut("{userId}")]
         [Authorize(Roles = "admin")]
