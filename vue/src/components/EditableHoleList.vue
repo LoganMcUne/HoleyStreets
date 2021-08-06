@@ -28,7 +28,7 @@
           </tr>
         </thead>
         <tbody>
-            <PotholeRow v-for="pothole in potholes"
+            <pothole-row v-for="pothole in potholes"
             :key="pothole.id"
             v-bind:pothole="pothole"/>
         </tbody>
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import potholeService from "../services/PotholeService.js";
+
 import PotholeRow from "../components/PotholeRow.vue";
 
 export default {
@@ -47,11 +47,6 @@ export default {
   components: {
       PotholeRow
   },
-  data(){
-      return {
-        isEditClicked: false
-      }
-  }
 };
 </script>
 
