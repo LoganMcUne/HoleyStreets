@@ -1,25 +1,24 @@
 <template>
-  <div>
       <tr>
           <td>{{ pothole.id }}</td>
             <td>{{ pothole.latitude }}</td>
             <td>{{ pothole.longitude }}</td>
             <td>{{ pothole.imageLink }}</td>
-            <td>{{ pothole.reportedDate.length > 10 ? pothole.reportedDate = pothole.reportedDate.substring(0,10): pothole.reportedDate }}</td>
+            <td>{{ pothole.reportedDate }}</td>
+            <!--<td>{{ pothole.reportedDate.length > 10 ? pothole.reportedDate = pothole.reportedDate.substring(0,10): pothole.reportedDate }}</td>-->
             <td>{{ pothole.reportingUserId }}</td>
             <td>
-              <input type="date" v-model="pothole.inspectedDate" v-if= "isEditClicked"/>
+              <input type="date" v-if= "isEditClicked"/>
               <br v-if= "isEditClicked">
               {{ pothole.inspectedDate }}
             </td>
             <td>
-              <input type="date" v-model="pothole.repairedDate" v-if= "isEditClicked"/>
+              <input type="date" v-if= "isEditClicked"/>
               <br v-if= "isEditClicked">
               {{ pothole.repairedDate }}
             </td>
             <td>
               <select name="Reported" 
-              v-model="pothole.repairStatus"
               v-if= "isEditClicked">
                 <option value="Reported">Reported</option>
                 <option value="Inspected">Inspected</option>
@@ -32,7 +31,6 @@
                 type="range"
                 min="1"
                 max="10"
-                v-model.number="pothole.severity"
                 v-if= "isEditClicked"
               /><br v-if= "isEditClicked">
               {{ pothole.severity }}
@@ -56,14 +54,15 @@
               /> Delete</a>
             </td>
           </tr>
- </div>
 </template>
 
 <script>
 export default {
+    name: 'pothole-row',
+props: ["pothole"],
 data(){
     return{
-        pothole: {
+        newPothole: {
             id: "",
             imageLink: "",
             latitude:"",
@@ -74,7 +73,36 @@ data(){
             severity:""
         }
     }
-}
+},
+methods: {
+    deletePothole(id) {
+      potholeService
+        .deletePothole(id)
+        .then(() => {
+          this.$store.commit("DELETE_POTHOLE", id);
+        })
+        .catch((e) => {
+          console.log(e.status);
+        });
+    },
+    updatePothole(pothole) {
+      potholeService
+        .updatePothole(pothole)
+        .then(() => {
+          this.$store.commit("UPDATE_POTHOLE", pothole);
+          this.isEditClicked = !this.isEditClicked
+        })
+        .catch((e) => {
+          console.log(e.status);
+        });
+    },
+    mouseOn(i) {
+      this.$emit("mouse-on-tr", i-1);
+    },
+    mouseOff(i) {
+      this.$emit("mouse-off-tr", i-1);
+    },
+  }
 }
 </script>
 
