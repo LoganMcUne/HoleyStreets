@@ -38,45 +38,55 @@
             <td>{{ pothole.latitude }}</td>
             <td>{{ pothole.longitude }}</td>
             <td>{{ pothole.imageLink }}</td>
-            <td>{{ pothole.reportedDate }}</td>
+            <td>{{ pothole.reportedDate.length > 10 ? pothole.reportedDate = pothole.reportedDate.substring(0,10): pothole.reportedDate }}</td>
             <td>{{ pothole.reportingUserId }}</td>
-            <td contenteditable="true">
-              <input type="date" v-model="pothole.inspectedDate" />{{
-                pothole.inspectedDate
-              }}
+            <td>
+              <input type="date" v-model="pothole.inspectedDate" v-if= "isEditClicked"/>
+              <br v-if= "isEditClicked">
+              {{ pothole.inspectedDate }}
             </td>
-            <td contenteditable="true">
-              <input type="date" v-model="pothole.repairedDate" />{{
-                pothole.repairedDate
-              }}
+            <td>
+              <input type="date" v-model="pothole.repairedDate" v-if= "isEditClicked"/>
+              <br v-if= "isEditClicked">
+              {{ pothole.repairedDate }}
             </td>
-            <td contenteditable="true">
-              <select name="Reported">
+            <td>
+              <select name="Reported" 
+              v-model="pothole.repairStatus"
+              v-if= "isEditClicked">
                 <option value="Reported">Reported</option>
                 <option value="Inspected">Inspected</option>
                 <option value="Repaired">Repaired</option></select
-              >{{ pothole.repairStatus }}
+              ><br v-if= "isEditClicked">
+              {{ pothole.repairStatus }}
             </td>
-            <td contenteditable="true">
+            <td>
               <input
                 type="range"
                 min="1"
                 max="10"
-                v-model="pothole.severity"
-              />{{ pothole.severity }}
+                v-model.number="pothole.severity"
+                v-if= "isEditClicked"
+              /><br v-if= "isEditClicked">
+              {{ pothole.severity }}
             </td>
             <td>
               <a
                 href
                 class="edit-delete"
-                v-on:click.prevent="updatePothole(pothole)"
-                ><img src="/pencil.ico" class="ico" /></a
-              ><a
+                v-on:click.prevent="isEditClicked = !isEditClicked"
+                ><img src="/pencil.ico" class="ico" /> {{isEditClicked ? "Discard changes" : "Edit"}}</a
+              ><br>
+              <a href class="edit-delete"
+              v-if="isEditClicked"
+              v-on:click.prevent="updatePothole(pothole)"><img src="/save.ico" class="ico"/> Save</a>
+              <a
                 href
                 class="edit-delete"
+                v-if="!isEditClicked"
                 v-on:click.prevent="deletePothole(pothole.id)"
                 ><img src="/trash.ico" class="ico"
-              /></a>
+              /> Delete</a>
             </td>
           </tr>
         </tbody>
@@ -91,6 +101,11 @@ import potholeService from "../services/PotholeService.js";
 export default {
   name: "hole-list",
   props: ["potholes"],
+  data(){
+      return {
+        isEditClicked: false
+      }
+  },
   methods: {
     deletePothole(id) {
       potholeService
@@ -103,19 +118,17 @@ export default {
         });
     },
     updatePothole(pothole) {
-      console.log("we have reached the right method");
       potholeService
         .updatePothole(pothole)
         .then(() => {
           this.$store.commit("UPDATE_POTHOLE", pothole);
-          console.log(pothole.id);
+          this.isEditClicked = !this.isEditClicked
         })
         .catch((e) => {
           console.log(e.status);
         });
     },
     mouseOn(i) {
-      console.log(i)
       this.$emit("mouse-on-tr", i-1);
     },
     mouseOff(i) {
