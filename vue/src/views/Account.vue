@@ -22,16 +22,21 @@ export default {
       });
     },
     filteredMarkers() {
-      return this.$store.state.potholes.map((p) => {
+      const newMarkers = [];
+      this.$store.state.potholes.forEach((p) => {
+        const newP = {};
+        newP.latitude = p.latitude;
+        newP.longitude = p.longitude;
         if (p.reportingUserId === this.$store.state.user.userId) {
-          p.iconUrl = "marker-icon-green.png";
-          p.opacity = 1
+          newP.iconUrl = "marker-icon-green.png";
+          newP.opacity = 1;
         } else {
-          p.iconUrl = "marker-icon-grey.png";
-          p.opacity = 0.5
+          newP.iconUrl = "marker-icon-grey.png";
+          newP.opacity = 0.5;
         }
-        return p;
+        newMarkers.push(newP);
       });
+      return newMarkers;
     },
   },
 };
