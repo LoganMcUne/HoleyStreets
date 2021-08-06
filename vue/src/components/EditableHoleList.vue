@@ -88,7 +88,8 @@
                 ><img src="/trash.ico" class="ico"
               /> Delete</a>
             </td>
-          </tr> -->
+            -->
+          </tr>
         </tbody>
       </table>
     </div>

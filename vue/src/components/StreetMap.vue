@@ -30,11 +30,18 @@ import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 
 export default {
   name: "Map",
-  props: ["markers"],
+  props: ["markers", "getcoords"],
   components: {
     LMap,
     LTileLayer,
     LMarker,
+  },
+  watch: {
+    getcoords: function() {
+      if (this.getcoords) {
+        return this.$emit('sendupcoords', this.currentCenter);
+      }
+    }
   },
   data() {
     return {

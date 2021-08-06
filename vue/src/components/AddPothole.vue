@@ -2,7 +2,7 @@
   <div class="form">
     <div>
       <b-button v-b-toggle.sidebar-1 class="add-new" v-if="$store.state.token != ''">Add A Pothole</b-button>
-      <b-sidebar id="sidebar-1" title="New Pothole" width="275px" shadow>
+      <b-sidebar id="sidebar-1" title="New Pothole" backdrop width="275px" shadow>
         <div class="px-3 py-2">
           <form class="add-pothole" v-if="$store.state.token != ''">
             <label for="latitude">Latitude:</label><br />
@@ -26,7 +26,10 @@
               name="image-link"
               v-model="pothole.imageLink"
             /><br /><br />
-            <button class= "add-button" type="button" v-on:click="addNewPothole">
+            <button class="add-button set-coordinates-button" type="button" v-on:click="setCoordinates">
+              Set Coordinates
+            </button>
+            <button class="add-button" type="button" v-on:click="addNewPothole" v-b-toggle.sidebar-1>
               Add New Pothole
             </button>
           </form>
@@ -41,6 +44,7 @@ import potholeService from "@/services/PotholeService.js";
 
 export default {
   name: "add-pothole",
+  props: ["getcoords", "currentCenter"],
   data() {
     return {
       pothole: {
@@ -48,7 +52,25 @@ export default {
         longitude: "",
         imageLink: "",
       },
+      variant: ""
     };
+  },
+  watch: {
+    currentCenter: function() {
+      if (this.getcoords) {
+        this.pothole.latitude = this.currentCenter.lat;
+        this.pothole.longitude = this.currentCenter.lng;
+      }
+    }
+  },
+  computed: {
+    setLatAndLong() {
+      const splitCoords = this.currentCenter.split(',');
+      const currentLat = splitCoords[0].substring(1);
+      const currentLong = splitCoords[1].substring(0, splitCoords[1].length - 1);
+      this.setPotholeLatAndLong(currentLat, currentLong);
+      return '';
+    }
   },
   methods: {
     addNewPothole() {
@@ -57,16 +79,28 @@ export default {
           this.setPotholes();
         }
         this.resetPothole();
+        this.$emit('addedpothole', true);
       });
     },
     resetPothole() {
-      this.pothole = {};
+      this.pothole = {
+        latitude: "",
+        longitude: "",
+        imageLink: "",
+      };
     },
     setPotholes() {
       potholeService.list().then((r) => {
         this.$store.commit("SET_POTHOLE_LIST", r.data);
       });
     },
+    setCoordinates() {
+      this.$emit('setcoords', true);
+    },
+    setPotholeLatAndLong(currentLat, currentLong) {
+      this.pothole.latitude = currentLat;
+      this.pothole.longitude = currentLong;
+    }
   },
 };
 </script>
@@ -77,8 +111,14 @@ button {
   background-color: #51616b;
 }
 
+button.add-button.set-coordinates-button {
+  background-color: #dde5b6;
+}
+
 button.add-button {
   color: black;
   background-color: #adc178;
+  width: 150px;
+  margin: 5px;
 }
 </style>
