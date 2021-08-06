@@ -1,31 +1,31 @@
 <template>
   <tr>
-    <td>{{ pothole.id }}</td>
-    <td>{{ pothole.latitude }}</td>
-    <td>{{ pothole.longitude }}</td>
-    <td>{{ pothole.imageLink }}</td>
+    <td>{{ currentPothole.id }}</td>
+    <td>{{ currentPothole.latitude }}</td>
+    <td>{{ currentPothole.longitude }}</td>
+    <td>{{ currentPothole.imageLink }}</td>
     <td>{{ truncateTime }}</td>
-    <td>{{ pothole.reportingUserId }}</td>
+    <td >{{ currentPothole.reportingUserId }}</td>
     <td>
-      <input type="date" v-if="isEditClicked" />
+      <input type="date" v-if="isEditClicked" v-model="newPothole.inspectedDate"/>
       <br v-if="isEditClicked" />
-      <div v-if="!isEditClicked">{{ pothole.inspectedDate }}</div>
+      <div v-if="!isEditClicked">{{ currentPothole.inspectedDate }}</div>
     </td>
     <td>
-      <input type="date" v-if="isEditClicked" />
-      <div v-if="!isEditClicked">{{ pothole.repairedDate }}</div>
+      <input type="date" v-if="isEditClicked" v-model="newPothole.repairedDate"/>
+      <div v-if="!isEditClicked">{{ currentPothole.repairedDate }}</div>
     </td>
     <td>
-      <select name="Reported" v-if="isEditClicked">
+      <select name="Reported" v-if="isEditClicked" v-model="newPothole.repairStatus">
         <option value="Reported">Reported</option>
         <option value="Inspected">Inspected</option>
         <option value="Repaired">Repaired</option>
       </select>
-      <div v-if="!isEditClicked">{{ pothole.repairStatus }}</div>
+      <div v-if="!isEditClicked">{{ currentPothole.repairStatus }}</div>
     </td>
     <td>
-      <input type="range" min="1" max="3" v-if="isEditClicked" />
-      <div v-if="!isEditClicked">{{ pothole.severity }}</div>
+      <input type="range" min="1" max="3" v-if="isEditClicked" v-model.number="newPothole.severity"/>
+      <div v-if="!isEditClicked">{{ currentPothole.severity }}</div>
     </td>
     <td>
       <a
@@ -69,6 +69,8 @@ export default {
   data() {
     return {
       isEditClicked: false,
+      newPothole: {},
+      currentPothole: this.pothole,
     };
   },
   methods: {
@@ -84,9 +86,11 @@ export default {
     },
     updatePothole() {
       potholeService
-        .updatePothole(this.$store.state.newPothole)
+        .updatePothole(this.newPothole)
         .then(() => {
-          this.$store.commit("UPDATE_POTHOLE");
+          this.currentPothole = this.newPothole;
+          this.$store.commit("UPDATE_POTHOLE", this.newPothole);
+          this.newPothole = {};
           this.isEditClicked = !this.isEditClicked;
         })
         .catch((e) => {
@@ -94,13 +98,22 @@ export default {
         });
     },
     editThisPothole() {
-      this.$store.state.newPothole = this.pothole;
-      console.log(this.$store.state.newPothole);
+      this.newPothole.id = this.pothole.id;
+      this.newPothole.latitude = this.pothole.latitude;
+      this.newPothole.longitude = this.pothole.longitude;
+      this.newPothole.imageLink = this.pothole.imageLink;
+      this.newPothole.reportedDate = this.pothole.reportedDate;
+      this.newPothole.reportingUserId = this.pothole.reportingUserId;
+      this.newPothole.severity = this.pothole.severity;
+      this.newPothole.repairStatus = this.pothole.repairStatus;
+      this.newPothole.inspectedDate = this.pothole.inspectedDate;
+      this.newPothole.repairedDate = this.pothole.repairedDate;
+
       this.isEditClicked = !this.isEditClicked;
     },
     discardChanges() {
       this.isEditClicked = !this.isEditClicked;
-      this.$store.state.newPothole = {};
+      this.newPothole = {};
     },
     mouseOn(i) {
       this.$emit("mouse-on-tr", i - 1);
@@ -111,7 +124,7 @@ export default {
   },
   computed: {
     truncateTime() {
-      return this.pothole.reportedDate.substring(0, 10);
+      return this.currentPothole.reportedDate.substring(0, 10);
     },
   },
 };

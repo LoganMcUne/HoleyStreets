@@ -29,7 +29,7 @@
         </thead>
         <tbody>
             <pothole-row v-for="pothole in potholes"
-            :key="pothole.id"
+            v-bind:key="pothole.id"
             v-bind:pothole="pothole"/>
         </tbody>
       </table>

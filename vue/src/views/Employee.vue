@@ -2,7 +2,7 @@
   <div>
     <admin-map v-bind:markers="markers" />
     <editable-hole-list
-      :potholes="$store.state.potholes"
+      v-bind:potholes="$store.state.potholes"
       v-on:mouse-on-tr="mouseOn"
       v-on:mouse-off-tr="mouseOff"
     />

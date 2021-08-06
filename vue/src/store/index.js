@@ -23,7 +23,6 @@ export default new Vuex.Store({
         potholes: [],
         requests: [],
         employees: [],
-        newPothole: {},
     },
     mutations: {
         SET_AUTH_TOKEN(state, token) {
@@ -63,13 +62,12 @@ export default new Vuex.Store({
         DELETE_EMPLOYEE(state, id) {
             state.employees.splice(state.employees.findIndex(e => e.userId == id), 1)
         },
-        UPDATE_POTHOLE(state) {
+        UPDATE_POTHOLE(state, pothole) {
             let i = state.potholes.findIndex((p) => {
-                return p.id == state.newPothole.id
+                return p.id == pothole.id
             })
-            state.potholes[i] = state.newPothole
 
-            state.newPothole = {};
+            state.potholes[i] = pothole
         }
     }
 })
