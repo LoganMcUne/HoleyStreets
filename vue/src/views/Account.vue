@@ -1,6 +1,6 @@
 <template>
   <div>
-    <street-map :markers="filteredMarkers" />
+    <street-map v-bind:markers="filteredMarkers" />
     <hole-list :potholes="filteredPotholes" />
   </div>
 </template>

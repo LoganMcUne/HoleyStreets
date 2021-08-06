@@ -86,6 +86,12 @@ export default {
       return latLng(lat, lng);
     },
   },
+  mounted() {
+    console.log("hi", this.markers);
+  },
+  destroyed() {
+    console.log("bye", this.markers)
+  },
 };
 </script>
 
