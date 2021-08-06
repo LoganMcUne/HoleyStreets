@@ -15,7 +15,7 @@
         v-bind:key="pothole.id"
         :lat-lng="makeLatLng(pothole.latitude, pothole.longitude)"
         :opacity="pothole.opacity"
-        :icon="makeIcon(pothole.iconUrl)"
+        :icon="makeIcon(pothole)"
       >
       </l-marker>
     </l-map>
@@ -38,37 +38,36 @@ export default {
   },
   data() {
     return {
-      zoom: 10,
+      zoom: 12,
       center: latLng(39.15949, -84.455277),
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       withPopup: latLng(39.15949, -84.455277),
       withTooltip: latLng(39.15949, -84.455277),
-      currentZoom: 10,
+      currentZoom: 12,
       currentCenter: latLng(39.15949, -84.455277),
       showParagraph: false,
       mapOptions: {
         zoomSnap: 0.5,
       },
       showMap: true,
+      regSize: [25, 41],
+      bigSize: [37, 61],
     };
   },
   methods: {
-    makeIcon(s) {
-      if (s) {
-        return L.icon({
-          iconUrl: s,
-          iconSize: [25, 41],
-          iconAnchor: [12.5, 41],
-        });
-      } else {
-        return L.icon({
-          iconUrl: "marker-icon-blue.png",
-          iconSize: [25, 41],
-          iconAnchor: [12.5, 41],
-        });
-      }
+    makeIcon(p) {
+      const size = p.isBig ?  this.bigSize: this.regSize;
+      const url = p.iconUrl ? p.iconUrl : "marker-icon-red.png";
+      return L.icon({
+        iconUrl: url,
+        iconSize: size,
+        iconAnchor: this.dynamicAnchor(size),
+      });
+    },
+    dynamicAnchor(s) {
+      return [s[0] / 2, s[1]];
     },
     zoomUpdate(zoom) {
       this.currentZoom = zoom;
@@ -85,12 +84,6 @@ export default {
     makeLatLng(lat, lng) {
       return latLng(lat, lng);
     },
-  },
-  mounted() {
-    console.log("hi", this.markers);
-  },
-  destroyed() {
-    console.log("bye", this.markers)
   },
 };
 </script>

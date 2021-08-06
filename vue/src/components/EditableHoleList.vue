@@ -5,7 +5,13 @@
         ><a href="#!" class="text-success"
           ><i class="fas fa-plus fa-2x" aria-hidden="true"></i></a
       ></span>
-      <table id="grid" class="table table-bordered table-responsive-md table-striped text-center">
+      <table
+        id="grid"
+        class="
+          table table-bordered table-responsive-md table-striped
+          text-center
+        "
+      >
         <thead>
           <tr>
             <th class="text-center">Pothole ID</th>
@@ -22,57 +28,104 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="pothole in potholes" :key="pothole.id">
-            <td>{{pothole.id}}</td>
-            <td>{{pothole.latitude}}</td>
-            <td>{{pothole.longitude}}</td>
-            <td>{{pothole.imageLink}}</td>
-            <td>{{pothole.reportedDate}}</td>
-            <td>{{pothole.reportingUserId}}</td>
-            <td contenteditable="true"><input type="date" v-model="pothole.inspectedDate">{{pothole.inspectedDate}}</td>
-            <td contenteditable="true"><input type="date" v-model="pothole.repairedDate">{{pothole.repairedDate}}</td>
-            <td contenteditable="true"><select name="Reported"><option value="Reported">Reported</option><option value="Inspected">Inspected</option><option value="Repaired">Repaired</option></select>{{pothole.repairStatus}}</td>
-            <td contenteditable="true"><input type="range" min="1" max="10" v-model="pothole.severity">{{pothole.severity}}</td>
-            <td><a href class="edit-delete" v-on:click.prevent="updatePothole(pothole)"><img src="/pencil.ico" class="ico"></a><a href class="edit-delete" v-on:click.prevent="deletePothole(pothole.id)"><img src="/trash.ico" class="ico"></a></td>
+          <tr
+            v-for="pothole in potholes"
+            :key="pothole.id"
+            @mouseover="mouseOn(pothole.id)"
+            @mouseleave="mouseOff(pothole.id)"
+          >
+            <td>{{ pothole.id }}</td>
+            <td>{{ pothole.latitude }}</td>
+            <td>{{ pothole.longitude }}</td>
+            <td>{{ pothole.imageLink }}</td>
+            <td>{{ pothole.reportedDate }}</td>
+            <td>{{ pothole.reportingUserId }}</td>
+            <td contenteditable="true">
+              <input type="date" v-model="pothole.inspectedDate" />{{
+                pothole.inspectedDate
+              }}
+            </td>
+            <td contenteditable="true">
+              <input type="date" v-model="pothole.repairedDate" />{{
+                pothole.repairedDate
+              }}
+            </td>
+            <td contenteditable="true">
+              <select name="Reported">
+                <option value="Reported">Reported</option>
+                <option value="Inspected">Inspected</option>
+                <option value="Repaired">Repaired</option></select
+              >{{ pothole.repairStatus }}
+            </td>
+            <td contenteditable="true">
+              <input
+                type="range"
+                min="1"
+                max="10"
+                v-model="pothole.severity"
+              />{{ pothole.severity }}
+            </td>
+            <td>
+              <a
+                href
+                class="edit-delete"
+                v-on:click.prevent="updatePothole(pothole)"
+                ><img src="/pencil.ico" class="ico" /></a
+              ><a
+                href
+                class="edit-delete"
+                v-on:click.prevent="deletePothole(pothole.id)"
+                ><img src="/trash.ico" class="ico"
+              /></a>
+            </td>
           </tr>
         </tbody>
-        </table>
-        </div> 
+      </table>
+    </div>
   </div>
 </template>
 
 <script>
-import potholeService from '../services/PotholeService.js'
+import potholeService from "../services/PotholeService.js";
 
 export default {
   name: "hole-list",
   props: ["potholes"],
   methods: {
     deletePothole(id) {
-      potholeService.deletePothole(id).then(() =>
-      {
-          this.$store.commit("DELETE_POTHOLE", id)
-      })
-      .catch((e) =>{
-        console.log(e.status)
-      })
+      potholeService
+        .deletePothole(id)
+        .then(() => {
+          this.$store.commit("DELETE_POTHOLE", id);
+        })
+        .catch((e) => {
+          console.log(e.status);
+        });
     },
     updatePothole(pothole) {
-        console.log("we have reached the right method")
-        potholeService.updatePothole(pothole).then(()=> {
-            this.$store.commit("UPDATE_POTHOLE", pothole)
-            console.log(pothole.id)
+      console.log("we have reached the right method");
+      potholeService
+        .updatePothole(pothole)
+        .then(() => {
+          this.$store.commit("UPDATE_POTHOLE", pothole);
+          console.log(pothole.id);
         })
-        .catch((e) =>{
-        console.log(e.status)
-      })
-    }
-  }
-}
+        .catch((e) => {
+          console.log(e.status);
+        });
+    },
+    mouseOn(i) {
+      console.log(i)
+      this.$emit("mouse-on-tr", i-1);
+    },
+    mouseOff(i) {
+      this.$emit("mouse-off-tr", i-1);
+    },
+  },
+};
 </script>
 
 <style>
-
 .list-of-potholes {
   margin: 5px;
 }
