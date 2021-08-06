@@ -1,5 +1,5 @@
 <template>
-  <div id="ourmap" style="height: 80vh; width: 70vw">
+  <div id="ourmap" style="height: 70vh; width: 67vw">
     <l-map
       v-if="showMap"
       :zoom="zoom"
@@ -89,7 +89,5 @@ export default {
 </script>
 
 <style scoped>
-#ourmap {
-  margin: 20px auto 0px;
-}
+
 </style>

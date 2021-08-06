@@ -1,7 +1,17 @@
 <template>
   <div class="home">
-    <street-map v-bind:markers="markers" />
-    <add-pothole />
+    <div class="row mt-sm-4 mb-sm-2">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-10">
+        <street-map v-bind:markers="markers" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-10">
+        <add-pothole />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -27,5 +37,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.row {
+  margin: 25px 0 0 0;
+}
+
 </style>

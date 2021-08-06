@@ -53,7 +53,6 @@ export default{
 </script>
 
 <style>
-
 .dropdown-btn {
   text-decoration: none;
   color: black;

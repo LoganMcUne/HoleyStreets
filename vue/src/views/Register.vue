@@ -92,8 +92,7 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
 #register {
   display: flex;
   justify-content: center;
