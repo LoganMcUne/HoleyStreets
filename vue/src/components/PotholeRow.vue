@@ -19,12 +19,12 @@
       <select name="Reported" v-if="isEditClicked">
         <option value="Reported">Reported</option>
         <option value="Inspected">Inspected</option>
-        <option value="Repaired">Repaired</option></select
-      >
+        <option value="Repaired">Repaired</option>
+      </select>
       <div v-if="!isEditClicked">{{ pothole.repairStatus }}</div>
     </td>
     <td>
-      <input type="range" min="1" max="10" v-if="isEditClicked" />
+      <input type="range" min="1" max="3" v-if="isEditClicked" />
       <div v-if="!isEditClicked">{{ pothole.severity }}</div>
     </td>
     <td>
@@ -33,17 +33,15 @@
         class="edit-delete"
         v-if="!isEditClicked"
         v-on:click.prevent="editThisPothole()"
-        ><img src="/pencil.ico" class="ico" />
-        {{ "Edit" }}</a
-      ><br v-if="!isEditClicked"/>
+        ><img src="/pencil.ico" class="ico" /> {{ "Edit" }}</a
+      ><br v-if="!isEditClicked" />
       <a
         href
         class="edit-delete"
         v-if="isEditClicked"
         v-on:click.prevent="discardChanges()"
-        ><img src="/no.ico" class="ico" />
-        {{ "Discard Changes" }}</a
-      ><br  v-if="isEditClicked" />
+        ><img src="/no.ico" class="ico" /> {{ "Discard Changes" }}</a
+      ><br v-if="isEditClicked" />
       <a
         href
         class="edit-delete"
@@ -95,13 +93,13 @@ export default {
           console.log(e.status);
         });
     },
-    editThisPothole(){
+    editThisPothole() {
       this.$store.state.newPothole = this.pothole;
-      console.log(this.$store.state.newPothole)
-      this.isEditClicked = !this.isEditClicked
+      console.log(this.$store.state.newPothole);
+      this.isEditClicked = !this.isEditClicked;
     },
-    discardChanges(){
-      this.isEditClicked = !this.isEditClicked
+    discardChanges() {
+      this.isEditClicked = !this.isEditClicked;
       this.$store.state.newPothole = {};
     },
     mouseOn(i) {
@@ -112,10 +110,10 @@ export default {
     },
   },
   computed: {
-    truncateTime(){
-      return this.pothole.reportedDate.substring(0,10)
-    }
-  }
+    truncateTime() {
+      return this.pothole.reportedDate.substring(0, 10);
+    },
+  },
 };
 </script>
 
