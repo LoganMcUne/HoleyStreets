@@ -74,7 +74,7 @@ export default new Vuex.Store({
         },
         SET_NON_EMPLOYEE_USERS_LIST(state, nonEmployeeUsers) {
             const allActiveRequestUserIds = [];
-            state.requests.foreach(element => {
+            state.requests.forEach(element => {
                 allActiveRequestUserIds.push(element.userId);
             });
 

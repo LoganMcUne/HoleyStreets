@@ -1,6 +1,7 @@
 <template>
   <div class="employee-access-requests">
     <h1 class="admin-h1">All Users Without Employee Access</h1>
+    <h2 class="all-non-employee-users-subtitle"><em>Users without employee access who do not have an active request to be an employee</em></h2>
 
     <table>
       <thead>
@@ -40,6 +41,7 @@ export default {
         .then((response) => {
           if (response.status === 200) {
             this.$parent.getAllEmployees();
+            this.$parent.getAllNonEmployeeUsers();
           }
         })
         .catch((error) => {
@@ -53,5 +55,11 @@ export default {
 <style>
 .give-access {
   background-color: #adc178;
+}
+
+h2.all-non-employee-users-subtitle {
+  font-size: 14px;
+  color: darkgrey;
+  padding-left: 10px;
 }
 </style>

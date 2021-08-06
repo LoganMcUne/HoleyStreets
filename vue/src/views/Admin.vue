@@ -52,7 +52,7 @@ export default {
           }
         })
         .catch((error) => {
-          this.$parent.handleError(error);
+          this.handleError(error);
         });
     },
     handleError(error) {
