@@ -34,7 +34,7 @@
             @mouseover="mouseOn(pothole.id)"
             @mouseleave="mouseOff(pothole.id)"
           >
-            <td>{{ pothole.id }}</td>
+            <!-- <td>{{ pothole.id }}</td>
             <td>{{ pothole.latitude }}</td>
             <td>{{ pothole.longitude }}</td>
             <td>{{ pothole.imageLink }}</td>
@@ -88,7 +88,7 @@
                 ><img src="/trash.ico" class="ico"
               /> Delete</a>
             </td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>
