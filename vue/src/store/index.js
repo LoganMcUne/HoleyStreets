@@ -23,6 +23,7 @@ export default new Vuex.Store({
         potholes: [],
         requests: [],
         employees: [],
+        nonEmployeeUsers: []
     },
     mutations: {
         SET_AUTH_TOKEN(state, token) {
@@ -68,6 +69,18 @@ export default new Vuex.Store({
             })
 
             state.potholes[i] = pothole
-        }
+        },
+        SET_NON_EMPLOYEE_USERS_LIST(state, nonEmployeeUsers) {
+            const allActiveRequestUserIds = [];
+            state.requests.foreach(element => {
+                allActiveRequestUserIds.push(element.userId);
+            });
+
+            const nonEmployeeUsersWithoutActiveRequests = nonEmployeeUsers.filter(user => {
+                return !allActiveRequestUserIds.includes(user.userId);
+            });
+
+            state.nonEmployeeUsers = nonEmployeeUsersWithoutActiveRequests;
+        },
     }
 })

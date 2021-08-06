@@ -2,8 +2,8 @@
   <div class="form">
     <div>
       <b-button v-b-toggle.sidebar-1 class="add-new" v-if="$store.state.token != ''">Add A Pothole</b-button>
-      <b-sidebar id="sidebar-1" title="New Pothole" backdrop width="275px" shadow>
-        <div class="px-3 py-2">
+      <b-sidebar id="sidebar-1" sidebar-class="border-right border-dark" title="New Pothole" width="250px">
+        <div class="px-4 py-2">
           <form class="add-pothole" v-if="$store.state.token != ''">
             <label for="latitude">Latitude:</label><br />
             <input
@@ -26,10 +26,7 @@
               name="image-link"
               v-model="pothole.imageLink"
             /><br /><br />
-            <button class="add-button set-coordinates-button" type="button" v-on:click="setCoordinates">
-              Set Coordinates
-            </button>
-            <button class="add-button" type="button" v-on:click="addNewPothole" v-b-toggle.sidebar-1>
+            <button class="add-button" type="button" v-on:click="addNewPothole">
               Add New Pothole
             </button>
           </form>
@@ -44,7 +41,7 @@ import potholeService from "@/services/PotholeService.js";
 
 export default {
   name: "add-pothole",
-  props: ["getcoords", "currentCenter"],
+  props: ["currentCenter"],
   data() {
     return {
       pothole: {
@@ -57,10 +54,8 @@ export default {
   },
   watch: {
     currentCenter: function() {
-      if (this.getcoords) {
         this.pothole.latitude = this.currentCenter.lat;
         this.pothole.longitude = this.currentCenter.lng;
-      }
     }
   },
   computed: {
@@ -79,13 +74,12 @@ export default {
           this.setPotholes();
         }
         this.resetPothole();
-        this.$emit('addedpothole', true);
       });
     },
     resetPothole() {
       this.pothole = {
-        latitude: "",
-        longitude: "",
+        latitude: this.pothole.latitude,
+        longitude: this.pothole.longitude,
         imageLink: "",
       };
     },
@@ -93,9 +87,6 @@ export default {
       potholeService.list().then((r) => {
         this.$store.commit("SET_POTHOLE_LIST", r.data);
       });
-    },
-    setCoordinates() {
-      this.$emit('setcoords', true);
     },
     setPotholeLatAndLong(currentLat, currentLong) {
       this.pothole.latitude = currentLat;

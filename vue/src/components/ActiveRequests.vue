@@ -1,7 +1,6 @@
 <template>
   <div class="employee-access-requests">
     <h1 class="admin-h1">Users Requesting Employee Access</h1>
-
     <table>
       <thead>
         <tr>
@@ -20,8 +19,7 @@
           <td>{{ request.userId }}</td>
           <td>{{ request.username }}</td>
           <td>
-            <!--TODO: Add v-on:click="function()" to buttons -->
-            <button @click="approveRequest(request.userId)">Approve</button>
+            <button @click="approveRequest(request.userId)" class="approve">Approve</button>
           </td>
           <td>
             <button @click="denyRequest(request.userId)" class="deny">Deny</button>
@@ -68,7 +66,7 @@ export default {
 
 <style>
 h1.admin-h1 {
-  margin: 50px 10px 10px 10px;
+  margin: 10px 10px 10px 10px;
   font-size: 24px;
 }
 th {
@@ -87,8 +85,10 @@ div.employee-access-requests {
   border: 1px solid black;
   border-radius: 10px;
 }
-
 .deny {
   background-color: rgb(248, 86, 86);
+}
+.approve {
+  background-color: #adc178;
 }
 </style>

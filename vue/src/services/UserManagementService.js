@@ -20,7 +20,14 @@ export default {
     getListOfEmployees() {
         return axios.get('/usermanagement/employee');
     },
+
     removeEmployeeRole(userId) {
         return axios.put(`/usermanagement/${userId}?newrole=user`);
+    },
+
+    getAllNonEmployeeUsers() {
+        const userRole = 'user';
+
+        return axios.get(`/usermanagement/${userRole}`);
     }
 }

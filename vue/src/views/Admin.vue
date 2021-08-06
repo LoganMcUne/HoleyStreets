@@ -2,17 +2,21 @@
   <div>
     <active-requests />
     <view-employees />
+    <all-users />
   </div>
 </template>
 
 <script>
 import ActiveRequests from "../components/ActiveRequests.vue";
 import ViewEmployees from "../components/ViewEmployees.vue";
+import AllUsers from "../components/AllUsers.vue";
 import userManagementService from "@/services/UserManagementService.js";
+
 export default {
   components: {
     ActiveRequests,
     ViewEmployees,
+    AllUsers
   },
   methods: {
     getAllEmployees() {
@@ -39,21 +43,26 @@ export default {
           this.handleError(error);
         });
     },
-
+    getAllNonEmployeeUsers() {
+      userManagementService
+        .getAllNonEmployeeUsers()
+        .then((response) => {
+          if (response.status === 200) {
+            this.$store.commit("SET_NON_EMPLOYEE_USERS_LIST", response.data)
+          }
+        })
+        .catch((error) => {
+          this.$parent.handleError(error);
+        });
+    },
     handleError(error) {
-      // if (error.response) {
-      //   console.log("Response was not a 2xx");
-      // } else if (error.request) {
-      //   console.log("Request was made, no response was received");
-      // } else {
-      //   console.log("Request was not made");
-      // }
       console.log(error)
     },
   },
   created() {
     this.getAllActiveRequests();
     this.getAllEmployees();
+    this.getAllNonEmployeeUsers();
   },
 };
 </script>
