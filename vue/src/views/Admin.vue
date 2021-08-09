@@ -32,6 +32,8 @@ export default {
         });
     },
     getAllActiveRequests() {
+      const methodFinishedRunning = true;
+
       userManagementService
         .getListOfRequests()
         .then((response) => {
@@ -42,13 +44,16 @@ export default {
         .catch((error) => {
           this.handleError(error);
         });
+
+        return methodFinishedRunning;
     },
     getAllNonEmployeeUsers() {
       userManagementService
         .getAllNonEmployeeUsers()
         .then((response) => {
           if (response.status === 200) {
-            this.$store.commit("SET_NON_EMPLOYEE_USERS_LIST", response.data)
+            this.$store.commit("SET_NON_EMPLOYEE_USERS_LIST", response.data);
+            return true;
           }
         })
         .catch((error) => {
@@ -60,12 +65,24 @@ export default {
     },
   },
   created() {
-    this.getAllActiveRequests();
     this.getAllEmployees();
-    this.getAllNonEmployeeUsers();
-  },
+
+    const allActiveRequestsSet = this.getAllActiveRequests();
+
+    if (allActiveRequestsSet)
+    {
+      this.getAllNonEmployeeUsers();
+    }
+  }
 };
 </script>
 
 <style>
+#sidebar-1 > header.b-sidebar-header > button {
+  background-color: #adc178;
+}
+
+#sidebar-1 > header.b-sidebar-header > button > svg {
+  color: black;
+}
 </style>

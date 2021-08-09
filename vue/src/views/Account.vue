@@ -1,7 +1,17 @@
 <template>
   <div>
-    <street-map v-bind:markers="filteredMarkers" />
-    <hole-list :potholes="filteredPotholes" />
+    <div class="row mt-sm-4 mb-sm-4">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-10">
+        <street-map v-bind:markers="filteredMarkers" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-0"></div>
+      <div class="col-sm-12 ml-sm-8 mr-sm-2">
+        <hole-list :potholes="filteredPotholes" />
+      </div>
+    </div>
   </div>
 </template>
 

@@ -8,15 +8,6 @@
       class="m-md-2"
     >
       <router-link
-        v-if="$store.state.token != ''"
-        v-bind:to="{ name: 'logout' }"
-        tag="b-dropdown-item"
-        class="dropdown-btn"
-      >
-        Logout
-      </router-link>
-
-      <router-link
         v-if="$store.state.token == ''"
         v-bind:to="{ name: 'login' }"
         tag="b-dropdown-item"
@@ -54,6 +45,15 @@
         class="dropdown-btn"
       >
         View Employee Page
+      </router-link>
+
+      <router-link
+        v-if="$store.state.token != ''"
+        v-bind:to="{ name: 'logout' }"
+        tag="b-dropdown-item"
+        class="dropdown-btn"
+      >
+        Logout
       </router-link>
     </b-dropdown>
   </div>

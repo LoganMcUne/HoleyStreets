@@ -1,7 +1,7 @@
 <template>
   <div class="employee-access-requests">
     <h1 class="admin-h1">All Users Without Employee Access</h1>
-    <h2 class="all-non-employee-users-subtitle"><em>Users without employee access who do not have an active request to be an employee</em></h2>
+    <h2 class="all-non-employee-users-subtitle"><em>Users without employee access who do not have an active request to become an employee</em></h2>
 
     <table>
       <thead>
@@ -33,7 +33,7 @@
 <script>
 import userManagementService from "@/services/UserManagementService.js";
 export default {
-  name: "view-employees",
+  name: "all-users",
   methods: {
     giveUserEmployeeRole(userId) {
       userManagementService
