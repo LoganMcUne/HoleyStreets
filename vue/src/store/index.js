@@ -23,7 +23,6 @@ export default new Vuex.Store({
         potholes: [],
         requests: [],
         employees: [],
-        newPothole: {},
         nonEmployeeUsers: []
     },
     mutations: {
@@ -64,25 +63,15 @@ export default new Vuex.Store({
         DELETE_EMPLOYEE(state, id) {
             state.employees.splice(state.employees.findIndex(e => e.userId == id), 1)
         },
-        UPDATE_POTHOLE(state) {
+        UPDATE_POTHOLE(state, pothole) {
             let i = state.potholes.findIndex((p) => {
-                return p.id == state.newPothole.id
+                return p.id == pothole.id
             })
-            state.potholes[i] = state.newPothole
 
-            state.newPothole = {};
+            state.potholes[i] = pothole
         },
         SET_NON_EMPLOYEE_USERS_LIST(state, nonEmployeeUsers) {
-            const allActiveRequestUserIds = [];
-            state.requests.forEach(element => {
-                allActiveRequestUserIds.push(element.userId);
-            });
-
-            const nonEmployeeUsersWithoutActiveRequests = nonEmployeeUsers.filter(user => {
-                return !allActiveRequestUserIds.includes(user.userId);
-            });
-
-            state.nonEmployeeUsers = nonEmployeeUsersWithoutActiveRequests;
+            state.nonEmployeeUsers = nonEmployeeUsers;
         },
     }
 })

@@ -32,8 +32,6 @@ export default {
         });
     },
     getAllActiveRequests() {
-      const methodFinishedRunning = true;
-
       userManagementService
         .getListOfRequests()
         .then((response) => {
@@ -44,8 +42,6 @@ export default {
         .catch((error) => {
           this.handleError(error);
         });
-
-        return methodFinishedRunning;
     },
     getAllNonEmployeeUsers() {
       userManagementService
@@ -53,7 +49,6 @@ export default {
         .then((response) => {
           if (response.status === 200) {
             this.$store.commit("SET_NON_EMPLOYEE_USERS_LIST", response.data);
-            return true;
           }
         })
         .catch((error) => {
@@ -66,13 +61,8 @@ export default {
   },
   created() {
     this.getAllEmployees();
-
-    const allActiveRequestsSet = this.getAllActiveRequests();
-
-    if (allActiveRequestsSet)
-    {
-      this.getAllNonEmployeeUsers();
-    }
+    this.getAllActiveRequests();
+    this.getAllNonEmployeeUsers();
   }
 };
 </script>
