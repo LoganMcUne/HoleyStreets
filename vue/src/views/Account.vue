@@ -4,10 +4,13 @@
     <div class="row mt-sm-4 mb-sm-1">
       <div class="col-sm-2"></div>
       <div class="col-sm-10">
-        <street-map v-bind:markers="filteredMarkers" v-bind:latLongZoomInfoVisible="false" />
+        <street-map
+          v-bind:markers="filteredMarkers"
+          v-bind:latLongZoomInfoVisible="false"
+        />
       </div>
     </div>
-    <div class = "row">
+    <div class="row">
       <div class="col-sm-12">
         <h2>Potholes You Have Reported</h2>
       </div>
@@ -42,6 +45,8 @@ export default {
       const newMarkers = [];
       this.$store.state.potholes.forEach((p) => {
         const newP = {};
+        newP.id = p.id;
+        newP.isBig = false;
         newP.latitude = p.latitude;
         newP.longitude = p.longitude;
         if (p.reportingUserId === this.$store.state.user.userId) {
@@ -54,6 +59,17 @@ export default {
         newMarkers.push(newP);
       });
       return newMarkers;
+    },
+  },
+  methods: {
+    findPothole(id){
+      return this.filteredMarkers.find(p => p.id == id)
+    },
+    mouseOn(id) {
+      this.findPothole(id).isBig = true;
+    },
+    mouseOff(id) {
+      this.findPothole(id).isBig = false;
     },
   },
 };

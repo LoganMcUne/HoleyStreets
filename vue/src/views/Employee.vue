@@ -4,16 +4,21 @@
     <div class="row mt-sm-3 mb-sm-4">
       <div class="col-sm-2"></div>
       <div class="col-sm-10">
-        <admin-map v-bind:markers="markers" v-bind:latLongZoomInfoVisible="true" />
+        <admin-map
+          v-bind:markers="markers"
+          v-bind:latLongZoomInfoVisible="true"
+        />
       </div>
     </div>
     <div class="row">
       <div class="col-sm-0"></div>
       <div class="col-sm-12 ml-sm-8 mr-sm-2">
         <editable-hole-list
-        :potholes="$store.state.potholes"
-        v-on:mouse-on-tr="mouseOn"
-        v-on:mouse-off-tr="mouseOff"
+          :potholes="$store.state.potholes"
+          v-on:mouse-on-tr="mouseOn"
+          v-on:mouse-off-tr="mouseOff"
+          v-on:start-edit="startEdit"
+          v-on:end-edit="endEdit"
         />
       </div>
     </div>
@@ -37,26 +42,48 @@ export default {
   },
   computed: {
     markers() {
-      let newMarkers = []
+      let newMarkers = [];
       this.$store.state.potholes.forEach((p) => {
-        let newP = {}
-        newP.latitude = p.latitude
-        newP.longitude = p.longitude
-        newP.iconUrl = this.startColor;
-        newP.opacity = 1;
-        newMarkers.push(newP)
+        let newP = {
+          isBig: false,
+          opacity: 1,
+        };
+        Object.assign(newP, p)
+        // if(newP.repairStatus=="Reported"){
+        //   newP.startColor = "marker-icon-red.png"
+        // }
+        // else  if(newP.repairStatus=="Inspected"){
+        //   newP.startColor = "marker-icon-yellow.png"
+        // }
+        // else  if(newP.repairStatus=="Repaired"){
+        //   newP.startColor = "marker-icon-green.png"
+        // }
+        // newP.iconUrl = newP.startColor
+        newMarkers.push(newP);
+
       });
-      return newMarkers
+      return newMarkers;
     },
   },
   methods: {
-    mouseOn(i) {
-      this.markers[i].isBig = true;
-      this.markers[i].iconUrl = this.emColor;
+    findPothole(id) {
+      return this.markers.find((p) => p.id == id);
     },
-    mouseOff(i) {
-      this.markers[i].isBig = false;
-      this.markers[i].iconUrl = this.startColor;
+    mouseOn(id) {
+      this.$set(this.findPothole(id), "isBig", true);
+    },
+    mouseOff(id) {
+      this.$set(this.findPothole(id), "isBig", false);
+    },
+    startEdit(id) {
+      let p = this.findPothole(id);
+      this.$set(p, "isBig", true);
+      this.$set(p, "iconUrl", this.emColor);
+    },
+    endEdit(id) {
+      let p = this.findPothole(id);
+      this.$set(p, "isBig", false);
+      this.$set(p, "iconUrl", this.startColor);
     },
   },
 };

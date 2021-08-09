@@ -26,11 +26,7 @@ export default {
   },
   created() {
     potholeService.list().then((r) => {
-      const newR = r.data.map((p) => {
-        p.isBig = false;
-        return p;
-      });
-      this.$store.commit("SET_POTHOLE_LIST", newR);
+      this.$store.commit("SET_POTHOLE_LIST", r.data);
     });
   },
 };
