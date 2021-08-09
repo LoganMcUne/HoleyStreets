@@ -96,6 +96,7 @@ export default {
 
 <style scoped>
 #register {
+  height: 75vh;
   display: flex;
   justify-content: center;
   align-items: center;

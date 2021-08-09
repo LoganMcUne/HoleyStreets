@@ -79,6 +79,7 @@ export default {
 
 <style scoped>
 #login {
+  height: 75vh;
   display: flex;
   justify-content: center;
   align-items: center;
