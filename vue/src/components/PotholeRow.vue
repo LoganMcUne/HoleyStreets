@@ -7,21 +7,23 @@
     <td>{{ currentPothole.reportedDate }}</td>
     <td>{{ currentPothole.reportingUserId }}</td>
     <td>
-      <input
+      <!-- <input
         type="date"
         v-if="isEditClicked"
         v-model="newPothole.inspectedDate"
-      />
+      /> -->
+      <b-form-datepicker :min="min" v-if="isEditClicked" v-model="newPothole.inspectedDate"></b-form-datepicker>
       <br v-if="isEditClicked" />
       <div v-if="!isEditClicked">{{ currentPothole.inspectedDate }}</div>
     </td>
     <td>
-      <input
+      <!-- <input
         type="date"
-        min= "2021-08-09"
+        min= getDate
         v-if="isEditClicked"
         v-model="newPothole.repairedDate"
-      />
+      /> -->
+      <b-form-datepicker :min="min" v-if="isEditClicked" v-model="newPothole.repairedDate"></b-form-datepicker>
       <div v-if="!isEditClicked">{{ currentPothole.repairedDate }}</div>
     </td>
     <td>
@@ -80,16 +82,22 @@
 </template>
 
 <script>
+
 import potholeService from "../services/PotholeService.js";
 
 export default {
+  
   name: "pothole-row",
   props: ["pothole"],
   data() {
+    const now = new Date()
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+    const minDate = new Date(today)
     return {
       isEditClicked: false,
       newPothole: {},
       currentPothole: this.pothole,
+      min: minDate,
     };
   },
   methods: {
@@ -143,13 +151,13 @@ export default {
     },
     getCurrentDate() {
       var today = new Date();
-      var dd = String(today.getDate()).padStart(2, "0");
-      var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+      var dd = today.getDate();
+      var mm = today.getMonth()+1;
       var yyyy = today.getFullYear();
 
       today = yyyy + "-" + mm + "-" + dd;
-      return today;
-    },
+      document.getElementById("datefield").setAttribute('max', today);
+    },   
   },
 };
 </script>
