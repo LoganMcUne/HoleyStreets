@@ -43,6 +43,30 @@ export default new Vuex.Store({
             axios.defaults.headers.common = {};
         },
         SET_POTHOLE_LIST(state, potholes) {
+            
+            const getMonthDayYearFormat = (potholeDate) => {
+                    const month = potholeDate.substring(5, 7);
+                    const day = potholeDate.substring(8, 10);
+                    const year = potholeDate.substring(0,4);
+
+                    const newDate = month + '-' + day + '-' + year;
+                    return newDate;
+                }
+
+            potholes.forEach(pothole => {
+                if (pothole.reportedDate != null) {
+                    pothole.reportedDate = getMonthDayYearFormat(pothole.reportedDate);
+                }
+
+                if (pothole.inspectedDate != null) {
+                    pothole.inspectedDate = getMonthDayYearFormat(pothole.inspectedDate);
+                }
+
+                if (pothole.repairedDate != null) {
+                    pothole.repairedDate = getMonthDayYearFormat(pothole.repairedDate);
+                }
+            });
+
             state.potholes = potholes;
         },
         DELETE_POTHOLE(state, id) {

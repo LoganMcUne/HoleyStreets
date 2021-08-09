@@ -85,6 +85,7 @@ export default {
     },
     setPotholes() {
       potholeService.list().then((r) => {
+        console.log(r.data);
         this.$store.commit("SET_POTHOLE_LIST", r.data);
       });
     },

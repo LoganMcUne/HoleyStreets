@@ -4,16 +4,16 @@
     <td>{{ currentPothole.latitude }}</td>
     <td>{{ currentPothole.longitude }}</td>
     <td>{{ currentPothole.imageLink }}</td>
-    <td>{{ truncateReported }}</td>
+    <td>{{ currentPothole.reportedDate }}</td>
     <td >{{ currentPothole.reportingUserId }}</td>
     <td>
       <input type="date" v-if="isEditClicked" v-model="newPothole.inspectedDate"/>
       <br v-if="isEditClicked" />
-      <div v-if="!isEditClicked">{{ truncateInspected }}</div>
+      <div v-if="!isEditClicked">{{ currentPothole.inspectedDate }}</div>
     </td>
     <td>
       <input type="date" v-if="isEditClicked" v-model="newPothole.repairedDate"/>
-      <div v-if="!isEditClicked">{{ truncateRepaired }}</div>
+      <div v-if="!isEditClicked">{{ currentPothole.repairedDate }}</div>
     </td>
     <td>
       <select name="Reported" v-if="isEditClicked" v-model="newPothole.repairStatus">
@@ -122,6 +122,8 @@ export default {
       this.$emit("mouse-off-tr", i - 1);
     },
   },
+  //TODO: DELETE COMPUTED PROPS BELOW
+  /*
   computed: {
     truncateReported() {
       return this.currentPothole.reportedDate.substring(0, 10);
@@ -133,6 +135,7 @@ export default {
       return this.currentPothole.inspectedDate.substring(0, 10);
     },
   },
+  */
 };
 </script>
 
