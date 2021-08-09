@@ -73,16 +73,7 @@ export default new Vuex.Store({
             state.newPothole = {};
         },
         SET_NON_EMPLOYEE_USERS_LIST(state, nonEmployeeUsers) {
-            const allActiveRequestUserIds = [];
-            state.requests.forEach(element => {
-                allActiveRequestUserIds.push(element.userId);
-            });
-
-            const nonEmployeeUsersWithoutActiveRequests = nonEmployeeUsers.filter(user => {
-                return !allActiveRequestUserIds.includes(user.userId);
-            });
-
-            state.nonEmployeeUsers = nonEmployeeUsersWithoutActiveRequests;
+            state.nonEmployeeUsers = nonEmployeeUsers;
         },
     }
 })

@@ -14,7 +14,7 @@
 
       <tbody>
         <tr
-          v-for="user in $store.state.nonEmployeeUsers"
+          v-for="user in allNonEmployeeUsersWithoutActiveRequests"
           v-bind:key="user.userid"
         >
           <td>{{ user.userId }}</td>
@@ -47,6 +47,20 @@ export default {
         .catch((error) => {
           this.$parent.handleError(error);
         });
+    }
+  },
+  computed: {
+    allNonEmployeeUsersWithoutActiveRequests() {
+      const allActiveRequestUserIds = [];
+      this.$store.state.requests.forEach(element => {
+        allActiveRequestUserIds.push(element.userId);
+      });
+
+      const nonEmployeeUsersWithoutActiveRequests = this.$store.state.nonEmployeeUsers.filter(user => {
+        return !allActiveRequestUserIds.includes(user.userId);
+      });
+
+      return nonEmployeeUsersWithoutActiveRequests;
     }
   }
 };
