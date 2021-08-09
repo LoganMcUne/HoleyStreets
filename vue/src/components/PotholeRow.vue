@@ -8,24 +8,26 @@
         currentPothole.imageLink
       }}</a>
     </td>
-    <td>{{ currentPothole.reportedDate }}</td>
+    <td>{{ truncateReportedDate }}</td>
     <td>{{ currentPothole.reportingUserId }}</td>
     <td>
-      <input
+      <!-- <input
         type="date"
         v-if="isEditClicked"
         v-model="newPothole.inspectedDate"
-      />
+      /> -->
+      <b-form-datepicker :min="min" v-if="isEditClicked" v-model="newPothole.inspectedDate"></b-form-datepicker>
       <br v-if="isEditClicked" />
-      <div v-if="!isEditClicked">{{ currentPothole.inspectedDate }}</div>
+      <div v-if="!isEditClicked">{{ truncateInspectedDate }}</div>
     </td>
     <td>
-      <input
+      <!-- <input
         type="date"
-        min="2021-08-09"
+        min= getDate
         v-if="isEditClicked"
         v-model="newPothole.repairedDate"
-      />
+      /> -->
+      <b-form-datepicker :min="min" v-if="isEditClicked" v-model="newPothole.repairedDate"></b-form-datepicker>
       <div v-if="!isEditClicked">{{ currentPothole.repairedDate }}</div>
     </td>
     <td>
@@ -84,19 +86,37 @@
 </template>
 
 <script>
+
 import potholeService from "../services/PotholeService.js";
 
 export default {
+  
   name: "pothole-row",
   props: ["pothole"],
   data() {
+    const now = new Date()
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+    const minDate = new Date(today)
     return {
       isEditClicked: false,
       newPothole: {},
       currentPothole: this.pothole,
+      min: minDate,
     };
   },
   methods: {
+    formatDate(date) {
+
+      if(date != null){
+        const month = date.substring(5, 7);
+        const day = date.substring(8, 10);
+        const year = date.substring(0,4);
+
+        date = month + '-' + day + '-' + year;
+      }
+
+      return date;
+    },
     deletePothole(id) {
       potholeService
         .deletePothole(id)
@@ -113,6 +133,7 @@ export default {
         .updatePothole(this.newPothole)
         .then(() => {
           this.currentPothole = this.newPothole;
+          console.log("in the right method");
           this.$store.commit("UPDATE_POTHOLE", this.newPothole);
           this.newPothole = {};
           this.isEditClicked = !this.isEditClicked;
@@ -160,14 +181,25 @@ export default {
     },
     getCurrentDate() {
       var today = new Date();
-      var dd = String(today.getDate()).padStart(2, "0");
-      var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+      var dd = today.getDate();
+      var mm = today.getMonth()+1;
       var yyyy = today.getFullYear();
 
       today = yyyy + "-" + mm + "-" + dd;
-      return today;
-    },
+      document.getElementById("datefield").setAttribute('max', today);
+    },   
   },
+  computed: {
+      truncateReportedDate() {
+        return this.formatDate(this.currentPothole.reportedDate)
+      },
+      truncateInspectedDate() {
+        return this.formatDate(this.currentPothole.inspectedDate)
+      },
+      truncateRepairedDate() {
+        return this.formatDate(this.currentPothole.repairedDate)
+      }
+    }
 };
 </script>
 

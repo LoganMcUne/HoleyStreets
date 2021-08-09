@@ -1,6 +1,12 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
+
+    <div class="title-and-pictures">
+      <img class="left-pic tire-pic" src="../../public/tire_track_left.jpg" alt="Tire track picture" />
+          <h1 class="centered-h1 title">Home</h1>
+      <img class= "right-pic tire-pic" src="../../public/tire_track_right.jpg" alt="Tire track picture" />
+    </div>
+
     <div class="row mt-sm-4 mb-sm-2">
       <div class="col-sm-2"></div>
       <div class="col-sm-10">
@@ -63,7 +69,7 @@ export default {
   color: black;
 }
 
-h1 {
+h1.centered-h1 {
   padding-top: 10px;
   text-align: center;
 }
