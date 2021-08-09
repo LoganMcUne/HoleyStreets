@@ -3,8 +3,12 @@
     <td>{{ currentPothole.id }}</td>
     <td>{{ currentPothole.latitude }}</td>
     <td>{{ currentPothole.longitude }}</td>
-    <td><a :href="currentPothole.imageLink" target="_blank">{{ currentPothole.imageLink }}</a></td>
-    <td>{{ currentPothole.reportedDate }}</td>
+    <td>
+      <a :href="currentPothole.imageLink" target="_blank">{{
+        currentPothole.imageLink
+      }}</a>
+    </td>
+    <td>{{ truncateReportedDate }}</td>
     <td>{{ currentPothole.reportingUserId }}</td>
     <td>
       <input
@@ -13,16 +17,16 @@
         v-model="newPothole.inspectedDate"
       />
       <br v-if="isEditClicked" />
-      <div v-if="!isEditClicked">{{ currentPothole.inspectedDate }}</div>
+      <div v-if="!isEditClicked">{{ truncateInspectedDate }}</div>
     </td>
     <td>
       <input
         type="date"
-        min= "2021-08-09"
+        min="2021-08-09"
         v-if="isEditClicked"
         v-model="newPothole.repairedDate"
       />
-      <div v-if="!isEditClicked">{{ currentPothole.repairedDate }}</div>
+      <div v-if="!isEditClicked">{{ truncateRepairedDate }}</div>
     </td>
     <td>
       <select
@@ -93,6 +97,18 @@ export default {
     };
   },
   methods: {
+    formatDate(date) {
+
+      if(date != null){
+        const month = date.substring(5, 7);
+        const day = date.substring(8, 10);
+        const year = date.substring(0,4);
+
+        date = month + '-' + day + '-' + year;
+      }
+
+      return date;
+    },
     deletePothole(id) {
       potholeService
         .deletePothole(id)
@@ -103,7 +119,7 @@ export default {
           console.log(e.status);
         });
     },
-    updatePothole() {
+    updatePothole() {          
       potholeService
         .updatePothole(this.newPothole)
         .then(() => {
@@ -141,16 +157,18 @@ export default {
     mouseOff(i) {
       this.$emit("mouse-off-tr", i - 1);
     },
-    getCurrentDate() {
-      var today = new Date();
-      var dd = String(today.getDate()).padStart(2, "0");
-      var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-      var yyyy = today.getFullYear();
-
-      today = yyyy + "-" + mm + "-" + dd;
-      return today;
-    },
   },
+  computed: {
+      truncateReportedDate() {
+        return this.formatDate(this.currentPothole.reportedDate)
+      },
+      truncateInspectedDate() {
+        return this.formatDate(this.currentPothole.inspectedDate)
+      },
+      truncateRepairedDate() {
+        return this.formatDate(this.currentPothole.repairedDate)
+      }
+    }
 };
 </script>
 
