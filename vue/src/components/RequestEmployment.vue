@@ -33,7 +33,10 @@ export default {
           }
         })
         .catch((response) => {
-          console.log(response.status);
+          if (response.response.status === 409){
+            alert("Could not complete because you already have a pending request. Please wait for your request to be processed.");
+          }
+         console.log(response);
         });
     },
   },
