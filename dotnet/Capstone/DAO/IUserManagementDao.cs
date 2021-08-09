@@ -14,5 +14,6 @@ namespace Capstone.DAO
         public bool SetRequestStatusToInactive(int userId);
 
         public List<AccessChangeRequest> ListAllActiveChangeRequests();
+        public bool CheckIfActiveRequest(ReturnUser user);
     }
 }
