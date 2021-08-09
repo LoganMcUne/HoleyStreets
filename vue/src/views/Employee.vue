@@ -1,6 +1,12 @@
 <template>
   <div>
-    <h1>Employee Dashboard</h1>
+
+    <div class="title-and-pictures">
+      <img class="left-pic tire-pic" src="../../public/tire_track_left.jpg" alt="Tire track picture" />
+          <h1 class="centered-h1 title">Employee Dashboard</h1>
+      <img class= "right-pic tire-pic" src="../../public/tire_track_right.jpg" alt="Tire track picture" />
+    </div>
+
     <div class="row mt-sm-3 mb-sm-4">
       <div class="col-sm-2"></div>
       <div class="col-sm-10">
@@ -65,6 +71,5 @@ export default {
 <style scoped>
 h1 {
   padding-top: 10px;
-  text-align: center;
 }
 </style>
