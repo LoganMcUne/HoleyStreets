@@ -7,6 +7,15 @@
       variant="light"
       class="m-md-2"
     >
+
+      <router-link
+        v-bind:to="{ name: 'home' }"
+        tag="b-dropdown-item"
+        class="dropdown-btn"
+      >
+        Home
+      </router-link>
+
       <router-link
         v-if="$store.state.token == ''"
         v-bind:to="{ name: 'login' }"

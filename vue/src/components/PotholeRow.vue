@@ -5,18 +5,31 @@
     <td>{{ currentPothole.longitude }}</td>
     <td>{{ currentPothole.imageLink }}</td>
     <td>{{ currentPothole.reportedDate }}</td>
-    <td >{{ currentPothole.reportingUserId }}</td>
+    <td>{{ currentPothole.reportingUserId }}</td>
     <td>
-      <input type="date" v-if="isEditClicked" v-model="newPothole.inspectedDate"/>
+      <input
+        type="date"
+        v-if="isEditClicked"
+        v-model="newPothole.inspectedDate"
+      />
       <br v-if="isEditClicked" />
       <div v-if="!isEditClicked">{{ currentPothole.inspectedDate }}</div>
     </td>
     <td>
-      <input type="date" v-if="isEditClicked" v-model="newPothole.repairedDate"/>
+      <input
+        type="date"
+        min= "2021-08-09"
+        v-if="isEditClicked"
+        v-model="newPothole.repairedDate"
+      />
       <div v-if="!isEditClicked">{{ currentPothole.repairedDate }}</div>
     </td>
     <td>
-      <select name="Reported" v-if="isEditClicked" v-model="newPothole.repairStatus">
+      <select
+        name="Reported"
+        v-if="isEditClicked"
+        v-model="newPothole.repairStatus"
+      >
         <option value="Reported">Reported</option>
         <option value="Inspected">Inspected</option>
         <option value="Repaired">Repaired</option>
@@ -24,7 +37,13 @@
       <div v-if="!isEditClicked">{{ currentPothole.repairStatus }}</div>
     </td>
     <td>
-      <input type="range" min="1" max="3" v-if="isEditClicked" v-model.number="newPothole.severity"/>
+      <input
+        type="range"
+        min="1"
+        max="3"
+        v-if="isEditClicked"
+        v-model.number="newPothole.severity"
+      />
       <div v-if="!isEditClicked">{{ currentPothole.severity }}</div>
     </td>
     <td>
@@ -121,21 +140,16 @@ export default {
     mouseOff(i) {
       this.$emit("mouse-off-tr", i - 1);
     },
-  },
-  //TODO: DELETE COMPUTED PROPS BELOW
-  /*
-  computed: {
-    truncateReported() {
-      return this.currentPothole.reportedDate.substring(0, 10);
-    },
-    truncateRepaired() {
-      return this.currentPothole.repairedDate.substring(0, 10);
-    },
-    truncateInspected() {
-      return this.currentPothole.inspectedDate.substring(0, 10);
+    getCurrentDate() {
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, "0");
+      var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+      var yyyy = today.getFullYear();
+
+      today = yyyy + "-" + mm + "-" + dd;
+      return today;
     },
   },
-  */
 };
 </script>
 

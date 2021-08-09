@@ -47,8 +47,8 @@ export default {
   margin: 5px;
 }
 
-th {
-  text-transform: lowercase;
+tr > th {
+  text-transform: none;
 }
 
 </style>
