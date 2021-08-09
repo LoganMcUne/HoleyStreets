@@ -1,5 +1,11 @@
 <template>
   <div>
+    <div class="title-and-pictures">
+      <img class="left-pic tire-pic" src="../../public/tire_track_left.jpg" alt="Tire track picture" />
+      <h1 class="centered-h1 title">Admin Dashboard</h1>
+      <img class= "right-pic tire-pic" src="../../public/tire_track_right.jpg" alt="Tire track picture" />
+    </div>
+    
   <div id="admin-tables">
     <active-requests />
     <view-employees />
