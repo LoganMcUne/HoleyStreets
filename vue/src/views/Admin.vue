@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="admin-tables">
     <active-requests />
     <view-employees />
     <all-users />
@@ -73,5 +73,8 @@ div.employee-access-table {
   border: 1px solid black;
   border-radius: 10px;
   padding-bottom: 10px;
+}
+#admin-tables{
+  display:flex;
 }
 </style>
