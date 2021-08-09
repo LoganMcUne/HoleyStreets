@@ -27,7 +27,6 @@ export default {
   created() {
     potholeService.list().then((r) => {
       const newR = r.data.map((p) => {
-        p.iconUrl = "";
         p.isBig = false;
         return p;
       });

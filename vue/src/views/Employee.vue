@@ -36,11 +36,16 @@ export default {
   },
   computed: {
     markers() {
-      return this.$store.state.potholes.map((p) => {
-        p.iconUrl = this.startColor;
-        p.opacity = 1;
-        return p;
+      let newMarkers = []
+      this.$store.state.potholes.forEach((p) => {
+        let newP = {}
+        newP.latitude = p.latitude
+        newP.longitude = p.longitude
+        newP.iconUrl = this.startColor;
+        newP.opacity = 1;
+        newMarkers.push(newP)
       });
+      return newMarkers
     },
   },
   methods: {

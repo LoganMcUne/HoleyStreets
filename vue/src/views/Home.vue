@@ -27,21 +27,26 @@ export default {
   },
   data() {
     return {
-      currentCenter: ''
-    }
+      currentCenter: "",
+    };
   },
   methods: {
     setCoordinates(incomingCurrentCenter) {
       this.currentCenter = incomingCurrentCenter;
-    }
+    },
   },
   computed: {
     markers() {
-      return this.$store.state.potholes.map((p) => {
-        p.iconUrl = "marker-icon-blue.png";
-        p.opacity = 1
-        return p;
+      let newMarkers = [];
+      this.$store.state.potholes.forEach((p) => {
+        let newP = {};
+        newP.latitude = p.latitude;
+        newP.longitude = p.longitude;
+        newP.iconUrl = "marker-icon-blue.png";
+        newP.opacity = 1;
+        newMarkers.push(newP);
       });
+      return newMarkers;
     },
   },
 };
