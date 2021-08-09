@@ -20,7 +20,7 @@
       </l-marker>
     </l-map>
     <div v-show="latLongZoomInfoVisible">
-    {{ currentCenter }} {{ currentZoom }}
+      {{ currentCenter }} {{ currentZoom }}
     </div>
   </div>
 </template>
@@ -38,22 +38,24 @@ export default {
     LTileLayer,
     LMarker,
   },
+
   watch: {
-    currentCenter: function() {
-      return this.$emit('sendupcoords', this.currentCenter);
-    }
+    currentCenter: function () {
+      return this.$emit("sendupcoords", this.currentCenter);
+    },
   },
   data() {
     return {
-      zoom: 4,
-      center: latLng(39.503096, -98.743862),
+      marks: this.markers,
+      zoom: 12,
+      center: latLng(39.1558839, -84.51233),
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      withPopup: latLng(39.15949, -84.455277),
-      withTooltip: latLng(39.15949, -84.455277),
-      currentZoom: 4,
-      currentCenter: latLng(39.503096, -98.743862),
+      withPopup: latLng(39.1558839, -84.51233),
+      withTooltip: latLng(39.1558839, -84.51233),
+      currentZoom: 12,
+      currentCenter: latLng(39.1558839, -84.51233),
       showParagraph: false,
       mapOptions: {
         zoomSnap: 0.5,
@@ -65,7 +67,7 @@ export default {
   },
   methods: {
     makeIcon(p) {
-      const size = p.isBig ?  this.bigSize: this.regSize;
+      const size = p.isBig ? this.bigSize : this.regSize;
       const url = p.iconUrl ? p.iconUrl : "marker-icon-red.png";
       return L.icon({
         iconUrl: url,
@@ -93,11 +95,10 @@ export default {
     },
   },
   created() {
-    return this.$emit('sendupcoords', this.currentCenter);
-  }
+    return this.$emit("sendupcoords", this.currentCenter);
+  },
 };
 </script>
 
 <style scoped>
-
 </style>

@@ -58,6 +58,7 @@ export default {
         newP.longitude = p.longitude;
         newP.iconUrl = "marker-icon-blue.png";
         newP.opacity = 1;
+        newP.isBig = false
         newMarkers.push(newP);
       });
       return newMarkers;

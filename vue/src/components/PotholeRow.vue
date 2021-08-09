@@ -1,5 +1,5 @@
 <template>
-  <tr>
+  <tr @mouseover="mouseOn(pothole.id)" @mouseleave="mouseOff(pothole.id)">
     <td>{{ currentPothole.id }}</td>
     <td>{{ currentPothole.latitude }}</td>
     <td>{{ currentPothole.longitude }}</td>
@@ -127,7 +127,8 @@ export default {
           console.log(e.status);
         });
     },
-    updatePothole() {          
+    updatePothole() {
+      this.endEdit(this.pothole.id)
       potholeService
         .updatePothole(this.newPothole)
         .then(() => {
@@ -142,6 +143,7 @@ export default {
         });
     },
     editThisPothole() {
+      this.startEdit(this.pothole.id)
       this.newPothole.id = this.pothole.id;
       this.newPothole.latitude = this.pothole.latitude;
       this.newPothole.longitude = this.pothole.longitude;
@@ -152,18 +154,30 @@ export default {
       this.newPothole.repairStatus = this.pothole.repairStatus;
       this.newPothole.inspectedDate = this.pothole.inspectedDate;
       this.newPothole.repairedDate = this.pothole.repairedDate;
+      // Object.assign(this.newPothole, this.pothole)
 
       this.isEditClicked = !this.isEditClicked;
     },
     discardChanges() {
+      this.endEdit(this.pothole.id)
       this.isEditClicked = !this.isEditClicked;
       this.newPothole = {};
     },
-    mouseOn(i) {
-      this.$emit("mouse-on-tr", i - 1);
+    mouseOn(id) {
+      if(!this.isEditClicked){
+      this.$emit("mouse-on-tr", id);
+      }
     },
-    mouseOff(i) {
-      this.$emit("mouse-off-tr", i - 1);
+    mouseOff(id) {
+      if(!this.isEditClicked){
+      this.$emit("mouse-off-tr", id);
+      }
+    },
+    startEdit(id) {
+      this.$emit("start-edit", id);
+    },
+    endEdit(id) {
+      this.$emit("end-edit", id);
     },
     getCurrentDate() {
       var today = new Date();

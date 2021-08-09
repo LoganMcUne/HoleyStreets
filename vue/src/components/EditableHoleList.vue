@@ -28,9 +28,15 @@
           </tr>
         </thead>
         <tbody>
-            <pothole-row v-for="pothole in potholes"
+          <pothole-row
+            v-for="pothole in potholes"
             v-bind:key="pothole.id"
-            v-bind:pothole="pothole"/>
+            v-bind:pothole="pothole"
+            v-on:mouse-on-tr="mouseOn"
+            v-on:mouse-off-tr="mouseOff"
+            v-on:start-edit="startEdit"
+            v-on:end-edit="endEdit"
+          />
         </tbody>
       </table>
     </div>
@@ -38,14 +44,36 @@
 </template>
 
 <script>
-
 import PotholeRow from "../components/PotholeRow.vue";
 
 export default {
   name: "hole-list",
   props: ["potholes"],
   components: {
-      PotholeRow
+    PotholeRow,
+  },
+  data() {
+    return {
+      editing: false,
+    };
+  },
+  methods: {
+    mouseOn(id) {
+      if (!this.editing) {
+        this.$emit("mouse-on-tr", id);
+      }
+    },
+    mouseOff(id) {
+      if (!this.editing) {
+        this.$emit("mouse-off-tr", id);
+      }
+    },
+    startEdit(id) {
+      this.$emit("start-edit", id);
+    },
+    endEdit(id) {
+      this.$emit("end-edit", id);
+    },
   },
 };
 </script>

@@ -11,7 +11,10 @@
       <b-row>
         <b-col></b-col>
         <b-col cols="8">
-          <street-map v-bind:markers="filteredMarkers" v-bind:latLongZoomInfoVisible="false" />
+          <street-map
+            v-bind:markers="filteredMarkers"
+            v-bind:latLongZoomInfoVisible="false"
+          />
         </b-col>
         <b-col></b-col>
       </b-row>
@@ -53,6 +56,8 @@ export default {
       const newMarkers = [];
       this.$store.state.potholes.forEach((p) => {
         const newP = {};
+        newP.id = p.id;
+        newP.isBig = false;
         newP.latitude = p.latitude;
         newP.longitude = p.longitude;
         if (p.reportingUserId === this.$store.state.user.userId) {
@@ -65,6 +70,17 @@ export default {
         newMarkers.push(newP);
       });
       return newMarkers;
+    },
+  },
+  methods: {
+    findPothole(id){
+      return this.filteredMarkers.find(p => p.id == id)
+    },
+    mouseOn(id) {
+      this.findPothole(id).isBig = true;
+    },
+    mouseOff(id) {
+      this.findPothole(id).isBig = false;
     },
   },
 };
