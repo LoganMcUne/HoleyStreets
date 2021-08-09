@@ -43,7 +43,7 @@ export default new Vuex.Store({
             axios.defaults.headers.common = {};
         },
         SET_POTHOLE_LIST(state, potholes) {
-            
+            /*
             const getMonthDayYearFormat = (potholeDate) => {
                     const month = potholeDate.substring(5, 7);
                     const day = potholeDate.substring(8, 10);
@@ -66,7 +66,7 @@ export default new Vuex.Store({
                     pothole.repairedDate = getMonthDayYearFormat(pothole.repairedDate);
                 }
             });
-
+            */
             state.potholes = potholes;
         },
         DELETE_POTHOLE(state, id) {
