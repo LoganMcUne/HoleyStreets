@@ -45,15 +45,15 @@ export default {
   },
   data() {
     return {
-      zoom: 12,
-      center: latLng(39.15949, -84.455277),
+      zoom: 4,
+      center: latLng(39.503096, -98.743862),
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       withPopup: latLng(39.15949, -84.455277),
       withTooltip: latLng(39.15949, -84.455277),
-      currentZoom: 12,
-      currentCenter: latLng(39.15949, -84.455277),
+      currentZoom: 4,
+      currentCenter: latLng(39.503096, -98.743862),
       showParagraph: false,
       mapOptions: {
         zoomSnap: 0.5,
