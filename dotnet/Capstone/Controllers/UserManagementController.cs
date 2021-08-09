@@ -60,9 +60,12 @@ namespace Capstone.Controllers
             ReturnUser user = new ReturnUser();
             
             user.UserId = int.Parse(User.FindFirst("sub")?.Value);
-
+            bool noExistingRequests = userDao.CheckIfActiveRequest(user);
+            if (noExistingRequests)
+            {
+                return StatusCode(409);
+            }
             bool requestAdded = userDao.RequestEmployeeAccess(user);
-
             if (requestAdded)
             {
                 return Ok();

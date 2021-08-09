@@ -114,38 +114,37 @@ namespace Capstone.DAO
 
             return requestAdded;
         }
+        //if user already has an active request, they should not submit a new request
+        public bool CheckIfActiveRequest(ReturnUser user)
+        {
+            bool currentActiveRequest = true;
 
-        //public bool CheckIfActiveRequest(ReturnUser user)
-        //{
-        //    bool currentActiveRequest = true;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    int defaultActiveStatus = 1;
+                    string submitEmployeeAccessRequestSqlStatement = "SELECT request_id, user_id, active_status FROM requests WHERE user_id = @user_id AND active_status = @active_status";
 
-        //    try
-        //    {
-        //        using (SqlConnection conn = new SqlConnection(connectionString))
-        //        {
-        //            conn.Open();
+                    SqlCommand cmd = new SqlCommand(submitEmployeeAccessRequestSqlStatement, conn);
+                    cmd.Parameters.AddWithValue("@user_id", user.UserId);
+                    cmd.Parameters.AddWithValue("@active_status", defaultActiveStatus);
 
-        //            string submitEmployeeAccessRequestSqlStatement = "INSERT INTO requests (user_id, active_status) VALUES (@user_id, @active_status);";
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (!reader.HasRows)
+                    {
+                        currentActiveRequest = false;
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                return currentActiveRequest;
+            }
 
-        //            //All new requests are set to "active" (true/1) by default
-        //            int defaultActiveStatus = 1;
-
-        //            SqlCommand cmd = new SqlCommand(submitEmployeeAccessRequestSqlStatement, conn);
-        //            cmd.Parameters.AddWithValue("@user_id", user.UserId);
-        //            cmd.Parameters.AddWithValue("@active_status", defaultActiveStatus);
-
-        //            cmd.ExecuteNonQuery();
-
-        //            currentActiveRequest = false;
-        //        }
-        //    }
-        //    catch (SqlException)
-        //    {
-        //        return currentActiveRequest;
-        //    }
-
-        //    return currentActiveRequest;
-        //}
+            return currentActiveRequest;
+        }
 
         public bool SetRequestStatusToInactive(int userId)
         {
