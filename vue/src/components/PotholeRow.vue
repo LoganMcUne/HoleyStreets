@@ -122,20 +122,6 @@ export default {
       this.$emit("mouse-off-tr", i - 1);
     },
   },
-  //TODO: DELETE COMPUTED PROPS BELOW
-  /*
-  computed: {
-    truncateReported() {
-      return this.currentPothole.reportedDate.substring(0, 10);
-    },
-    truncateRepaired() {
-      return this.currentPothole.repairedDate.substring(0, 10);
-    },
-    truncateInspected() {
-      return this.currentPothole.inspectedDate.substring(0, 10);
-    },
-  },
-  */
 };
 </script>
 

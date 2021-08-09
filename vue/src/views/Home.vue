@@ -3,7 +3,7 @@
     <div class="row mt-sm-4 mb-sm-2">
       <div class="col-sm-2"></div>
       <div class="col-sm-10">
-        <street-map v-bind:markers="markers" @sendupcoords="setCoordinates" />
+        <street-map v-bind:markers="markers" @sendupcoords="setCoordinates" v-bind:latLongZoomInfoVisible="false" />
       </div>
     </div>
     <div class="row">
@@ -53,7 +53,4 @@ export default {
 </script>
 
 <style scoped>
-.row {
-  margin: 25px 0 0 0;
-}
 </style>
