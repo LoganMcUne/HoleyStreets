@@ -84,5 +84,6 @@ div.employee-access-table {
 }
 #admin-tables{
   display:flex;
+  justify-content: center;
 }
 </style>
