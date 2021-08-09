@@ -40,6 +40,7 @@ export default {
         .then((response) => {
           if (response.status === 204) {
             this.$store.commit("DELETE_EMPLOYEE", userId);
+            this.$parent.getAllEmployees();
             this.$parent.getAllNonEmployeeUsers();
           }
         })

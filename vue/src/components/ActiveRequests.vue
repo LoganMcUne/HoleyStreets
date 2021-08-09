@@ -40,8 +40,10 @@ export default {
         .approveRequest(userId)
         .then((response) => {
           if (response.status === 200) {
-            this.$store.commit("DELETE_REQUEST",userId)
+            this.$store.commit("DELETE_REQUEST",userId);
+            this.$parent.getAllActiveRequests();
             this.$parent.getAllEmployees();
+            this.$parent.getAllNonEmployeeUsers();
           }
         })
         .catch((error) => {
@@ -54,6 +56,7 @@ export default {
         .then((response) => {
           if (response.status === 200) {
             this.$store.commit("DELETE_REQUEST",userId);
+            this.$parent.getAllActiveRequests();
             this.$parent.getAllNonEmployeeUsers();
           }
         })
