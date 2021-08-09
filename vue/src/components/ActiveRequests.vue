@@ -1,5 +1,5 @@
 <template>
-  <div class="employee-access-requests">
+  <div class="employee-access-table">
     <h1 class="admin-h1">Users Requesting Employee Access</h1>
     <table>
       <thead>
@@ -83,11 +83,6 @@ td {
 }
 button {
   margin-right: 5px;
-}
-div.employee-access-requests {
-  margin: 3vh;
-  border: 1px solid black;
-  border-radius: 10px;
 }
 .deny {
   background-color: rgb(248, 86, 86);

@@ -52,5 +52,12 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+#sidebar-1 > header.b-sidebar-header > button {
+  background-color: #adc178;
+}
+
+#sidebar-1 > header.b-sidebar-header > button > svg {
+  color: black;
+}
 </style>

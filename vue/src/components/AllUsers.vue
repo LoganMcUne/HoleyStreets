@@ -1,5 +1,5 @@
 <template>
-  <div class="employee-access-requests">
+  <div class="employee-access-table">
     <h1 class="admin-h1">All Users Without Employee Access</h1>
     <h2 class="all-non-employee-users-subtitle"><em>Users without employee access who do not have an active request to become an employee</em></h2>
 
