@@ -80,4 +80,9 @@ div.title-and-pictures {
   border-radius: 20px;
   color: black;
 }
+
+h2.subtitle {
+    font-family: "Luckiest Guy", cursive;
+    text-align: center;
+}
 </style>
