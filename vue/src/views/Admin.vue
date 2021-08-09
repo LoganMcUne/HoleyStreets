@@ -75,9 +75,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 div.employee-access-table {
-  margin: 3vh;
+  margin: 0 3vh 3vh 3vh;
   border: 1px solid black;
   border-radius: 10px;
   padding-bottom: 10px;
@@ -85,5 +85,19 @@ div.employee-access-table {
 #admin-tables{
   display:flex;
   justify-content: center;
+  align-items: flex-start;
+}
+h1.admin-h1 {
+  padding: 5px 10px;
+  font-size: 24px;
+  font-family: "Luckiest Guy", cursive;
+  text-align: center;
+  border-bottom: 4px solid #adc178;
+}
+th, td {
+  text-align: center;
+}
+table {
+  margin: auto;
 }
 </style>

@@ -107,6 +107,5 @@ button.add-button {
   color: black;
   background-color: #adc178;
   width: 150px;
-  margin: 5px 0 5px 14px;
 }
 </style>

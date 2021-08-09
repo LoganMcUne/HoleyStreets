@@ -65,7 +65,7 @@ div.title-and-pictures {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 15px;
+  margin: 15px 0;
 }
 
 .tire-pic {
@@ -76,13 +76,24 @@ div.title-and-pictures {
   font-family: "Luckiest Guy", cursive;
   font-size: 3.5rem;
   margin: 0;
-  padding: 15px 8px;
+  padding: 15px 10px;
   border-radius: 20px;
   color: black;
+}
+
+div.subtitle-box {
+  border-bottom: 5px solid #adc178;
+  border-top: 5px solid #adc178;
+  margin: 15px 0 10px 0;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 h2.subtitle {
     font-family: "Luckiest Guy", cursive;
     text-align: center;
+    margin: 0;
 }
 </style>

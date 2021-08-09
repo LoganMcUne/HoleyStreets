@@ -6,24 +6,30 @@
           <h1 class="centered-h1 title">Your Account</h1>
       <img class= "right-pic tire-pic" src="../../public/tire_track_right.jpg" alt="Tire track picture" />
     </div>
-    <div class="row mt-sm-4 mb-sm-1">
-      <div class="col-sm-2"></div>
-      <div class="col-sm-10">
-        <street-map v-bind:markers="filteredMarkers" v-bind:latLongZoomInfoVisible="false" />
-      </div>
-    </div>
-    <div class = "row">
-      <div class="col-sm-12">
-        <h2 class="subtitle">Potholes You Have Reported</h2>
-      </div>
-      <div class="col-sm-0"></div>
-    </div>
-    <div class="row">
-      <div class="col-sm-0"></div>
-      <div class="col-sm-12 ml-sm-8 mr-sm-2">
-        <hole-list :potholes="filteredPotholes" />
-      </div>
-    </div>
+
+    <b-container fluid>
+      <b-row>
+        <b-col></b-col>
+        <b-col cols="8">
+          <street-map v-bind:markers="filteredMarkers" v-bind:latLongZoomInfoVisible="false" />
+        </b-col>
+        <b-col></b-col>
+      </b-row>
+      <b-row>
+        <b-col></b-col>
+        <b-col cols="4">
+          <div class="subtitle-box">
+            <h2 class="subtitle">Potholes You Have Reported</h2>
+          </div>
+        </b-col>
+        <b-col></b-col>
+      </b-row>
+      <b-row>
+        <b-col>
+          <hole-list :potholes="filteredPotholes" />
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
@@ -64,14 +70,5 @@ export default {
 };
 </script>
 
-<style scoped>
-h1 {
-  padding-top: 10px;
-  text-align: center;
-}
-
-div.row > div.col-sm-12 > h2 {
-  text-align: center;
-  font-size: 2rem;
-}
+<style>
 </style>

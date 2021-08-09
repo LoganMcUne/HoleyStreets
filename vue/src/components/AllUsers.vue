@@ -74,6 +74,6 @@ export default {
 h2.all-non-employee-users-subtitle {
   font-size: 14px;
   color: darkgrey;
-  padding-left: 10px;
+  padding: 0 10px;
 }
 </style>

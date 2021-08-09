@@ -7,18 +7,25 @@
       <img class= "right-pic tire-pic" src="../../public/tire_track_right.jpg" alt="Tire track picture" />
     </div>
 
-    <div class="row mt-sm-4 mb-sm-2">
-      <div class="col-sm-2"></div>
-      <div class="col-sm-10">
-        <street-map v-bind:markers="markers" @sendupcoords="setCoordinates" v-bind:latLongZoomInfoVisible="false" />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2"></div>
-      <div class="col-sm-10">
-        <add-pothole v-bind:currentCenter="currentCenter" />
-      </div>
-    </div>
+    <b-container fluid>
+      <b-row>
+        <b-col></b-col>
+        <b-col cols="8">
+          <street-map v-bind:markers="markers" @sendupcoords="setCoordinates" v-bind:latLongZoomInfoVisible="false" />
+        </b-col>
+        <b-col></b-col>
+      </b-row>
+      <b-row>
+        <b-col></b-col>
+        <b-col cols="8">
+          <add-pothole v-bind:currentCenter="currentCenter" />
+        </b-col>
+        <b-col></b-col>
+      </b-row>
+      <b-row>
+        <b-col><div class="home-page-spacer"></div></b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
@@ -71,5 +78,9 @@ export default {
 h1.centered-h1 {
   padding-top: 10px;
   text-align: center;
+}
+
+div.home-page-spacer {
+  margin: 20px;
 }
 </style>

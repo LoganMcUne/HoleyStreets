@@ -56,5 +56,4 @@ export default {
 .remove{
    background-color: rgb(248, 86, 86);
 }
-
 </style>
