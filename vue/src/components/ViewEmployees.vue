@@ -1,5 +1,5 @@
 <template>
-  <div class="employee-access-requests">
+  <div class="employee-access-table">
     <h1 class="admin-h1">All Current Employees</h1>
 
     <table>

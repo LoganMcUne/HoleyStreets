@@ -19,7 +19,9 @@
       >
       </l-marker>
     </l-map>
+    <div v-show="latLongZoomInfoVisible">
     {{ currentCenter }} {{ currentZoom }}
+    </div>
   </div>
 </template>
 
@@ -30,7 +32,7 @@ import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 
 export default {
   name: "Map",
-  props: ["markers"],
+  props: ["markers", "latLongZoomInfoVisible"],
   components: {
     LMap,
     LTileLayer,

@@ -3,7 +3,7 @@
     <td>{{ currentPothole.id }}</td>
     <td>{{ currentPothole.latitude }}</td>
     <td>{{ currentPothole.longitude }}</td>
-    <td>{{ currentPothole.imageLink }}</td>
+    <td><a :href="currentPothole.imageLink" target="_blank">{{ currentPothole.imageLink }}</a></td>
     <td>{{ currentPothole.reportedDate }}</td>
     <td>{{ currentPothole.reportingUserId }}</td>
     <td>

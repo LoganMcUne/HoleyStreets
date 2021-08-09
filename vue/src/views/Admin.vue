@@ -67,12 +67,11 @@ export default {
 };
 </script>
 
-<style>
-#sidebar-1 > header.b-sidebar-header > button {
-  background-color: #adc178;
-}
-
-#sidebar-1 > header.b-sidebar-header > button > svg {
-  color: black;
+<style scoped>
+div.employee-access-table {
+  margin: 3vh;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding-bottom: 10px;
 }
 </style>

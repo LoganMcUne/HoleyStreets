@@ -1,9 +1,10 @@
 <template>
   <div>
-    <div class="row mt-sm-4 mb-sm-4">
+    <h1>Employee Dashboard</h1>
+    <div class="row mt-sm-3 mb-sm-4">
       <div class="col-sm-2"></div>
       <div class="col-sm-10">
-        <admin-map v-bind:markers="markers" />
+        <admin-map v-bind:markers="markers" v-bind:latLongZoomInfoVisible="true" />
       </div>
     </div>
     <div class="row">
@@ -61,5 +62,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+h1 {
+  padding-top: 10px;
+  text-align: center;
+}
 </style>
