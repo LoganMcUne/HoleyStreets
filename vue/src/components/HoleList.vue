@@ -23,7 +23,7 @@ export default {
         { key: 'latitude', visible: true },
         { key: 'longitude', visible: true },
         { key: 'imageLink', visible: false },
-        { key: 'reportedDate', visible: true },
+        { key: 'reportedDate', visible: true},
         { key: 'reportingUserId', visible: false },
         { key: 'inspectedDate', visible: true },
         { key: 'repairedDate', visible: true },
