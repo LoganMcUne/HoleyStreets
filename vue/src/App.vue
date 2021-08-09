@@ -60,4 +60,24 @@ export default {
   margin-left: 15px;
   margin-bottom: 11px;
 }
+
+div.title-and-pictures {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.tire-pic {
+  height: 5.5rem;
+}
+
+.title {
+  font-family: "Luckiest Guy", cursive;
+  font-size: 3.5rem;
+  margin: 0;
+  padding: 15px 8px;
+  border-radius: 20px;
+  color: black;
+}
 </style>

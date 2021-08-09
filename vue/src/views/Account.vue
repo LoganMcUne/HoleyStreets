@@ -1,6 +1,11 @@
 <template>
   <div>
-    <h1>Your Account</h1>
+
+    <div class="title-and-pictures">
+      <img class="left-pic tire-pic" src="../../public/tire_track_left.jpg" alt="Tire track picture" />
+          <h1 class="centered-h1 title">Your Account</h1>
+      <img class= "right-pic tire-pic" src="../../public/tire_track_right.jpg" alt="Tire track picture" />
+    </div>
     <div class="row mt-sm-4 mb-sm-1">
       <div class="col-sm-2"></div>
       <div class="col-sm-10">

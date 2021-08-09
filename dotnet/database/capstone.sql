@@ -27,7 +27,7 @@ CREATE TABLE users (
 --pothole table
 CREATE TABLE potholes (
 	pothole_id int IDENTITY(1,1) NOT NULL,
-	latitude decimal(9,6) NOT NULL,
+	latitude decimal(8,6) NOT NULL,
 	longitude decimal(9,6) NOT NULL,
 	image_link varchar(150),
 	reported_date DATE NOT NULL,
