@@ -17,7 +17,7 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <h2>Potholes You Have Reported</h2>
+        <h2 class="subtitle">Potholes You Have Reported</h2>
       </div>
       <div class="col-sm-0"></div>
     </div>

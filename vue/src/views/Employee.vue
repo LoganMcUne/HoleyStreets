@@ -16,6 +16,7 @@
         />
       </div>
     </div>
+    <h2 class="subtitle">All Reported Potholes</h2>
     <div class="row">
       <div class="col-sm-0"></div>
       <div class="col-sm-12 ml-sm-8 mr-sm-2">
