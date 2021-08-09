@@ -39,7 +39,8 @@ export default {
         .removeEmployeeRole(userId)
         .then((response) => {
           if (response.status === 204) {
-            this.$store.commit("DELETE_EMPLOYEE", userId)
+            this.$store.commit("DELETE_EMPLOYEE", userId);
+            this.$parent.getAllNonEmployeeUsers();
           }
         })
         .catch((error) => {

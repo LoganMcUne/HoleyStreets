@@ -4,16 +4,16 @@
     <td>{{ currentPothole.latitude }}</td>
     <td>{{ currentPothole.longitude }}</td>
     <td>{{ currentPothole.imageLink }}</td>
-    <td>{{ truncateTime }}</td>
+    <td>{{ truncateReported }}</td>
     <td >{{ currentPothole.reportingUserId }}</td>
     <td>
       <input type="date" v-if="isEditClicked" v-model="newPothole.inspectedDate"/>
       <br v-if="isEditClicked" />
-      <div v-if="!isEditClicked">{{ currentPothole.inspectedDate }}</div>
+      <div v-if="!isEditClicked">{{ truncateInspected }}</div>
     </td>
     <td>
       <input type="date" v-if="isEditClicked" v-model="newPothole.repairedDate"/>
-      <div v-if="!isEditClicked">{{ currentPothole.repairedDate }}</div>
+      <div v-if="!isEditClicked">{{ truncateRepaired }}</div>
     </td>
     <td>
       <select name="Reported" v-if="isEditClicked" v-model="newPothole.repairStatus">
@@ -123,8 +123,14 @@ export default {
     },
   },
   computed: {
-    truncateTime() {
+    truncateReported() {
       return this.currentPothole.reportedDate.substring(0, 10);
+    },
+    truncateRepaired() {
+      return this.currentPothole.repairedDate.substring(0, 10);
+    },
+    truncateInspected() {
+      return this.currentPothole.inspectedDate.substring(0, 10);
     },
   },
 };

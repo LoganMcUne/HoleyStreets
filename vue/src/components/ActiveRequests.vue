@@ -53,14 +53,15 @@ export default {
         .denyRequest(userId)
         .then((response) => {
           if (response.status === 200) {
-            this.$store.commit("DELETE_REQUEST",userId)
+            this.$store.commit("DELETE_REQUEST",userId);
+            this.$parent.getAllNonEmployeeUsers();
           }
         })
         .catch((error) => {
           this.$parent.handleError(error);
         });
     },
-  },
+  }
 };
 </script>
 

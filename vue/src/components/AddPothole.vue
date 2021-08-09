@@ -2,7 +2,7 @@
   <div class="form">
     <div>
       <b-button v-b-toggle.sidebar-1 class="add-new" v-if="$store.state.token != ''">Add A Pothole</b-button>
-      <b-sidebar id="sidebar-1" sidebar-class="border-right border-dark" title="New Pothole" width="250px">
+      <b-sidebar id="sidebar-1" sidebar-class="border-right border-dark" text-variant="white" bg-variant="secondary" title="New Pothole" width="250px">
         <div class="px-4 py-2">
           <form class="add-pothole" v-if="$store.state.token != ''">
             <label for="latitude">Latitude:</label><br />
@@ -102,14 +102,10 @@ button {
   background-color: #51616b;
 }
 
-button.add-button.set-coordinates-button {
-  background-color: #dde5b6;
-}
-
 button.add-button {
   color: black;
   background-color: #adc178;
   width: 150px;
-  margin: 5px;
+  margin: 5px 0 5px 14px;
 }
 </style>

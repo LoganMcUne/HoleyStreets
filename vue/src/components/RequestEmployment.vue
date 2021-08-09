@@ -45,7 +45,7 @@ export default {
   text-decoration: none;
   color: black;
   justify-content: flex-end;
-  margin: 0px 10px;
+  margin-right: 20px;
 }
 
 </style>
