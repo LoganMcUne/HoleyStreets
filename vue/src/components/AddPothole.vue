@@ -96,17 +96,19 @@ export default {
 </script>
 
 <style scoped>
+
 button.add-new {
   color: white;
   font-size: 22px;
   background-color: #51616b;
   font-family: "Luckiest Guy", cursive;
+  position: relative;
+  left: 2.5vw;
+  bottom: 20px;
 }
 
 button.add-new:hover {
   color: #adc178;
-  background-color: #51616b;
-  font-family: "Luckiest Guy", cursive;
 }
 
 button.add-button {

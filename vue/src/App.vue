@@ -65,14 +65,29 @@ div.title-and-pictures {
   margin: 15px 0 0 0;
 }
 
-.tire-pic {
-  height: 5.5vw;
-  width: auto;
+@media only screen and (min-width: 640px) {
+  .tire-pic {
+    height: 60px;
+    width: auto;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .tire-pic {
+  height: 60px;
+  width: 25vw;
+  }
+}
+
+@media only screen and (max-width: 605px) {
+  .tire-pic {
+    display: none;
+  }
 }
 
 .title {
   font-family: "Luckiest Guy", cursive;
-  font-size: 3.5vw;
+  font-size: 30px;
   white-space: nowrap;
   margin: 0;
   padding: 15px 10px;
@@ -92,7 +107,7 @@ div.subtitle-box {
 
 h2.subtitle {
     font-family: "Luckiest Guy", cursive;
-    font-size: 1.9vw;
+    font-size: 18px;
     text-align: center;
     margin: 0;
 }

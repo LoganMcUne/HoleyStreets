@@ -136,12 +136,22 @@ export default {
 
 <style scoped>
 #ourmap {
-  height: 67vh;
-  width: 65vw;
+  height: 70vh;
+  width: 95vw;
 }
-#ourmap.smaller-size-map {
-  height: 72vh;
-  width: 30vw;
+
+@media only screen and (min-width: 1024px) {
+  #ourmap.smaller-size-map {
+    height: 72vh;
+    width: 30vw;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  #ourmap.smaller-size-map {
+    height: 30vh;
+    width: 95vw;
+  }
 }
 .mapicon {
   height: 20px;

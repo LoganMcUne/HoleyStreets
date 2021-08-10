@@ -84,9 +84,26 @@ export default {
 </script>
 
 <style>
+@media only screen and (min-width: 1024px) {
 div#table {
   height: 60vh;
   margin-top: 7px;
+}
+.list-of-potholes {
+  width: 66vw;
+  margin: 5px;
+}
+}
+@media only screen and (max-width: 1024px) {
+div#table {
+  height: 60vh;
+  width: 95vw;
+  margin-top: 7px;
+}
+.list-of-potholes {
+  width: 95vw;
+  margin: 5px;
+}
 }
 
 thead > tr > th.text-center {
@@ -107,11 +124,6 @@ thead > tr > th.text-center.reporting-user-id {
 
 thead > tr > th.text-center.actions {
   width: 121px;
-}
-
-.list-of-potholes {
-  width: 66vw;
-  margin: 5px;
 }
 
 .edit-delete {

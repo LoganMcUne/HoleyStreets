@@ -14,25 +14,13 @@
       />
     </div>
 
-    <b-container fluid>
-      <b-row>
-        <b-col></b-col>
-        <b-col cols="8">
+    <div class="home-page-spacer"></div>
+
+    <div class="home-page-map">
           <street-map v-bind:markers="markers" @sendupcoords="setCoordinates" v-bind:latLongZoomInfoVisible="false" />
-        </b-col>
-        <b-col></b-col>
-      </b-row>
-      <b-row>
-        <b-col></b-col>
-        <b-col cols="8">
-          <add-pothole v-bind:currentCenter="currentCenter" />
-        </b-col>
-        <b-col></b-col>
-      </b-row>
-      <b-row>
-        <b-col><div class="home-page-spacer"></div></b-col>
-      </b-row>
-    </b-container>
+    </div>
+
+    <add-pothole v-bind:currentCenter="currentCenter" />
   </div>
 </template>
 
@@ -106,6 +94,13 @@ export default {
 h1.centered-h1 {
   padding-top: 10px;
   text-align: center;
+}
+
+div.home-page-map {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 div.home-page-spacer {

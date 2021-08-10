@@ -89,12 +89,24 @@ export default {
 </script>
 
 <style scoped>
-div.map-and-table-container {
-  display: flex;
-  flex-direction: row-reverse;
-  gap: 0.5vw;
-  align-items: flex-start;
-  justify-content: center;
+@media only screen and (min-width: 1024px) {
+  div.map-and-table-container {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 0.5vw;
+    align-items: flex-start;
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  div.map-and-table-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 div.map-div {
