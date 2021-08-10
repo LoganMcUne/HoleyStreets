@@ -1,9 +1,8 @@
 <template>
   <div class="form">
-    <div>
       <b-button v-b-toggle.sidebar-1 class="add-new" v-if="$store.state.token != ''">Add A Pothole</b-button>
       <b-sidebar id="sidebar-1" sidebar-class="border-right border-dark" text-variant="white" bg-variant="secondary" title="New Pothole" width="250px">
-        <div class="px-4 py-2">
+        <div class="px-4 pb-2">
           <form class="add-pothole" v-if="$store.state.token != ''">
             <label for="latitude">Latitude:</label><br />
             <input
@@ -32,7 +31,6 @@
           </form>
         </div>
       </b-sidebar>
-    </div>
   </div>
 </template>
 
@@ -98,14 +96,28 @@ export default {
 </script>
 
 <style scoped>
-button {
+button.add-new {
   color: white;
+  font-size: 22px;
   background-color: #51616b;
+  font-family: "Luckiest Guy", cursive;
+}
+
+button.add-new:hover {
+  color: #adc178;
+  background-color: #51616b;
+  font-family: "Luckiest Guy", cursive;
 }
 
 button.add-button {
   color: black;
+  font-family: "Luckiest Guy", cursive;
+  font-size: 16px;
   background-color: #adc178;
-  width: 150px;
+  width: 175px;
+}
+
+div.form {
+  height: 0;
 }
 </style>
