@@ -68,7 +68,7 @@ INSERT INTO users (username, password_hash, salt, user_role) VALUES ('pending1',
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('pending2','V2CyqQMj78DWAhvPV1e/iJ9RN6o=','pbcLS6SbOqg=','user');
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('pending3','IAM7JZf3uYcDVIGKrJBr388Wonc=','X3i9WS023/o=','user');
 
-INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user_id, repair_status) VALUES (39.159490, -84.455277, 'https://triblive.com/wp-content/uploads/2021/04/3738626_web1_WEB-pothole.jpg','8/2/2021',1, 'Reported');
+INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user_id, repair_status) VALUES (39.159490, -84.455277, 'https://sfpublicworks.org/sites/default/files/texas-pothole-635x424.jpg','8/2/2021',1, 'Reported');
 INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user_id, repair_status) VALUES (39.145706, -84.527141, 'https://www.kttn.com/wp-content/uploads/2019/02/Pothole.jpg','8/2/2021',2, 'Inspected');
 INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user_id, repair_status) VALUES (39.180460, -84.501135, 'https://kdvr.com/wp-content/uploads/sites/11/2019/03/gettyimages-183851840.jpg','8/2/2021',3, 'Inspected');
 INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user_id, repair_status) VALUES (39.133231, -84.413645, 'https://media1.fdncms.com/chicago/imager/u/original/71086724/potholes010.jpg','8/2/2021',3, 'Repaired');
