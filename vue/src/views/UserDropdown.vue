@@ -12,6 +12,7 @@
         v-bind:to="{ name: 'home' }"
         tag="b-dropdown-item"
         class="dropdown-btn"
+        v-show="$store.state.token != ''"
       >
         Home
       </router-link>

@@ -69,10 +69,6 @@ export default {
 </script>
 
 <style>
-h1.admin-h1 {
-  margin: 10px 10px 10px 10px;
-  font-size: 24px;
-}
 th {
   text-transform: uppercase;
   padding: 10px;

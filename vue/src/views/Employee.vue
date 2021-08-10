@@ -14,28 +14,41 @@
       />
     </div>
 
-    <div class="row mt-sm-3 mb-sm-4">
-      <div class="col-sm-2"></div>
-      <div class="col-sm-10">
-        <admin-map
-          v-bind:markers="markers"
-          v-bind:latLongZoomInfoVisible="true"
-        />
-      </div>
-    </div>
-    <h2 class="subtitle">All Reported Potholes</h2>
-    <div class="row">
-      <div class="col-sm-0"></div>
-      <div class="col-sm-12 ml-sm-8 mr-sm-2">
-        <editable-hole-list
-          :potholes="$store.state.potholes"
-          v-on:mouse-on-tr="mouseOn"
-          v-on:mouse-off-tr="mouseOff"
-          v-on:start-edit="startEdit"
-          v-on:end-edit="endEdit"
-        />
-      </div>
-    </div>
+    <b-container fluid>
+      <b-row>
+        <b-col></b-col>
+        <b-col cols="8">
+          <admin-map
+            v-bind:markers="markers"
+            v-bind:latLongZoomInfoVisible="true"
+          />
+        </b-col>
+        <b-col></b-col>
+      </b-row>
+      <b-row>
+        <b-col><div class="spacer"></div></b-col>
+      </b-row>
+      <b-row>
+        <b-col></b-col>
+        <b-col cols="4">
+          <div class="subtitle-box">
+            <h2 class="subtitle">All Reported Potholes</h2>
+          </div>
+        </b-col>
+        <b-col></b-col>
+      </b-row>
+      <b-row>
+        <b-col>
+          <editable-hole-list
+            :potholes="$store.state.potholes"
+            v-on:mouse-on-tr="mouseOn"
+            v-on:mouse-off-tr="mouseOff"
+            v-on:start-edit="startEdit"
+            v-on:end-edit="endEdit"
+          />
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 <!--should display list of holes, rank severity(SLIDER!), add inspection/repair date, change status, delete-->
@@ -103,7 +116,7 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  padding-top: 10px;
+div.spacer {
+  height: 15px;
 }
 </style>
