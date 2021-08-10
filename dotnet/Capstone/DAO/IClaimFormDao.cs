@@ -7,5 +7,7 @@ namespace Capstone.DAO
     {
         public List<ClaimForm> GetAllClaims();
         public bool addClaimForm(ClaimForm newClaim);
+
+        public bool UpdateClaim(ClaimForm claimForm);
     }
 }

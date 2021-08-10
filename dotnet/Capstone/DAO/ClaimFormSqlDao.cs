@@ -117,5 +117,35 @@ namespace Capstone.DAO
 
             return f;
         }
+        public bool UpdateClaim(ClaimForm claimForm)
+        {
+            bool updateSuccessful = false;
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    string updateClaimSqlStatement = "UPDATE claims " +
+                        "SET claim_status = @claim_status " +
+                        "WHERE claim_id = @claim_id";
+
+                    SqlCommand cmd = new SqlCommand(updateClaimSqlStatement, conn);
+                    cmd.Parameters.AddWithValue("@claim_status", claimForm.ClaimStatus);
+                    cmd.Parameters.AddWithValue("@claim_id", claimForm.ClaimId);
+
+                    cmd.ExecuteNonQuery();
+
+                    updateSuccessful = true;
+                }
+            }
+            catch (SqlException e)
+            {
+                return updateSuccessful;
+            }
+
+            return updateSuccessful;
+        }
     }
 }

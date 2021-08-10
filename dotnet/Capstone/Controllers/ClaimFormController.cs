@@ -53,5 +53,20 @@ namespace Capstone.Controllers
                 return StatusCode(500);
             }
         }
+        [HttpPut]
+        [Authorize]
+        public IActionResult updateClaim(ClaimForm claimToUpdate)
+        {
+            bool addSuccessful = claimFormDao.UpdateClaim(claimToUpdate);
+
+            if (addSuccessful)
+            {
+                return Ok();
+            }
+            else
+            {
+                return StatusCode(500);
+            }
+        }
     }
 }
