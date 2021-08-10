@@ -61,7 +61,7 @@ div.title-and-pictures {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 15px 0;
+  margin: 15px 0 0 0;
 }
 
 .tire-pic {

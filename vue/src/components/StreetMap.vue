@@ -1,5 +1,5 @@
 <template>
-  <div id="ourmap" style="height: 67vh; width: 65vw">
+  <div id="ourmap" v-bind:class="{'smaller-size-map': routeOnAccountOrEmployeePage}">
     <l-map
       v-if="showMap"
       :zoom="zoom"
@@ -55,7 +55,6 @@ export default {
     LMarker,
     LPopup,
   },
-
   watch: {
     currentCenter: function () {
       return this.$emit("sendupcoords", this.currentCenter);
@@ -117,6 +116,18 @@ export default {
       return latLng(lat, lng);
     },
   },
+  computed: {
+    routeOnAccountOrEmployeePage() {
+      let onAccountOrEmployeePage = false;
+      
+      if (this.$route.path === '/account' || this.$route.path === '/employee')
+      {
+        onAccountOrEmployeePage = true;
+      }
+
+      return onAccountOrEmployeePage;
+    }
+  },
   created() {
     return this.$emit("sendupcoords", this.currentCenter);
   },
@@ -124,4 +135,12 @@ export default {
 </script>
 
 <style scoped>
+#ourmap {
+  height: 67vh;
+  width: 65vw;
+}
+#ourmap.smaller-size-map {
+  height: 25vw;
+  width: 25vw;
+}
 </style>

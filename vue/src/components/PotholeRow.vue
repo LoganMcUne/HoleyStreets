@@ -14,7 +14,7 @@
         v-if="isEditClicked"
         v-model="newPothole.inspectedDate"
       /> -->
-      <b-form-datepicker :min="min" v-if="isEditClicked" v-model="newPothole.inspectedDate"></b-form-datepicker>
+      <b-form-datepicker :min="min" v-if="isEditClicked" v-model="newPothole.inspectedDate" size="sm"></b-form-datepicker>
       <br v-if="isEditClicked" />
       <div v-if="!isEditClicked">{{ truncateInspectedDate }}</div>
     </td>
@@ -25,7 +25,7 @@
         v-if="isEditClicked"
         v-model="newPothole.repairedDate"
       /> -->
-      <b-form-datepicker :min="min" v-if="isEditClicked" v-model="newPothole.repairedDate"></b-form-datepicker>
+      <b-form-datepicker :min="min" v-if="isEditClicked" v-model="newPothole.repairedDate" size="sm"></b-form-datepicker>
       <div v-if="!isEditClicked">{{ currentPothole.repairedDate }}</div>
     </td>
     <td>
@@ -201,5 +201,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+td {
+  font-size: 12px;
+}
+
+div.dropdown-menu > div#__BVID__47__value_.form-control {
+  font-size: 12px;
+}
 </style>
