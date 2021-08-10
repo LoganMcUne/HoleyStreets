@@ -50,14 +50,24 @@ CREATE TABLE requests (
 	CONSTRAINT FK_requests_to_users FOREIGN KEY (user_id) REFERENCES users(user_id)
 )
 
---joiner of user and pothole
---CREATE TABLE user_pothole (
---	user_id int NOT NULL,
---	pothole_id int NOT NULL,
---	CONSTRAINT PK_user_pothole PRIMARY KEY (user_id, pothole_id),
---	CONSTRAINT FK_user_to_pothole FOREIGN KEY (user_id) REFERENCES users(user_id),
---	CONSTRAINT FK_pothole_to_user FOREIGN KEY (pothole_id) REFERENCES potholes(pothole_id)
---)
+--Claim forms
+CREATE TABLE claims (
+	claim_id INT IDENTITY(1,1) NOT NULL,
+	user_id INT NOT NULL,
+	first_name VARCHAR(100) NOT NULL,
+	last_name VARCHAR(100) NOT NULL,
+	email VARCHAR(345) NOT NULL,
+	phone_number VARCHAR(20) NOT NULL,
+	date_of_claim DATE NOT NULL,
+	date_of_incident DATE NOT NULL,
+	location_of_incident_city VARCHAR(120) NOT NULL,
+	location_of_incident_state VARCHAR(120) NOT NULL,
+	image_link VARCHAR(600),
+	description_of_damage VARCHAR(1200) NOT NULL,
+	claim_status VARCHAR (30) NOT NULL DEFAULT 'Pending',
+	CONSTRAINT PK_claims PRIMARY KEY (claim_id),
+	CONSTRAINT FK_claims_to_users FOREIGN KEY (user_id) REFERENCES users(user_id)
+)
 
 --populate default data
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
@@ -78,4 +88,6 @@ INSERT INTO requests (user_id, active_status) VALUES (1, 1);
 INSERT INTO requests (user_id, active_status) VALUES (5, 1);
 INSERT INTO requests (user_id, active_status) VALUES (6, 1);
 INSERT INTO requests (user_id, active_status) VALUES (7, 1);
+
+INSERT INTO claims (user_id, first_name, last_name, email, phone_number, date_of_claim, date_of_incident, location_of_incident_city, location_of_incident_state, image_link, description_of_damage) VALUES (1, 'Bob', 'Bobertson', 'bob@aol.com', '123-456-7890', '2021-08-10', '2021-08-03', 'Cincinnati', 'OH', 'https://www.gannett-cdn.com/presto/2019/02/22/PDTF/b7c4a04f-7f1a-44ac-b689-9516f1b7c7e5-52365689_2576383472378953_4680490136083890176_n.jpg?auto=webp&crop=719,404,x1,y190&format=pjpg&width=1200', 'My car is all messed up!');
 GO
