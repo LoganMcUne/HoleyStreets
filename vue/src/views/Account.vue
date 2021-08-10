@@ -1,16 +1,24 @@
 <template>
   <div>
-
     <div class="title-and-pictures">
-      <img class="left-pic tire-pic" src="../../public/tire_track_left.jpg" alt="Tire track picture" />
-          <h1 class="centered-h1 title">Your Account</h1>
-      <img class= "right-pic tire-pic" src="../../public/tire_track_right.jpg" alt="Tire track picture" />
+      <img
+        class="left-pic tire-pic"
+        src="../../public/tire_track_left.jpg"
+        alt="Tire track picture"
+      />
+      <h1 class="centered-h1 title">Your Account</h1>
+      <img
+        class="right-pic tire-pic"
+        src="../../public/tire_track_right.jpg"
+        alt="Tire track picture"
+      />
     </div>
 
     <div class="map-and-table-container">
       <div class="map-div">
         <street-map
           v-bind:markers="filteredMarkers"
+          v-bind:mapKey="accountKey"
           v-bind:latLongZoomInfoVisible="false"
         />
       </div>
@@ -31,6 +39,14 @@ export default {
     HoleList,
     StreetMap,
   },
+  data() {
+    return {
+      accountKey: [
+        { icon: "marker-icon-gold.png", name: "User" },
+        { icon: "marker-icon-grey.png", name: "Other" },
+      ],
+    };
+  },
   computed: {
     filteredPotholes() {
       return this.$store.state.potholes.filter((x) => {
@@ -41,23 +57,26 @@ export default {
     filteredMarkers() {
       const newMarkers = [];
       this.$store.state.potholes.forEach((p) => {
-        const isCurrentUser = p.reportingUserId === this.$store.state.user.userId
-        const url =  isCurrentUser ? "marker-icon-gold.png" : "marker-icon-grey.png"
-        const opa = isCurrentUser ? 1 : 0.5
+        const isCurrentUser =
+          p.reportingUserId === this.$store.state.user.userId;
+        const url = isCurrentUser
+          ? "marker-icon-gold.png"
+          : "marker-icon-grey.png";
+        const opa = isCurrentUser ? 1 : 0.5;
         const newP = {
-          isBig : false,
-          iconUrl : url,
-          opacity : opa
+          isBig: false,
+          iconUrl: url,
+          opacity: opa,
         };
-        Object.assign(newP, p)
+        Object.assign(newP, p);
         newMarkers.push(newP);
       });
       return newMarkers;
     },
   },
   methods: {
-    findPothole(id){
-      return this.filteredMarkers.find(p => p.id == id)
+    findPothole(id) {
+      return this.filteredMarkers.find((p) => p.id == id);
     },
     mouseOn(id) {
       this.findPothole(id).isBig = true;
@@ -73,7 +92,7 @@ export default {
 div.map-and-table-container {
   display: flex;
   flex-direction: row-reverse;
-  gap: .5vw;
+  gap: 0.5vw;
   align-items: flex-start;
   justify-content: center;
 }
