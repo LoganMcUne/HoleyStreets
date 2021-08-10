@@ -5,12 +5,10 @@
       </div>
     <div>
       <div id="table" class="table-editable table-responsive">
-        <!-- DO WE NEED THIS STUFF???
         <span class="table-add float-right mb-3 mr-2"
           ><a href="#!" class="text-success"
             ><i class="fas fa-plus fa-2x" aria-hidden="true"></i></a
         ></span>
-        -->
         <table
           id="grid"
           class="
