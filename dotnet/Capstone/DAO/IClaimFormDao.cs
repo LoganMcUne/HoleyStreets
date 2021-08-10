@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Capstone.Models;
 
 namespace Capstone.DAO
 {
     public interface IClaimFormDao
     {
-        
+        public List<ClaimForm> GetAllClaims();
+        public bool addClaimForm(ClaimForm newClaim);
     }
 }

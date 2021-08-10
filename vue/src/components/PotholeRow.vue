@@ -120,7 +120,6 @@ export default {
         .updatePothole(this.newPothole)
         .then(() => {
           this.currentPothole = this.newPothole;
-          console.log("in the right method");
           this.$store.commit("UPDATE_POTHOLE", this.newPothole);
           this.newPothole = {};
           this.isEditClicked = !this.isEditClicked;
