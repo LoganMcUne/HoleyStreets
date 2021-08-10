@@ -92,8 +92,22 @@ div.subtitle-box {
 
 h2.subtitle {
     font-family: "Luckiest Guy", cursive;
-    font-size: 2.1vw;
+    font-size: 1.9vw;
     text-align: center;
     margin: 0;
+}
+
+p.subtitle-claim-form {
+    font-size: 1rem;
+    text-align: center;
+    margin: 0;
+}
+
+div.subtitle-box-claim-form {
+  border-bottom: 5px solid #adc178;
+  border-top: 5px solid #adc178;
+  margin: 15px 0 10px 0;
+  align-items: center;
+  justify-content: center;
 }
 </style>
