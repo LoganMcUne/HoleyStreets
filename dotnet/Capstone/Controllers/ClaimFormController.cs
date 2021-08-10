@@ -9,13 +9,14 @@ namespace Capstone.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class FileStorageController : ControllerBase
+    public class ClaimFormController : ControllerBase
     {
-        private readonly IFileStorageDao fileDao;
+        private readonly IClaimFormDao claimFormDao;
 
-        public FileStorageController(IFileStorageDao _fileDao)
+        public ClaimFormController(IClaimFormDao _claimFormDao)
         {
-            fileDao = _fileDao;
+            claimFormDao = _claimFormDao;
         }
+
     }
 }
