@@ -58,6 +58,15 @@
       </router-link>
 
       <router-link
+        v-bind:to="{ name: 'claim-form' }"
+        tag="b-dropdown-item"
+        class="dropdown-btn"
+        v-show="$store.state.token != ''"
+      >
+        Submit A Damage Claim
+      </router-link>
+
+      <router-link
         v-if="$store.state.token != ''"
         v-bind:to="{ name: 'logout' }"
         tag="b-dropdown-item"

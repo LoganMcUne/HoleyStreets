@@ -6,7 +6,7 @@
       id="button"
       class="edit-delete"
       v-on:click.prevent
-      v-if="!isEditClicked"
+
     >
       <img src="/trash.ico" class="ico" />
       Delete</a

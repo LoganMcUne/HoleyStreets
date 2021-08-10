@@ -23,6 +23,7 @@
                     id="firstName"
                     name="firstName"
                     v-model="claimForm.firstName"
+                    required
                     />
                 </div>
                 <div class="form-element">
@@ -32,6 +33,7 @@
                     id="lastName"
                     name="lastName"
                     v-model="claimForm.lastName"
+                    required
                     />
                 </div>
             </div>
@@ -43,6 +45,7 @@
                     id="email"
                     name="email"
                     v-model="claimForm.email"
+                    required
                     />
                 </div>
                 <div class="form-element">
@@ -52,6 +55,7 @@
                     id="phoneNumber"
                     name="phoneNumber"
                     v-model="claimForm.phoneNumber"
+                    required
                     />
                 </div>
             </div>
@@ -68,21 +72,22 @@
             </div>
             <div class="locationOfDamage form-block">
                 <div class="form-element">
-                <label for="incidentCity">Damage Location (City):</label><br />
+                <label for="locationOfincidentCity">Damage Location (City):</label><br />
                 <input
                 type="text"
-                id="incidentCity"
-                name="incidentCity"
-                v-model="claimForm.incidentCity"
+                id="locationOfincidentCity"
+                name="locationOfincidentCity"
+                v-model="claimForm.locationOfincidentCity"
+                required
                 />
                 </div>
                 <div class="form-element">
-                    <label for="incidentState">Damage Location (State):</label><br />
+                    <label for="locationOfincidentState">Damage Location (State):</label><br />
                     <input
                     type="text"
-                    id="incidentState"
-                    name="incidentState"
-                    v-model="claimForm.incidentState"
+                    id="locationOfincidentState"
+                    name="locationOfincidentState"
+                    v-model="claimForm.locationOfincidentState"
                     />
                 </div>
             </div>
@@ -97,9 +102,9 @@
             </div>
             <div class="form-element">
                 <label for="descriptionOfDamage">Please enter a detailed description of the damage caused by a pothole <em>(max. 1200 characters)</em>:</label><br />
-                <textarea id="" name="" rows="8" cols="75" />
+                <textarea id="descriptionOfDamage" name="descriptionOfDamage" rows="8" cols="75" v-model="claimForm.descriptionOfDamage" />
             </div>
-            <button class="submit-button" type="submit" v-on:submit.prevent="submitClaimForm">
+            <button type="submit" v-on:submit.prevent="submitClaimForm">
             Submit Claim
             </button>
         </form>
@@ -114,30 +119,30 @@ export default {
     data() {
         return {
             claimForm: {
-                claimId: '',
-                userId: '',
-                fistName: '',
+                firstName: '',
                 lastName: '',
                 email: '',
                 phoneNumber: '',
                 dateOfClaim: '',
                 dateOfIncident: '',
-                incidentCity: '',
-                incidentState: '',
+                locationOfincidentCity: '',
+                locationOfincidentState: '',
                 imageLink: '',
                 descriptionOfDamage: '',
-                claimStatus: ''
             }
         }
     },
     methods: {
         submitClaimForm() {
             const today = new Date();
-            this.claimForm.dateOfClaim = today;
+            this.claimForm.dateOfClaim = today.toJSON();
 
             claimFormService.submitClaimForm(this.claimForm)
             .then(response => {
-                console.log(response);
+                if (response.status === 200) {
+                    alert("Thank you! We will never get back to you about this.");
+                }
+                this.claimForm = {};
             })
             .catch(error => {
                 this.handleError(error);

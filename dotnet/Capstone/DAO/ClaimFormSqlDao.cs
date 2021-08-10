@@ -59,8 +59,8 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    string addNewClaim = "INSERT INTO claims (user_id, first_name, last_name, email, phone_number, date_of_claim, date_of_incident, location_of_incident_city, location_of_incident_state, image_link, description_of_damage, claim_status)" +
-                                         "VALUES (@user_id, @first_name, @last_name, @email, @phone_number, @date_of_claim, @date_of_incident, @location_of_incident_city, @location_of_incident_state, @image_link, @description_of_damage, @claim_status)";
+                    string addNewClaim = "INSERT INTO claims (user_id, first_name, last_name, email, phone_number, date_of_claim, date_of_incident, location_of_incident_city, location_of_incident_state, image_link, description_of_damage)" +
+                                         "VALUES (@user_id, @first_name, @last_name, @email, @phone_number, @date_of_claim, @date_of_incident, @location_of_incident_city, @location_of_incident_state, @image_link, @description_of_damage)";
 
                     SqlCommand cmd = new SqlCommand(addNewClaim, conn);
 
@@ -82,7 +82,6 @@ namespace Capstone.DAO
                         cmd.Parameters.AddWithValue("@image_link", newClaimForm.ImageLink);
                     }
                     cmd.Parameters.AddWithValue("@description_of_damage", newClaimForm.DescriptionOfDamage);
-                    cmd.Parameters.AddWithValue("@claim_status", newClaimForm.ClaimStatus);
 
                     cmd.ExecuteNonQuery();
                     addSuccessful = true;
