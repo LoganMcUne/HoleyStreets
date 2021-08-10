@@ -4,13 +4,17 @@
     <td>{{ currentPothole.latitude }}</td>
     <td>{{ currentPothole.longitude }}</td>
     <td>
-      <img :src="currentPothole.imageLink" style="height:75px;" target="_blank">
+      <img
+        :src="currentPothole.imageLink"
+        style="height: 75px"
+        target="_blank"
+      />
     </td>
     <td>{{ truncateReportedDate }}</td>
     <td>{{ currentPothole.reportingUserId }}</td>
     <td>
-      <!-- <input
-        type="date"
+      <b-form-datepicker
+        :min="min"
         v-if="isEditClicked"
         v-model="newPothole.inspectedDate"
       /> -->
@@ -19,9 +23,8 @@
       <div v-if="!isEditClicked">{{ truncateInspectedDate }}</div>
     </td>
     <td>
-      <!-- <input
-        type="date"
-        min= getDate
+      <b-form-datepicker
+        :min="min"
         v-if="isEditClicked"
         v-model="newPothole.repairedDate"
       /> -->
@@ -72,29 +75,27 @@
         v-on:click.prevent="updatePothole()"
         ><img src="/save.ico" class="ico" /> Save</a
       >
-      <a
-        href
-        class="edit-delete"
-        v-if="!isEditClicked"
-        v-on:click.prevent="deletePothole(pothole.id)"
-        ><img src="/trash.ico" class="ico" /> Delete</a
-      >
+      <div v-if="!isEditClicked">
+        <delete-confirmation v-bind:pothole="pothole"/>
+        </div>
     </td>
   </tr>
 </template>
 
 <script>
-
+import deleteConfirmation from "../components/DeleteConfirmation.vue"
 import potholeService from "../services/PotholeService.js";
 
 export default {
-  
   name: "pothole-row",
   props: ["pothole"],
+  components: {
+    deleteConfirmation
+  },
   data() {
-    const now = new Date()
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-    const minDate = new Date(today)
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const minDate = new Date(today);
     return {
       isEditClicked: false,
       newPothole: {},
@@ -104,29 +105,18 @@ export default {
   },
   methods: {
     formatDate(date) {
-
-      if(date != null){
+      if (date != null) {
         const month = date.substring(5, 7);
         const day = date.substring(8, 10);
-        const year = date.substring(0,4);
+        const year = date.substring(0, 4);
 
-        date = month + '-' + day + '-' + year;
+        date = month + "-" + day + "-" + year;
       }
 
       return date;
     },
-    deletePothole(id) {
-      potholeService
-        .deletePothole(id)
-        .then(() => {
-          this.$store.commit("DELETE_POTHOLE", id);
-        })
-        .catch((e) => {
-          console.log(e.status);
-        });
-    },
     updatePothole() {
-      this.endEdit(this.pothole.id)
+      this.endEdit(this.pothole.id);
       potholeService
         .updatePothole(this.newPothole)
         .then(() => {
@@ -141,7 +131,7 @@ export default {
         });
     },
     editThisPothole() {
-      this.startEdit(this.pothole.id)
+      this.startEdit(this.pothole.id);
       this.newPothole.id = this.pothole.id;
       this.newPothole.latitude = this.pothole.latitude;
       this.newPothole.longitude = this.pothole.longitude;
@@ -157,18 +147,18 @@ export default {
       this.isEditClicked = !this.isEditClicked;
     },
     discardChanges() {
-      this.endEdit(this.pothole.id)
+      this.endEdit(this.pothole.id);
       this.isEditClicked = !this.isEditClicked;
       this.newPothole = {};
     },
     mouseOn(id) {
-      if(!this.isEditClicked){
-      this.$emit("mouse-on-tr", id);
+      if (!this.isEditClicked) {
+        this.$emit("mouse-on-tr", id);
       }
     },
     mouseOff(id) {
-      if(!this.isEditClicked){
-      this.$emit("mouse-off-tr", id);
+      if (!this.isEditClicked) {
+        this.$emit("mouse-off-tr", id);
       }
     },
     startEdit(id) {
@@ -180,24 +170,24 @@ export default {
     getCurrentDate() {
       var today = new Date();
       var dd = today.getDate();
-      var mm = today.getMonth()+1;
+      var mm = today.getMonth() + 1;
       var yyyy = today.getFullYear();
 
       today = yyyy + "-" + mm + "-" + dd;
-      document.getElementById("datefield").setAttribute('max', today);
-    },   
+      document.getElementById("datefield").setAttribute("max", today);
+    },
   },
   computed: {
-      truncateReportedDate() {
-        return this.formatDate(this.currentPothole.reportedDate)
-      },
-      truncateInspectedDate() {
-        return this.formatDate(this.currentPothole.inspectedDate)
-      },
-      truncateRepairedDate() {
-        return this.formatDate(this.currentPothole.repairedDate)
-      }
-    }
+    truncateReportedDate() {
+      return this.formatDate(this.currentPothole.reportedDate);
+    },
+    truncateInspectedDate() {
+      return this.formatDate(this.currentPothole.inspectedDate);
+    },
+    truncateRepairedDate() {
+      return this.formatDate(this.currentPothole.repairedDate);
+    },
+  },
 };
 </script>
 
