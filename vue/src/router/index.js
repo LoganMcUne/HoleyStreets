@@ -8,6 +8,7 @@ import Account from '../views/Account.vue'
 import store from '../store/index'
 import Admin from '../views/Admin.vue'
 import Employee from '../views/Employee.vue'
+import ClaimForm from '../views/ClaimForm.vue'
 
 Vue.use(Router)
 
@@ -75,6 +76,14 @@ const router = new Router({
             path: "/employee",
             name: "employee",
             component: Employee,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: "/claimform",
+            name: "claim-form",
+            component: ClaimForm,
             meta: {
                 requiresAuth: true
             }
