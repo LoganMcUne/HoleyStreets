@@ -3,14 +3,14 @@
     <div class="subtitle-box">
       <h2 class="subtitle">Potholes You Have Reported</h2>
     </div>
-    <b-table 
-       :items="potholes" 
-       :fields="visibleFields"
-       bordered 
-       striped
-       sticky-header
-       >
-    </b-table>
+      <b-table 
+        :items="potholes" 
+        :fields="visibleFields"
+        bordered 
+        striped
+        sticky-header=60vh
+        >
+      </b-table>
   </div>
 </template>
 
@@ -45,7 +45,6 @@ export default {
 </script>
 
 <style>
-
 .list-of-potholes {
   margin: 5px;
 }

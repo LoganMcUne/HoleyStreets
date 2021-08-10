@@ -7,23 +7,18 @@
       <img class= "right-pic tire-pic" src="../../public/tire_track_right.jpg" alt="Tire track picture" />
     </div>
 
-    <b-container fluid>
-      <b-row>
-        <b-col></b-col>
-        <b-col cols="8">
-          <street-map
-            v-bind:markers="filteredMarkers"
-            v-bind:latLongZoomInfoVisible="false"
-          />
-        </b-col>
-        <b-col></b-col>
-      </b-row>
-      <b-row>
-        <b-col>
-          <hole-list :potholes="filteredPotholes" />
-        </b-col>
-      </b-row>
-    </b-container>
+    <div class="map-and-table-container">
+      <div class="map-div">
+        <street-map
+          v-bind:markers="filteredMarkers"
+          v-bind:latLongZoomInfoVisible="false"
+        />
+      </div>
+
+      <div class="hole-list-table">
+        <hole-list :potholes="filteredPotholes" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -74,5 +69,16 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+div.map-and-table-container {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: .5vw;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+div.map-div {
+  margin-top: 15px;
+}
 </style>
