@@ -66,6 +66,7 @@
         v-on:click.prevent="discardChanges()"
         ><img src="/no.ico" class="ico" /> {{ "Discard Changes" }}</a
       ><br v-if="isEditClicked" />
+      <div class="button-spacer"></div>
       <a
         href
         class="edit-delete"
@@ -73,9 +74,9 @@
         v-on:click.prevent="updatePothole()"
         ><img src="/save.ico" class="ico" /> Save</a
       >
-      <div v-if="!isEditClicked">
+      <div class="delete-button" v-if="!isEditClicked">
         <delete-confirmation v-bind:pothole="pothole"/>
-        </div>
+      </div>
     </td>
   </tr>
 </template>
@@ -194,7 +195,7 @@ td {
   font-size: 12px;
 }
 
-div.dropdown-menu > div#__BVID__47__value_.form-control {
-  font-size: 12px;
+div.button-spacer {
+  height: 15px;
 }
 </style>

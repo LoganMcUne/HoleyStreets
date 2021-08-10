@@ -18,17 +18,17 @@
         >
           <thead class="thead-dark">
             <tr>
-              <th class="text-center">Pothole ID</th>
+              <th class="text-center pothole-id">Pothole ID</th>
               <th class="text-center">Latitude</th>
               <th class="text-center">Longitude</th>
               <th class="text-center">Image</th>
               <th class="text-center">Report Date</th>
-              <th class="text-center">Reporting User ID</th>
+              <th class="text-center reporting-user-id">Reporting User ID</th>
               <th class="text-center">Inspect Date</th>
               <th class="text-center">Repair Date</th>
               <th class="text-center">Repair Status</th>
               <th class="text-center">Severity</th>
-              <th class="text-center">Actions</th>
+              <th class="text-center actions">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -97,6 +97,18 @@ thead > tr > th.text-center {
   background-color: #adc178;
 }
 
+thead > tr > th.text-center.pothole-id {
+  width: 50px;
+}
+
+thead > tr > th.text-center.reporting-user-id {
+  width: 50px;
+}
+
+thead > tr > th.text-center.actions {
+  width: 121px;
+}
+
 .list-of-potholes {
   width: 66vw;
   margin: 5px;
@@ -106,7 +118,7 @@ thead > tr > th.text-center {
   text-decoration: none;
   color: black;
   justify-content: flex-end;
-  margin: 0px 10px;
+  margin: 0;
 }
 
 .ico {

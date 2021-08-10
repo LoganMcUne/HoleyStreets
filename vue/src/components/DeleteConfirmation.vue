@@ -49,6 +49,6 @@ export default {
 
 <style scoped>
 #button:hover {
-    text-decoration: underline;
+    color: red;
 }
 </style>
