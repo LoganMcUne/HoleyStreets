@@ -19,15 +19,6 @@
         <b-col></b-col>
       </b-row>
       <b-row>
-        <b-col></b-col>
-        <b-col cols="4">
-          <div class="subtitle-box">
-            <h2 class="subtitle">Potholes You Have Reported</h2>
-          </div>
-        </b-col>
-        <b-col></b-col>
-      </b-row>
-      <b-row>
         <b-col>
           <hole-list :potholes="filteredPotholes" />
         </b-col>

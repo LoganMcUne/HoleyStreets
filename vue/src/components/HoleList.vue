@@ -1,5 +1,8 @@
 <template>
   <div class="list-of-potholes">
+    <div class="subtitle-box">
+      <h2 class="subtitle">Potholes You Have Reported</h2>
+    </div>
     <b-table 
        :items="potholes" 
        :fields="visibleFields"

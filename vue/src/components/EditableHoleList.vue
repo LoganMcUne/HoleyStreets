@@ -1,5 +1,9 @@
 <template>
   <div class="list-of-potholes">
+      <div class="subtitle-box">
+        <h2 class="subtitle">All Reported Potholes</h2>
+      </div>
+
     <div id="table" class="table-editable">
       <span class="table-add float-right mb-3 mr-2"
         ><a href="#!" class="text-success"
@@ -79,6 +83,11 @@ export default {
 </script>
 
 <style>
+thead > tr > th.text-center {
+  font-size: 14px;
+  padding: 3px;
+}
+
 .list-of-potholes {
   margin: 5px;
 }

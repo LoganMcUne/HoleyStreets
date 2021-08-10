@@ -14,41 +14,24 @@
       />
     </div>
 
-    <b-container fluid>
-      <b-row>
-        <b-col></b-col>
-        <b-col cols="8">
-          <admin-map
-            v-bind:markers="markers"
-            v-bind:latLongZoomInfoVisible="true"
-          />
-        </b-col>
-        <b-col></b-col>
-      </b-row>
-      <b-row>
-        <b-col><div class="spacer"></div></b-col>
-      </b-row>
-      <b-row>
-        <b-col></b-col>
-        <b-col cols="4">
-          <div class="subtitle-box">
-            <h2 class="subtitle">All Reported Potholes</h2>
-          </div>
-        </b-col>
-        <b-col></b-col>
-      </b-row>
-      <b-row>
-        <b-col>
-          <editable-hole-list
-            :potholes="$store.state.potholes"
-            v-on:mouse-on-tr="mouseOn"
-            v-on:mouse-off-tr="mouseOff"
-            v-on:start-edit="startEdit"
-            v-on:end-edit="endEdit"
-          />
-        </b-col>
-      </b-row>
-    </b-container>
+    <div class="map-and-table-container">
+      <div class="map-div">
+        <admin-map
+          v-bind:markers="markers"
+          v-bind:latLongZoomInfoVisible="true"
+        />
+      </div>
+
+      <div class="hole-list-table">
+        <editable-hole-list
+          :potholes="$store.state.potholes"
+          v-on:mouse-on-tr="mouseOn"
+          v-on:mouse-off-tr="mouseOff"
+          v-on:start-edit="startEdit"
+          v-on:end-edit="endEdit"
+        />
+      </div>
+    </div>
   </div>
 </template>
 <!--should display list of holes, rank severity(SLIDER!), add inspection/repair date, change status, delete-->
@@ -116,7 +99,16 @@ export default {
 </script>
 
 <style scoped>
-div.spacer {
-  height: 15px;
+div.map-and-table-container {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 1vw;
+  align-items: flex-start;
+  justify-content: center;
 }
+
+div.map-div {
+  margin-top: 15px;
+}
+
 </style>
