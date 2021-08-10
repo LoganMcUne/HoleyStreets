@@ -24,7 +24,7 @@
       </div>
 
       <div class="hole-list-table">
-        <hole-list :potholes="filteredPotholes" />
+        <hole-list @mouse-on-tr="mouseOn" @mouse-off-tr="mouseOff" :potholes="filteredPotholes" />
       </div>
     </div>
   </div>
