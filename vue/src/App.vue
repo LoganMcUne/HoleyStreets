@@ -71,6 +71,7 @@ div.title-and-pictures {
 .title {
   font-family: "Luckiest Guy", cursive;
   font-size: 3.5rem;
+  white-space: nowrap;
   margin: 0;
   padding: 15px 10px;
   border-radius: 20px;
@@ -89,6 +90,7 @@ div.subtitle-box {
 
 h2.subtitle {
     font-family: "Luckiest Guy", cursive;
+    font-size: 2.1vw;
     text-align: center;
     margin: 0;
 }
