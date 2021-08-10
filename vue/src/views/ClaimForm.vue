@@ -14,6 +14,11 @@
         />
         </div>
 
+        <div class="subtitle-box-claim-form">
+            <p class="subtitle-claim-form"><em>Enter your information below to file a damage claim.</em></p>
+            <p class="subtitle-claim-form"><em>Your claim will be reviewed by a Holey Streets administrator, and they will contact you with next steps in the claims process.</em></p>
+        </div>
+
         <form class="claim-form" v-if="$store.state.token != ''">
             <div class="names form-block">
                 <div class="form-element">
@@ -69,8 +74,6 @@
                     v-model="claimForm.dateOfIncident"
                     />
                 </div>
-            </div>
-            <div class="locationOfDamage form-block">
                 <div class="form-element">
                 <label for="locationOfincidentCity">Damage Location (City):</label><br />
                 <input
@@ -92,7 +95,7 @@
                 </div>
             </div>
             <div class="form-element">
-                <label for="imageLink">Picture of Damage Link (optional):</label><br />
+                <label for="imageLink">Link to Picture of Damage (optional):</label><br />
                 <input
                 type="text"
                 id="imageLink"
@@ -100,11 +103,11 @@
                 v-model="claimForm.imageLink"
                 />
             </div>
-            <div class="form-element">
-                <label for="descriptionOfDamage">Please enter a detailed description of the damage caused by a pothole <em>(max. 1200 characters)</em>:</label><br />
-                <textarea id="descriptionOfDamage" name="descriptionOfDamage" rows="8" cols="75" v-model="claimForm.descriptionOfDamage" />
+            <div class="form-element damage-description">
+                <label class="description-of-damage" for="descriptionOfDamage">Please enter a detailed description of the damage caused by a pothole <em>(max. 1200 characters)</em>:</label>
+                <textarea id="descriptionOfDamage" name="descriptionOfDamage" v-model="claimForm.descriptionOfDamage" />
             </div>
-            <button type="submit" v-on:submit.prevent="submitClaimForm">
+            <button type="submit" class="submit-button" v-on:submit.prevent="submitClaimForm">
             Submit Claim
             </button>
         </form>
@@ -160,7 +163,7 @@ form {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 100vw;
+    width: 98vw;
     align-items: center;
 }
 
@@ -172,9 +175,26 @@ div.form-block {
 
 button.submit-button {
     width: 150px;
+    margin-bottom: 20px;
+    background-color: #acd178;
 }
 
 #imageLink {
     width: 300px;
+}
+
+div.damage-description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.description-of-damage {
+    width: 42vw;
+}
+
+textarea {
+    width: 42vw;
+    height: 6vw;
 }
 </style>
