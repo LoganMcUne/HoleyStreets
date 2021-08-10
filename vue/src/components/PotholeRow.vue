@@ -4,9 +4,7 @@
     <td>{{ currentPothole.latitude }}</td>
     <td>{{ currentPothole.longitude }}</td>
     <td>
-      <a :href="currentPothole.imageLink" target="_blank">{{
-        currentPothole.imageLink
-      }}</a>
+      <img :src="currentPothole.imageLink" style="height:75px;" target="_blank">
     </td>
     <td>{{ truncateReportedDate }}</td>
     <td>{{ currentPothole.reportingUserId }}</td>

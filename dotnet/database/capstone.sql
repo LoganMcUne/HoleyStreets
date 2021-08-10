@@ -68,11 +68,11 @@ INSERT INTO users (username, password_hash, salt, user_role) VALUES ('pending1',
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('pending2','V2CyqQMj78DWAhvPV1e/iJ9RN6o=','pbcLS6SbOqg=','user');
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('pending3','IAM7JZf3uYcDVIGKrJBr388Wonc=','X3i9WS023/o=','user');
 
-INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user_id, repair_status) VALUES (39.159490, -84.455277, 'https://drive.google.com/file/d/1ioIaldcY19QWH-R-tDarR8O_XW1P4-2Z','8/2/2021',1, 'Reported');
-INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user_id, repair_status) VALUES (39.145706, -84.527141, 'https://drive.google.com/file/d/1QZ7ifsZf2BmVZPxWnHXqr8e_Gp-6gjWm','8/2/2021',2, 'Inspected');
-INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user_id, repair_status) VALUES (39.180460, -84.501135, 'https://drive.google.com/file/d/1eukPgpU810oLoaYaKXnKvJzaS7w3bJAl','8/2/2021',3, 'Inspected');
-INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user_id, repair_status) VALUES (39.133231, -84.413645, 'https://drive.google.com/file/d/1s7OD5JA8WDd4qmTz4ZHZ-gLWflEu1F_Q','8/2/2021',3, 'Repaired');
-INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user_id, repair_status) VALUES (39.158086, -84.463604, 'https://drive.google.com/file/d/1CVzKZ7irVlI-1uhsrOAdX6DPZxKpQr1j','8/2/2021',4, 'Repaired');
+INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user_id, repair_status) VALUES (39.159490, -84.455277, 'https://triblive.com/wp-content/uploads/2021/04/3738626_web1_WEB-pothole.jpg','8/2/2021',1, 'Reported');
+INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user_id, repair_status) VALUES (39.145706, -84.527141, 'https://gray-wxix-prod.cdn.arcpublishing.com/resizer/cdrrZmGGjI-RcM_mbBfKKTuyOjQ=/1200x675/smart/filters:quality(85)/cloudfront-us-east-1.images.arcpublishing.com/gray/IA7FPZNQJBC6PAYBFIWNWFHSRQ.jpg','8/2/2021',2, 'Inspected');
+INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user_id, repair_status) VALUES (39.180460, -84.501135, 'https://kdvr.com/wp-content/uploads/sites/11/2019/03/gettyimages-183851840.jpg','8/2/2021',3, 'Inspected');
+INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user_id, repair_status) VALUES (39.133231, -84.413645, 'https://media1.fdncms.com/chicago/imager/u/original/71086724/potholes010.jpg','8/2/2021',3, 'Repaired');
+INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user_id, repair_status) VALUES (39.158086, -84.463604, 'https://www.thebalance.com/thmb/VlnrT3pRKvtegoumE0fXWmA4pWI=/2121x1193/smart/filters:no_upscale()/pothole-174662203-5a7dc84aae9ab80036c6ad36.jpg','8/2/2021',4, 'Repaired');
 
 INSERT INTO requests (user_id, active_status) VALUES (1, 1);
 INSERT INTO requests (user_id, active_status) VALUES (5, 1);

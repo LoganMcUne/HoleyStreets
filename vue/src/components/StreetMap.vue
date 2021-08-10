@@ -17,6 +17,22 @@
         :opacity="pothole.opacity"
         :icon="makeIcon(pothole)"
       >
+        <l-popup>
+
+              
+
+
+          <img :src="pothole.imageLink" style="height: 150px" alt="" /><br />
+          <div style="text-align: center">
+            lat: {{ pothole.latitude }}
+            <br />
+            lng: {{ pothole.longitude }}
+            <br />
+            reported: {{ pothole.reportedDate.substring(0, 10) }}
+            <br />
+            ID:<b> {{ pothole.id }}</b>
+          </div>
+        </l-popup>
       </l-marker>
     </l-map>
     <div v-show="latLongZoomInfoVisible">
@@ -28,7 +44,7 @@
 <script>
 import { latLng } from "leaflet";
 import L from "leaflet";
-import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
+import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
 
 export default {
   name: "Map",
@@ -37,6 +53,7 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
+    LPopup,
   },
 
   watch: {
@@ -46,12 +63,14 @@ export default {
   },
   data() {
     return {
+      //remove this
+      testImg:
+        "https://triblive.com/wp-content/uploads/2021/04/3738626_web1_WEB-pothole.jpg",
       marks: this.markers,
       zoom: 12,
       center: latLng(39.1558839, -84.51233),
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-      attribution:
-        '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      attribution: "currentCenter",
       withPopup: latLng(39.1558839, -84.51233),
       withTooltip: latLng(39.1558839, -84.51233),
       currentZoom: 12,
@@ -66,6 +85,10 @@ export default {
     };
   },
   methods: {
+    getUrl() {
+      console.log(this.testImg + "/");
+      return this.testImg;
+    },
     makeIcon(p) {
       const size = p.isBig ? this.bigSize : this.regSize;
       const url = p.iconUrl ? p.iconUrl : "marker-icon-red.png";

@@ -49,18 +49,15 @@ export default {
     filteredMarkers() {
       const newMarkers = [];
       this.$store.state.potholes.forEach((p) => {
-        const newP = {};
-        newP.id = p.id;
-        newP.isBig = false;
-        newP.latitude = p.latitude;
-        newP.longitude = p.longitude;
-        if (p.reportingUserId === this.$store.state.user.userId) {
-          newP.iconUrl = "marker-icon-green.png";
-          newP.opacity = 1;
-        } else {
-          newP.iconUrl = "marker-icon-grey.png";
-          newP.opacity = 0.5;
-        }
+        const isCurrentUser = p.reportingUserId === this.$store.state.user.userId
+        const url =  isCurrentUser ? "marker-icon-gold.png" : "marker-icon-grey.png"
+        const opa = isCurrentUser ? 1 : 0.5
+        const newP = {
+          isBig : false,
+          iconUrl : url,
+          opacity : opa
+        };
+        Object.assign(newP, p)
         newMarkers.push(newP);
       });
       return newMarkers;
