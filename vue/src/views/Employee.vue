@@ -18,6 +18,7 @@
       <div class="map-div">
         <admin-map
           v-bind:markers="markers"
+          v-bind:mapKey="employeeKey"
           v-bind:latLongZoomInfoVisible="true"
         />
       </div>
@@ -46,7 +47,11 @@ export default {
   },
   data() {
     return {
-      startColor: "marker-icon-red.png",
+      employeeKey: [
+        { icon: "marker-icon-red.png", name: "Reported" },
+        { icon: "marker-icon-yellow.png", name: "Inspected" },
+        { icon: "marker-icon-green.png", name: "Repaired" },
+      ],
       emColor: "marker-icon-violet.png",
     };
   },
@@ -102,7 +107,7 @@ export default {
 div.map-and-table-container {
   display: flex;
   flex-direction: row-reverse;
-  gap: .5vw;
+  gap: 0.5vw;
   align-items: flex-start;
   justify-content: center;
 }
@@ -110,5 +115,4 @@ div.map-and-table-container {
 div.map-div {
   margin-top: 15px;
 }
-
 </style>

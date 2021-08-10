@@ -1,5 +1,8 @@
 <template>
-  <div id="ourmap" v-bind:class="{'smaller-size-map': routeOnAccountOrEmployeePage}">
+  <div
+    id="ourmap"
+    v-bind:class="{ 'smaller-size-map': routeOnAccountOrEmployeePage }"
+  >
     <l-map
       v-if="showMap"
       :zoom="zoom"
@@ -9,26 +12,32 @@
       @update:center="centerUpdate"
       @update:zoom="zoomUpdate"
     >
+      <l-control position="bottomright">
+        <div v-show="mapKey" id="key-div">
+          <div v-for="k in mapKey" v-bind:key="k.icon">
+            <img :src="k.icon" class="mapicon" alt="" />{{ k.name }}
+          </div>
+        </div>
+      </l-control>
+
       <l-tile-layer :url="url" :attribution="attribution" />
       <l-marker
-        v-for="pothole in markers"
+        v-for="pothole in marks"
         v-bind:key="pothole.id"
         :lat-lng="makeLatLng(pothole.latitude, pothole.longitude)"
         :opacity="pothole.opacity"
         :icon="makeIcon(pothole)"
       >
         <l-popup>
-
-              
-
-
           <img :src="pothole.imageLink" style="height: 150px" alt="" /><br />
           <div style="text-align: center">
-            lat: {{ pothole.latitude }}
+            Lat: {{ pothole.latitude }}
             <br />
-            lng: {{ pothole.longitude }}
+            Lng: {{ pothole.longitude }}
             <br />
-            reported: {{ pothole.reportedDate.substring(0, 10) }}
+            Reported: {{ pothole.reportedDate.substring(0, 10) }}
+            <br />
+            Status: {{ pothole.repairStatus }}
             <br />
             ID:<b> {{ pothole.id }}</b>
           </div>
@@ -44,16 +53,17 @@
 <script>
 import { latLng } from "leaflet";
 import L from "leaflet";
-import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
+import { LMap, LTileLayer, LMarker, LPopup, LControl } from "vue2-leaflet";
 
 export default {
   name: "Map",
-  props: ["markers", "latLongZoomInfoVisible"],
+  props: ["markers", "latLongZoomInfoVisible", "mapKey"],
   components: {
     LMap,
     LTileLayer,
     LMarker,
     LPopup,
+    LControl,
   },
   watch: {
     currentCenter: function () {
@@ -62,32 +72,23 @@ export default {
   },
   data() {
     return {
-      //remove this
-      testImg:
-        "https://triblive.com/wp-content/uploads/2021/04/3738626_web1_WEB-pothole.jpg",
       marks: this.markers,
       zoom: 12,
       center: latLng(39.1558839, -84.51233),
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-      attribution: "currentCenter",
-      withPopup: latLng(39.1558839, -84.51233),
-      withTooltip: latLng(39.1558839, -84.51233),
+      attribution: this.currentCenter,
       currentZoom: 12,
       currentCenter: latLng(39.1558839, -84.51233),
       showParagraph: false,
       mapOptions: {
         zoomSnap: 0.5,
-      },
+      },      
       showMap: true,
       regSize: [25, 41],
       bigSize: [37, 61],
     };
   },
   methods: {
-    getUrl() {
-      console.log(this.testImg + "/");
-      return this.testImg;
-    },
     makeIcon(p) {
       const size = p.isBig ? this.bigSize : this.regSize;
       const url = p.iconUrl ? p.iconUrl : "marker-icon-red.png";
@@ -119,14 +120,13 @@ export default {
   computed: {
     routeOnAccountOrEmployeePage() {
       let onAccountOrEmployeePage = false;
-      
-      if (this.$route.path === '/account' || this.$route.path === '/employee')
-      {
+
+      if (this.$route.path === "/account" || this.$route.path === "/employee") {
         onAccountOrEmployeePage = true;
       }
 
       return onAccountOrEmployeePage;
-    }
+    },
   },
   created() {
     return this.$emit("sendupcoords", this.currentCenter);
@@ -142,5 +142,14 @@ export default {
 #ourmap.smaller-size-map {
   height: 72vh;
   width: 30vw;
+}
+.mapicon {
+  height: 20px;
+}
+#key-div {
+  background-color: rgba(255, 255, 240, 0.8);
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 </style>
