@@ -10,6 +10,15 @@
         striped
         sticky-header=60vh
         >
+        <template #cell(reportedDate)="data">
+          {{ data.item.reportedDate.substring(0, 10) }}
+        </template>
+        <template #cell(inspectedDate)="data">
+          {{ data.item.inspectedDate == null ? data.item.inspectedDate : data.item.inspectedDate.substring(0, 10) }}
+        </template>
+        <template #cell(repairedDate)="data">
+          {{ data.item.repairedDate == null ? data.item.repairedDate : data.item.repairedDate.substring(0,10) }}
+        </template>
       </b-table>
   </div>
 </template>
