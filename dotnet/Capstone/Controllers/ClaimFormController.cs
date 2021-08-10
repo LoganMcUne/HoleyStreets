@@ -18,5 +18,40 @@ namespace Capstone.Controllers
             claimFormDao = _claimFormDao;
         }
 
+        //route = /claimform
+        [HttpGet]
+        [Authorize(Roles="admin")]
+        public IActionResult getAllClaimForms()
+        {
+            List<ClaimForm> allClaimForms = claimFormDao.GetAllClaims();
+
+            if (allClaimForms != null)
+            {
+                return Ok(allClaimForms);
+            }
+            else
+            {
+                return StatusCode(500);
+            }
+        }
+
+        //route = /claimform/submit
+        [HttpPost("submit")]
+        [Authorize]
+        public IActionResult addNewClaim(ClaimForm newForm)
+        { 
+            newForm.UserId = int.Parse(User.FindFirst("sub")?.Value);
+
+            bool addSuccessful = claimFormDao.addClaimForm(newForm);
+
+            if (addSuccessful)
+            {
+                return Ok();
+            }
+            else
+            {
+                return StatusCode(500);
+            }
+        }
     }
 }
