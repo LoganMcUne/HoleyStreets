@@ -140,7 +140,7 @@ export default {
   width: 65vw;
 }
 #ourmap.smaller-size-map {
-  height: 25vw;
-  width: 25vw;
+  height: 72vh;
+  width: 30vw;
 }
 </style>

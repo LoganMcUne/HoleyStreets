@@ -102,7 +102,7 @@ export default {
 div.map-and-table-container {
   display: flex;
   flex-direction: row-reverse;
-  gap: 1vw;
+  gap: .5vw;
   align-items: flex-start;
   justify-content: center;
 }

@@ -38,6 +38,7 @@ export default {
   display: flex;
   background-color: #adc178;
   height: 70px;
+  width: 100%;
   align-items: center;
   justify-content: space-between;
 }
@@ -65,12 +66,13 @@ div.title-and-pictures {
 }
 
 .tire-pic {
-  height: 5.5rem;
+  height: 5.5vw;
+  width: auto;
 }
 
 .title {
   font-family: "Luckiest Guy", cursive;
-  font-size: 3.5rem;
+  font-size: 3.5vw;
   white-space: nowrap;
   margin: 0;
   padding: 15px 10px;
