@@ -27,7 +27,7 @@
         v-if="isEditClicked"
         v-model="newPothole.repairedDate"
         size="sm" />
-      <div v-if="!isEditClicked">{{ currentPothole.repairedDate }}</div>
+      <div v-if="!isEditClicked">{{ truncateRepairedDate }}</div>
     </td>
     <td>
       <select
