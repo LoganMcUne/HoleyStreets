@@ -17,7 +17,7 @@
     <div class="map-and-table-container">
       <div class="map-div">
         <admin-map
-          v-bind:markers="markers"
+          currentView="employee"
           v-bind:mapKey="employeeKey"
           v-bind:latLongZoomInfoVisible="true"
         />
@@ -55,33 +55,9 @@ export default {
       emColor: "marker-icon-violet.png",
     };
   },
-  computed: {
-    markers() {
-      let newMarkers = [];
-      this.$store.state.potholes.forEach((p) => {
-        let startColor = "";
-        if (p.repairStatus == "Reported") {
-          startColor = "marker-icon-red.png";
-        } else if (p.repairStatus == "Inspected") {
-          startColor = "marker-icon-yellow.png";
-        } else if (p.repairStatus == "Repaired") {
-          startColor = "marker-icon-green.png";
-        }
-        let newP = {
-          isBig: false,
-          opacity: 1,
-          startColor: startColor,
-          iconUrl: startColor,
-        };
-        Object.assign(newP, p);
-        newMarkers.push(newP);
-      });
-      return newMarkers;
-    },
-  },
   methods: {
     findPothole(id) {
-      return this.markers.find((p) => p.id == id);
+      return this.$store.state.potholes.find((p) => p.id == id);
     },
     mouseOn(id) {
       this.$set(this.findPothole(id), "isBig", true);

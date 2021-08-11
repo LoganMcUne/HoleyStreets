@@ -17,7 +17,7 @@
     <div class="map-and-table-container">
       <div class="map-div">
         <street-map
-          v-bind:markers="filteredMarkers"
+          currentView="account"
           v-bind:mapKey="accountKey"
           v-bind:latLongZoomInfoVisible="false"
         />
@@ -54,29 +54,10 @@ export default {
         return x.reportingUserId === this.$store.state.user.userId;
       });
     },
-    filteredMarkers() {
-      const newMarkers = [];
-      this.$store.state.potholes.forEach((p) => {
-        const isCurrentUser =
-          p.reportingUserId === this.$store.state.user.userId;
-        const url = isCurrentUser
-          ? "marker-icon-gold.png"
-          : "marker-icon-grey.png";
-        const opa = isCurrentUser ? 1 : 0.5;
-        const newP = {
-          isBig: false,
-          iconUrl: url,
-          opacity: opa,
-        };
-        Object.assign(newP, p);
-        newMarkers.push(newP);
-      });
-      return newMarkers;
-    },
   },
   methods: {
     findPothole(id) {
-      return this.filteredMarkers.find((p) => p.id == id);
+      return this.$store.state.potholes.find((p) => p.id == id);
     },
     mouseOn(id) {
       this.findPothole(id).isBig = true;
