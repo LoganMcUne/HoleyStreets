@@ -17,8 +17,7 @@
     <div id="map" class="map-and-table-container">
       <div class="map-div">
         <street-map
-          v-bind:isSmallMap="isExpandClicked"
-          v-bind:markers="filteredMarkers"
+          v-bind:isBigMap="isExpandClicked"
           currentView="account"
           v-bind:mapKey="accountKey"
           v-bind:latLongZoomInfoVisible="false"

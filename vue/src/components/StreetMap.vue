@@ -1,7 +1,7 @@
 <template>
   <div
     id="ourmap"
-    v-bind:class="{ 'smaller-size-map': routeOnAccountOrEmployeePage }"
+    v-bind:class="{ 'smaller-size-map': smallComp }"
   >
     <l-map
       v-if="showMap"
@@ -63,7 +63,7 @@ import { LMap, LTileLayer, LMarker, LPopup, LControl } from "vue2-leaflet";
 
 export default {
   name: "Map",
-  props: ["currentView", "latLongZoomInfoVisible", "mapKey", "isSmallMap"],
+  props: ["currentView", "latLongZoomInfoVisible", "mapKey", "isBigMap"],
   components: {
     LMap,
     LTileLayer,
@@ -156,15 +156,14 @@ export default {
     },
   },
   computed: {
-    routeOnAccountOrEmployeePage() {
-      let onAccountOrEmployeePage = false;
-
-      if (this.$route.path === "/account" || this.$route.path === "/employee") {
-        onAccountOrEmployeePage = true;
+    smallComp() {
+      if(this.isBigMap || this.currentView=="home"){
+        return false
       }
-
-      return onAccountOrEmployeePage;
-    },
+      else{
+        return true
+      }
+    }
   },
   created() {
     return this.$emit("sendupcoords", this.currentCenter);
