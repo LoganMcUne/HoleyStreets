@@ -21,8 +21,9 @@
           currentView="account"
           v-bind:mapKey="accountKey"
           v-bind:latLongZoomInfoVisible="false"
+          ref = "streetmap"
         />
-        <button v-on:click="myFunction()">{{ !isExpandClicked ? "Expand" : "Minimize"}}</button>
+        <button v-on:click="resizeMap()">{{ !isExpandClicked ? "Expand" : "Minimize"}}</button>
       </div>
 
       <div class="hole-list-table">
@@ -63,10 +64,11 @@ export default {
     },
   },
   methods: {
-    myFunction() {
+    resizeMap() {
       var element = document.getElementById("map");
       element.classList.toggle("expand-map");
       this.isExpandClicked = !this.isExpandClicked;
+      this.$refs.streetmap.redrawSize()
     },
     findPothole(id) {
       return this.$store.state.potholes.find((p) => p.id == id);

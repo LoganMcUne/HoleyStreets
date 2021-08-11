@@ -9,6 +9,7 @@
       class="brown-border"
       @update:center="centerUpdate"
       @update:zoom="zoomUpdate"
+      ref="myMap"
     >
       <l-control position="bottomright">
         <div v-show="mapKey" id="key-div" class="brown-border">
@@ -36,12 +37,12 @@
           <div style="text-align: center">
             <div>Lat: {{ pothole.latitude }}</div>
             <div>Lng: {{ pothole.longitude }}</div>
-            <div>Reported: {{ formatDate(pothole.reportedDate )}}</div>
+            <div>Reported: {{ formatDate(pothole.reportedDate) }}</div>
             <div v-show="pothole.inspectedDate">
               Inspected: {{ formatDate(pothole.inspectedDate) }}
             </div>
             <div v-show="pothole.repairedDate">
-              Repaired: {{ formatDate(pothole.repairedDate )}}
+              Repaired: {{ formatDate(pothole.repairedDate) }}
             </div>
             <div>Repaired: {{ pothole.repairStatus }}</div>
             <div>
@@ -84,7 +85,7 @@ export default {
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution: this.currentCenter,
       currentZoom: 12,
-      currentCenter: latLng(39.1558839, -84.51233),
+      currentCenter: latLng(39.157487, -84.463921),
       showParagraph: false,
       mapOptions: {
         zoomSnap: 0.5,
@@ -141,6 +142,11 @@ export default {
       }
       return rColor;
     },
+    redrawSize() {
+      setTimeout(() => {
+        this.$refs.myMap.mapObject.invalidateSize();
+      }, 100);
+    },
     dynamicAnchor(s) {
       return [s[0] / 2, s[1]];
     },
@@ -159,11 +165,11 @@ export default {
     makeLatLng(lat, lng) {
       return latLng(lat, lng);
     },
-    formatDate(d){
-      if (d){
-        return d.substring(0,10)
+    formatDate(d) {
+      if (d) {
+        return d.substring(0, 10);
       }
-    }
+    },
   },
   computed: {
     smallComp() {
