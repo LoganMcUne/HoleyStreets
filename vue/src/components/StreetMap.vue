@@ -96,6 +96,8 @@ export default {
         reportIcon: "marker-icon-red.png",
         inspectIcon: "marker-icon-yellow.png",
         repairIcon: "marker-icon-green.png",
+        userIcon: "marker-icon-gold.png",
+        nonUserIcon: "marker-icon-grey.png"
       },
     };
   },
@@ -129,8 +131,10 @@ export default {
       }
       if (this.currentView == "account") {
         if (p.reportingUserId == this.$store.state.user.userId) {
+          rColor = this.icons.userIcon
           p.opacity = 1;
         } else {
+          rColor = this.icons.nonUserIcon
           p.opacity = 0.5;
         }
       }
