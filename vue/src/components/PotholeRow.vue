@@ -112,10 +112,8 @@ export default {
         const month = date.substring(5, 7);
         const day = date.substring(8, 10);
         const year = date.substring(0, 4);
-
         date = month + "-" + day + "-" + year;
       }
-
       return date;
     },
     updatePothole() {
@@ -127,13 +125,7 @@ export default {
           this.$store.commit("UPDATE_POTHOLE", this.newPothole);
           this.newPothole = {};
           this.isEditClicked = !this.isEditClicked;
-          potholeService.list().then((r) => {
-            r.data.forEach((p) => {
-              this.$set(p, "isBig", false);
-              this.$set(p, "opacity", 1);
-            });
-            this.$store.commit("SET_POTHOLE_LIST", r.data);
-          });
+          this.setPotholes();
         })
         .catch((e) => {
           console.log(e.status);
@@ -145,6 +137,15 @@ export default {
       Object.assign(this.newPothole, this.pothole);
 
       this.isEditClicked = !this.isEditClicked;
+    },
+    setPotholes() {
+      potholeService.list().then((r) => {
+        r.data.forEach((p) => {
+          this.$set(p, "isBig", false);
+          this.$set(p, "opacity", 1);
+        });
+        this.$store.commit("SET_POTHOLE_LIST", r.data);
+      });
     },
     discardChanges() {
       this.endEdit(this.pothole.id);

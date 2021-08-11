@@ -76,12 +76,16 @@ export default {
         }
         this.resetPothole();
       });
-    },    
+    },
     resetPothole() {
-      this.pothole.imageLink = ""
+      this.pothole.imageLink = "";
     },
     setPotholes() {
       potholeService.list().then((r) => {
+        r.data.forEach((p) => {
+          this.$set(p, "isBig", false);
+          this.$set(p, "opacity", 1);
+        });
         this.$store.commit("SET_POTHOLE_LIST", r.data);
       });
     },
