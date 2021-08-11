@@ -17,6 +17,7 @@
         :min="min"
         v-if="isEditClicked"
         v-model="newPothole.inspectedDate"
+        label-no-date-selected=" "
         size="sm"
       />
       <br v-if="isEditClicked" />
@@ -27,6 +28,7 @@
         :min="min"
         v-if="isEditClicked"
         v-model="newPothole.repairedDate"
+        label-no-date-selected=" "
         size="sm"
       />
       <div v-if="!isEditClicked">{{ truncateRepairedDate }}</div>
