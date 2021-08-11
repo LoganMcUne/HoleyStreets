@@ -197,7 +197,7 @@ export default {
         submitClaimForm() {
             const today = new Date();
             this.claimForm.dateOfClaim = today.toJSON();
-            console.log("bananas");
+
             claimFormService.submitClaimForm(this.claimForm)
             .then(response => {
                 if (response.status === 200) {
