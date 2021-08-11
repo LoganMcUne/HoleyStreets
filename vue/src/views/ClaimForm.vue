@@ -230,11 +230,28 @@ export default {
           this.handleError(error);
         });
     },
-    handleError(error) {
-      console.log(error);
-    },
-  },
-};
+    methods: {
+        submitClaimForm() {
+            const today = new Date();
+            this.claimForm.dateOfClaim = today.toJSON();
+
+            claimFormService.submitClaimForm(this.claimForm)
+            .then(response => {
+                if (response.status === 200) {
+                    alert("Thank you! We will never get back to you about this.");
+                }
+                this.claimForm = {};
+            })
+            .catch(error => {
+                this.handleError(error);
+            })
+        },
+        handleError(error) {
+            console.log(error);
+        }
+    }
+}
+}
 </script>
 
 <style scoped>

@@ -1,17 +1,30 @@
 <template>
   <div>
     <div class="title-and-pictures">
-      <img class="left-pic tire-pic" src="../../public/tire_track_left.jpg" alt="Tire track picture" />
+      <img
+        class="left-pic tire-pic"
+        src="../../public/tire_track_left.jpg"
+        alt="Tire track picture"
+      />
       <h1 class="centered-h1 title">Admin Dashboard</h1>
-      <img class= "right-pic tire-pic" src="../../public/tire_track_right.jpg" alt="Tire track picture" />
+      <img
+        class="right-pic tire-pic"
+        src="../../public/tire_track_right.jpg"
+        alt="Tire track picture"
+      />
     </div>
 
     <br />
 
-    <div id="admin-tables">
-      <active-requests />
-      <view-employees />
-      <all-users />
+    <div>
+      <div class="admin-tables">
+        <active-requests />
+        <view-employees />
+        <all-users />
+      </div>
+      <div class="admin-tables">
+        <all-claims />
+      </div>
     </div>
   </div>
 </template>
@@ -21,12 +34,14 @@ import ActiveRequests from "../components/ActiveRequests.vue";
 import ViewEmployees from "../components/ViewEmployees.vue";
 import AllUsers from "../components/AllUsers.vue";
 import userManagementService from "@/services/UserManagementService.js";
+import AllClaims from "../components/AllClaims.vue";
 
 export default {
   components: {
     ActiveRequests,
     ViewEmployees,
-    AllUsers
+    AllUsers,
+    AllClaims,
   },
   methods: {
     getAllEmployees() {
@@ -66,21 +81,21 @@ export default {
         });
     },
     handleError(error) {
-      console.log(error)
+      console.log(error);
     },
   },
   created() {
     this.getAllEmployees();
     this.getAllActiveRequests();
     this.getAllNonEmployeeUsers();
-  }
+  },
 };
 </script>
 
 <style>
 @media only screen and (min-width: 950px) {
-  #admin-tables{
-    display:flex;
+  .admin-tables {
+    display: flex;
     justify-content: center;
     align-items: flex-start;
   }
@@ -94,7 +109,7 @@ export default {
 }
 
 @media only screen and (max-width: 950px) {
-  #admin-tables{
+  .admin-tables {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -118,7 +133,8 @@ h1.admin-h1 {
   border-bottom: 4px solid #adc178;
 }
 
-th, td {
+th,
+td {
   text-align: center;
 }
 
