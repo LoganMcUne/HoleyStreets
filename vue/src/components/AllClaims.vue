@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="employee-access-table">
+    <div class="employee-access-table all-claims-table">
       <h1 class="admin-h1">Damage Claims</h1>
       <div class="scroll-section">
         <table class="table-size">
@@ -61,6 +61,19 @@ export default {
 
 <style scoped>
 .scroll-section {
+  height: 43vh;
   overflow: auto;
+}
+
+thead > tr > th.th-style {
+  font-size: 14px;
+  padding: 3px;
+  position: sticky;
+  top: 0;
+  background-color: #adc178;
+}
+
+.all-claims-table {
+  width: 94vw;
 }
 </style>
