@@ -59,7 +59,7 @@ import { LMap, LTileLayer, LMarker, LPopup, LControl } from "vue2-leaflet";
 
 export default {
   name: "Map",
-  props: ["markers", "latLongZoomInfoVisible", "mapKey"],
+  props: ["markers", "latLongZoomInfoVisible", "mapKey", "isSmallMap"],
   components: {
     LMap,
     LTileLayer,
