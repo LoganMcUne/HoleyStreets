@@ -3,7 +3,12 @@
     <div>
       <b-nav class="nav">
         <div class="logo-and-name">
-          <a href="http://localhost:8080/"><img class='logo-image' src="../public/pothole.svg" alt="Holey Streets Logo" /></a>
+          <a href="http://localhost:8080/"
+            ><img
+              class="logo-image"
+              src="../public/pothole.svg"
+              alt="Holey Streets Logo"
+          /></a>
           <router-link v-bind:to="{ name: 'home' }" class="holey-streets">
             HOLEY STREETS
           </router-link>
@@ -20,12 +25,16 @@ import Dropdown from "./views/UserDropdown.vue";
 import potholeService from "./services/PotholeService.js";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
     Dropdown,
   },
   created() {
     potholeService.list().then((r) => {
+      r.data.forEach((p) => {
+        this.$set(p, "isBig", false);
+        this.$set(p, "opacity", 1);
+      });
       this.$store.commit("SET_POTHOLE_LIST", r.data);
     });
   },
@@ -72,24 +81,24 @@ div.title-and-pictures {
   }
 
   div.subtitle-box {
-  border-bottom: 3px solid #adc178;
-  border-top: 3px solid #adc178;
-  margin: 15px 0 10px 0;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    border-bottom: 3px solid #adc178;
+    border-top: 3px solid #adc178;
+    margin: 15px 0 10px 0;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
 @media only screen and (max-width: 640px) {
   .tire-pic {
-  height: 60px;
-  width: 25vw;
+    height: 60px;
+    width: 25vw;
   }
 
   div.subtitle-box {
-  height: 3rem;
+    height: 3rem;
   }
 }
 
@@ -99,7 +108,7 @@ div.title-and-pictures {
   }
 
   div.subtitle-box {
-  height: 3rem;
+    height: 3rem;
   }
 }
 
@@ -118,12 +127,12 @@ div.subtitle-box {
   justify-content: center;
 }
 
-  h2.subtitle {
-    font-family: "Luckiest Guy", cursive;
-    font-size: 22px;
-    text-align: center;
-    margin: 0;
-  }
+h2.subtitle {
+  font-family: "Luckiest Guy", cursive;
+  font-size: 22px;
+  text-align: center;
+  margin: 0;
+}
 
 .title {
   font-family: "Luckiest Guy", cursive;
@@ -136,9 +145,9 @@ div.subtitle-box {
 }
 
 p.subtitle-claim-form {
-    font-size: 1rem;
-    text-align: center;
-    margin: 0;
+  font-size: 1rem;
+  text-align: center;
+  margin: 0;
 }
 
 div.subtitle-box-claim-form {

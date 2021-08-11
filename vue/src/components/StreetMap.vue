@@ -12,7 +12,6 @@
       class="brown-border"
       @update:center="centerUpdate"
       @update:zoom="zoomUpdate"
-      
     >
       <l-control position="bottomright">
         <div v-show="mapKey" id="key-div" class="brown-border">
@@ -24,14 +23,19 @@
 
       <l-tile-layer :url="url" :attribution="attribution" />
       <l-marker
-        v-for="pothole in marks"
+        v-for="pothole in $store.state.potholes"
         v-bind:key="pothole.id"
         :lat-lng="makeLatLng(pothole.latitude, pothole.longitude)"
         :opacity="pothole.opacity"
         :icon="makeIcon(pothole)"
       >
         <l-popup>
-          <img :src="pothole.imageLink" class="popup-image brown-border" alt="" /><br />
+          <img
+            v-show="pothole.imageLink"
+            :src="pothole.imageLink"
+            class="popup-image brown-border"
+            alt=""
+          /><br />
           <div style="text-align: center">
             Lat: {{ pothole.latitude }}
             <br />
@@ -59,7 +63,7 @@ import { LMap, LTileLayer, LMarker, LPopup, LControl } from "vue2-leaflet";
 
 export default {
   name: "Map",
-  props: ["markers", "latLongZoomInfoVisible", "mapKey", "isSmallMap"],
+  props: ["currentView", "latLongZoomInfoVisible", "mapKey", "isSmallMap"],
   components: {
     LMap,
     LTileLayer,
@@ -74,7 +78,6 @@ export default {
   },
   data() {
     return {
-      marks: this.markers,
       zoom: 12,
       center: latLng(39.157487, -84.463921),
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -84,21 +87,54 @@ export default {
       showParagraph: false,
       mapOptions: {
         zoomSnap: 0.5,
-      },      
+      },
       showMap: true,
       regSize: [25, 41],
       bigSize: [37, 61],
+      icons: {
+        baseIcon: "marker-icon-blue.png",
+        reportIcon: "marker-icon-red.png",
+        inspectIcon: "marker-icon-yellow.png",
+        repairIcon: "marker-icon-green.png",
+      },
     };
   },
   methods: {
     makeIcon(p) {
       const size = p.isBig ? this.bigSize : this.regSize;
-      const url = p.iconUrl ? p.iconUrl : "marker-icon-red.png";
+      const url = this.getColor(p);
       return L.icon({
         iconUrl: url,
         iconSize: size,
         iconAnchor: this.dynamicAnchor(size),
       });
+    },
+    getColor(p) {
+      let rColor = this.icons.baseIcon;
+      if (this.currentView == "employee" || this.currentView == "home") {
+        switch (p.repairStatus) {
+          case "Reported":
+            rColor = this.icons.reportIcon;
+            p.opacity = 1;
+            break;
+          case "Inspected":
+            rColor = this.icons.inspectIcon;
+            p.opacity = 1;
+            break;
+          case "Repaired":
+            rColor = this.icons.repairIcon;
+            p.opacity = 0.5;
+            break;
+        }
+      }
+      if (this.currentView == "account") {
+        if (p.reportingUserId == this.$store.state.user.userId) {
+          p.opacity = 1;
+        } else {
+          p.opacity = 0.5;
+        }
+      }
+      return rColor;
     },
     dynamicAnchor(s) {
       return [s[0] / 2, s[1]];
@@ -155,7 +191,7 @@ export default {
     width: 95vw;
   }
 }
-.brown-border{
+.brown-border {
   border: 1px solid #6c584c;
   border-radius: 5px;
 }
@@ -166,7 +202,7 @@ export default {
   background-color: rgba(255, 255, 240, 0.8);
   padding: 5px;
 }
-.popup-image{
+.popup-image {
   height: 150px;
 }
 </style>

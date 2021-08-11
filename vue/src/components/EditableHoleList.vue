@@ -1,8 +1,8 @@
 <template>
   <div class="list-of-potholes">
-      <div class="subtitle-box">
-        <h2 class="subtitle">All Reported Potholes</h2>
-      </div>
+    <div class="subtitle-box">
+      <h2 class="subtitle">All Reported Potholes</h2>
+    </div>
     <div>
       <div id="table" class="table-editable table-responsive">
         <span class="table-add float-right mb-3 mr-2"
@@ -85,25 +85,25 @@ export default {
 
 <style>
 @media only screen and (min-width: 1024px) {
-div#table {
-  height: 60vh;
-  margin-top: 7px;
-}
-.list-of-potholes {
-  width: 66vw;
-  margin: 5px;
-}
+  div#table {
+    height: 60vh;
+    margin-top: 7px;
+  }
+  .list-of-potholes {
+    width: 66vw;
+    margin: 5px;
+  }
 }
 @media only screen and (max-width: 1024px) {
-div#table {
-  height: 60vh;
-  width: 95vw;
-  margin-top: 7px;
-}
-.list-of-potholes {
-  width: 95vw;
-  margin: 5px;
-}
+  div#table {
+    height: 60vh;
+    width: 95vw;
+    margin-top: 7px;
+  }
+  .list-of-potholes {
+    width: 95vw;
+    margin: 5px;
+  }
 }
 
 thead > tr > th.text-center {
