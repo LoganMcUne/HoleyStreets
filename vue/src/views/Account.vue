@@ -23,7 +23,7 @@
           v-bind:latLongZoomInfoVisible="false"
           ref = "streetmap"
         />
-        <button v-on:click="resizeMap()">{{ !isExpandClicked ? "Expand" : "Minimize"}}</button>
+        <button class="resize-button" v-on:click="resizeMap()">{{ !isExpandClicked ? "Expand" : "Minimize"}}</button>
       </div>
 
       <div class="hole-list-table">
@@ -114,5 +114,13 @@ export default {
 
 div.map-div {
   margin-top: 15px;
+}
+
+button.resize-button {
+  color: black;
+  font-family: "Luckiest Guy", cursive;
+  font-size: 16px;
+  background-color: #adc178;
+  width: 175px;
 }
 </style>
