@@ -114,6 +114,7 @@ button {
   background-color: #adc178;
   border: none;
   padding: 15px 32px;
+  border-radius: 5px;
 }
 
 .button:active {

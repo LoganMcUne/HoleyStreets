@@ -49,6 +49,7 @@ export default {
   color: black;
   justify-content: flex-end;
   margin-right: 20px;
+  border-radius: 5px;
 }
 
 </style>

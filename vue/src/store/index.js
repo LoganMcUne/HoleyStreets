@@ -23,7 +23,8 @@ export default new Vuex.Store({
         potholes: [],
         requests: [],
         employees: [],
-        nonEmployeeUsers: []
+        nonEmployeeUsers: [],
+        claims: []
     },
     mutations: {
         SET_AUTH_TOKEN(state, token) {
@@ -54,6 +55,9 @@ export default new Vuex.Store({
         SET_REQUESTS_LIST(state, requests) {
             state.requests = requests;
         },
+        SET_CLAIMS_LIST(state, claims){
+            state.claims = claims;
+        },
         DELETE_REQUEST(state, id) {
             state.requests.splice(state.requests.findIndex(r => r.userId == id), 1)
         },
@@ -69,6 +73,13 @@ export default new Vuex.Store({
             })
 
             state.potholes[i] = pothole;
+        },
+        UPDATE_CLAIM(state, claim){
+            let i = state.claims.findIndex((c) => {
+                return c.id == claim.id
+            })
+
+            state.claims[i] = claim;
         },
         SET_NON_EMPLOYEE_USERS_LIST(state, nonEmployeeUsers) {
             state.nonEmployeeUsers = nonEmployeeUsers;

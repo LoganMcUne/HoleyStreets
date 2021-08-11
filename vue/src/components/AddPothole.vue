@@ -102,6 +102,7 @@ button.add-new {
   position: relative;
   left: 2.5vw;
   bottom: 20px;
+  border-radius: 5px;
 }
 
 button.add-new:hover {
@@ -114,6 +115,7 @@ button.add-button {
   font-size: 16px;
   background-color: #adc178;
   width: 175px;
+  border-radius: 5px;
 }
 
 div.form {

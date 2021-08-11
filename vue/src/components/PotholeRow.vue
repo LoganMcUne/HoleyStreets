@@ -55,7 +55,7 @@
       />
       <div v-if="!isEditClicked">{{ currentPothole.severity }}</div>
     </td>
-    <td>
+    <td class="edit-delete-td">
       <a
         href
         class="edit-delete"
@@ -199,5 +199,9 @@ td {
 
 div.button-spacer {
   height: 15px;
+}
+
+.edit-delete-td {
+  text-align: left;
 }
 </style>

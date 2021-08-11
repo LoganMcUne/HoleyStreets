@@ -1,13 +1,13 @@
 <template>
   <div class="employee-access-table">
     <h1 class="admin-h1">Users Requesting Employee Access</h1>
-    <table>
+    <table class="table-size">
       <thead>
         <tr>
-          <th>User Id</th>
-          <th>User Name</th>
-          <th>Approve</th>
-          <th>Deny</th>
+          <th class="th-style">User Id</th>
+          <th class="th-style">User Name</th>
+          <th class="th-style">Approve</th>
+          <th class="th-style">Deny</th>
         </tr>
       </thead>
 
@@ -15,6 +15,7 @@
         <tr
           v-for="request in this.$store.state.requests"
           v-bind:key="request.userid"
+          class="row-style"
         >
           <td>{{ request.userId }}</td>
           <td>{{ request.username }}</td>
@@ -84,6 +85,7 @@ export default {
   }
   button {
     margin-right: 0;
+    border-radius: 5px;
   }
 }
 
@@ -94,8 +96,10 @@ th {
 }
 .deny {
   background-color: rgb(248, 86, 86);
+  border-radius: 5px;
 }
 .approve {
   background-color: #adc178;
+  border-radius: 5px;
 }
 </style>
