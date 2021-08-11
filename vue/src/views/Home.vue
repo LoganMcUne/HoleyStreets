@@ -106,7 +106,7 @@ div.home-page-map {
 .center-marker {
   z-index: 1000;
   position: relative;
-  top: 34.7vh;
-  left: 49.9vw;
+  top: 33.2vh;
+  left: 49.5vw;
 }
 </style>
