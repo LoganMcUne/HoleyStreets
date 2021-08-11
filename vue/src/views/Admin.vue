@@ -6,6 +6,8 @@
       <img class= "right-pic tire-pic" src="../../public/tire_track_right.jpg" alt="Tire track picture" />
     </div>
 
+    <br />
+
     <div id="admin-tables">
       <active-requests />
       <view-employees />
@@ -76,17 +78,38 @@ export default {
 </script>
 
 <style>
-div.employee-access-table {
-  margin: 0 3vh 3vh 3vh;
-  border: 1px solid black;
-  border-radius: 10px;
-  padding-bottom: 10px;
+@media only screen and (min-width: 950px) {
+  #admin-tables{
+    display:flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  div.employee-access-table {
+    margin: 0 3vh 3vh 3vh;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding-bottom: 10px;
+  }
 }
-#admin-tables{
-  display:flex;
-  justify-content: center;
-  align-items: flex-start;
+
+@media only screen and (max-width: 950px) {
+  #admin-tables{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  div.employee-access-table {
+    margin: 0 3vh 3vh 3vh;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding-bottom: 10px;
+    width: 90vw;
+  }
 }
+
 h1.admin-h1 {
   padding: 5px 10px;
   font-size: 24px;
@@ -94,9 +117,11 @@ h1.admin-h1 {
   text-align: center;
   border-bottom: 4px solid #adc178;
 }
+
 th, td {
   text-align: center;
 }
+
 table {
   margin: auto;
 }

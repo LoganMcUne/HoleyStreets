@@ -94,8 +94,8 @@
                     />
                 </div>
             </div>
-            <div class="form-element">
-                <label for="imageLink">Link to Picture of Damage (optional):</label><br />
+            <div class="form-element picture-link">
+                <label for="imageLink">Link to Picture of Damage (optional):</label><br class="picture-link-break" />
                 <input
                 type="text"
                 id="imageLink"
@@ -159,42 +159,84 @@ export default {
 </script>
 
 <style scoped>
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 98vw;
-    align-items: center;
+@media only screen and (min-width: 600px) {
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 98vw;
+        align-items: center;
+    }
+
+    div.form-block {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    #imageLink {
+        width: 300px;
+    }
+
+    div.damage-description {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .description-of-damage {
+        width: 42vw;
+    }
+
+    textarea {
+        width: 42vw;
+        height: 6vw;
+    }
 }
 
-div.form-block {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
+@media only screen and (max-width: 600px) {
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 98vw;
+        align-items: center;
+    }
+
+    .description-of-damage {
+        width: 17rem;
+        text-align: center;
+    }
+
+    div.damage-description {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    div.form-element:nth-child(1) {
+        margin-bottom: 15px;
+    }
+
+    div.form-element:nth-child(3) {
+        margin-top: 15px;
+    }
+
+    div.picture-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+
+    br.picture-link-break {
+        display: none;
+    }
 }
 
 button.submit-button {
     width: 150px;
     margin-bottom: 20px;
     background-color: #acd178;
-}
-
-#imageLink {
-    width: 300px;
-}
-
-div.damage-description {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.description-of-damage {
-    width: 42vw;
-}
-
-textarea {
-    width: 42vw;
-    height: 6vw;
 }
 </style>

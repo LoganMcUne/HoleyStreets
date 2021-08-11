@@ -99,7 +99,7 @@ export default {
 
 button.add-new {
   color: white;
-  font-size: 22px;
+  font-size: 20px;
   background-color: #51616b;
   font-family: "Luckiest Guy", cursive;
   position: relative;

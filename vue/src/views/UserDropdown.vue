@@ -49,7 +49,7 @@
       </b-dropdown-item>
 
       <router-link
-        v-if="$store.state.user.role == 'employee'"
+        v-show="$store.state.user.role == 'employee'"
         tag="b-dropdown-item"
         v-bind:to="{ name: 'employee' }"
         class="dropdown-btn"

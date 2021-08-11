@@ -70,6 +70,16 @@ div.title-and-pictures {
     height: 60px;
     width: auto;
   }
+
+  div.subtitle-box {
+  border-bottom: 3px solid #adc178;
+  border-top: 3px solid #adc178;
+  margin: 15px 0 10px 0;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  }
 }
 
 @media only screen and (max-width: 640px) {
@@ -77,39 +87,52 @@ div.title-and-pictures {
   height: 60px;
   width: 25vw;
   }
+
+  div.subtitle-box {
+  height: 3rem;
+  }
 }
 
 @media only screen and (max-width: 605px) {
   .tire-pic {
     display: none;
   }
+
+  div.subtitle-box {
+  height: 3rem;
+  }
 }
 
-.title {
-  font-family: "Luckiest Guy", cursive;
-  font-size: 30px;
-  white-space: nowrap;
-  margin: 0;
-  padding: 15px 10px;
-  border-radius: 20px;
-  color: black;
+@media only screen and (max-width: 326px) {
+  div.subtitle-box {
+    height: 4.2rem;
+  }
 }
 
 div.subtitle-box {
-  border-bottom: 5px solid #adc178;
-  border-top: 5px solid #adc178;
+  border-bottom: 3px solid #adc178;
+  border-top: 3px solid #adc178;
   margin: 15px 0 10px 0;
-  height: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-h2.subtitle {
+  h2.subtitle {
     font-family: "Luckiest Guy", cursive;
-    font-size: 18px;
+    font-size: 22px;
     text-align: center;
     margin: 0;
+  }
+
+.title {
+  font-family: "Luckiest Guy", cursive;
+  font-size: 34px;
+  white-space: nowrap;
+  margin: 0;
+  padding: 15px 10px;
+  border-radius: 20px;
+  color: black;
 }
 
 p.subtitle-claim-form {

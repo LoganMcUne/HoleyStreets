@@ -95,18 +95,36 @@ export default {
 </script>
 
 <style scoped>
-#register {
-  height: 75vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 8vh;
-  padding: 10vh;
-  border-radius: 10px;
-  background-image: url("../../public/road_pic_3.jpg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+@media only screen and (min-width: 1189px) {
+  #register {
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8vh;
+    padding: 10vh;
+    border-radius: 10px;
+    background-image: url("../../public/road_pic_3.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+@media only screen and (max-width: 1189px) {
+  #register {
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8vh;
+    padding: 10vh;
+    border-radius: 10px;
+    background-image: url("../../public/road_pic_3.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 }
 
 button {
