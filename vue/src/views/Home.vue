@@ -14,7 +14,7 @@
       />
     </div>
 
-    <div class="home-page-spacer"></div>
+    <img class="center-marker" src="../../public/marker-icon-red.png" alt="Center marker" />
 
     <div class="home-page-map">
       <street-map
@@ -97,7 +97,10 @@ div.home-page-map {
   justify-content: center;
 }
 
-div.home-page-spacer {
-  margin: 10px;
+.center-marker {
+  z-index: 1000;
+  position: relative;
+  top: 33.2vh;
+  left: 49.5vw;
 }
 </style>
