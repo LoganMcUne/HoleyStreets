@@ -77,7 +77,9 @@
                 </div>
                 <div class="form-element">
                     <label for="locationOfincidentState">Damage Location (State):</label><br />
-                    <select id="statet" name="state">
+                    <select id="locationOfincidentState"
+                    name="locationOfincidentState"
+                    v-model="claimForm.locationOfincidentState">
                     <option value="">--Please choose an option--</option>
                     <option>AL</option>
                     <option>AK</option>
