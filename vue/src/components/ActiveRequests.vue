@@ -69,16 +69,28 @@ export default {
 </script>
 
 <style>
+@media only screen and (min-width: 375px) {
+  td {
+    padding: 5px 10px;
+  }
+  button {
+    margin-right: 5px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  td {
+    padding: 3px 0;
+  }
+  button {
+    margin-right: 0;
+  }
+}
+
 th {
   text-transform: uppercase;
   padding: 10px;
   margin-top: 10px;
-}
-td {
-  padding: 5px 10px;
-}
-button {
-  margin-right: 5px;
 }
 .deny {
   background-color: rgb(248, 86, 86);

@@ -87,7 +87,7 @@ div.title-and-pictures {
 
 .title {
   font-family: "Luckiest Guy", cursive;
-  font-size: 30px;
+  font-size: 34px;
   white-space: nowrap;
   margin: 0;
   padding: 15px 10px;
