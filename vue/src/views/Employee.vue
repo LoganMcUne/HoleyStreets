@@ -14,13 +14,16 @@
       />
     </div>
 
-    <div class="map-and-table-container">
+    <div id="map" class="map-and-table-container">
       <div class="map-div">
         <admin-map
+          v-bind:isBigMap="isExpandClicked"
+          ref="streetmap"
           currentView="employee"
           v-bind:mapKey="employeeKey"
           v-bind:latLongZoomInfoVisible="true"
         />
+        <button class="resize-button" v-on:click="resizeMap()">{{ !isExpandClicked ? "Expand" : "Minimize"}}</button>
       </div>
 
       <div class="hole-list-table">
@@ -47,6 +50,7 @@ export default {
   },
   data() {
     return {
+      isExpandClicked: false,
       employeeKey: [
         { icon: "marker-icon-red.png", name: "Reported" },
         { icon: "marker-icon-yellow.png", name: "Inspected" },
@@ -56,6 +60,12 @@ export default {
     };
   },
   methods: {
+    resizeMap() {
+      var element = document.getElementById("map");
+      element.classList.toggle("expand-map");
+      this.isExpandClicked = !this.isExpandClicked;
+      this.$refs.streetmap.redrawSize()
+    },
     findPothole(id) {
       return this.$store.state.potholes.find((p) => p.id == id);
     },
@@ -92,6 +102,14 @@ export default {
   .small-screen-line-break {
     display: none;
   }
+
+  div.expand-map {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5vw;
+  align-items: center;
+  justify-content: center;
+  }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -116,5 +134,13 @@ export default {
 
 div.map-div {
   margin-top: 15px;
+}
+
+button.resize-button {
+  color: black;
+  font-family: "Luckiest Guy", cursive;
+  font-size: 16px;
+  background-color: #adc178;
+  width: 175px;
 }
 </style>
