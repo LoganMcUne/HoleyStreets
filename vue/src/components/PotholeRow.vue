@@ -17,7 +17,8 @@
         :min="min"
         v-if="isEditClicked"
         v-model="newPothole.inspectedDate"
-        size="sm" />
+        size="sm"
+      />
       <br v-if="isEditClicked" />
       <div v-if="!isEditClicked">{{ truncateInspectedDate }}</div>
     </td>
@@ -26,7 +27,8 @@
         :min="min"
         v-if="isEditClicked"
         v-model="newPothole.repairedDate"
-        size="sm" />
+        size="sm"
+      />
       <div v-if="!isEditClicked">{{ truncateRepairedDate }}</div>
     </td>
     <td>
@@ -75,21 +77,21 @@
         ><img src="/save.ico" class="ico" /> Save</a
       >
       <div class="delete-button" v-if="!isEditClicked">
-        <delete-confirmation v-bind:pothole="pothole"/>
+        <delete-confirmation v-bind:pothole="pothole" />
       </div>
     </td>
   </tr>
 </template>
 
 <script>
-import deleteConfirmation from "../components/DeleteConfirmation.vue"
+import deleteConfirmation from "../components/DeleteConfirmation.vue";
 import potholeService from "../services/PotholeService.js";
 
 export default {
   name: "pothole-row",
   props: ["pothole"],
   components: {
-    deleteConfirmation
+    deleteConfirmation,
   },
   data() {
     const now = new Date();
@@ -123,6 +125,13 @@ export default {
           this.$store.commit("UPDATE_POTHOLE", this.newPothole);
           this.newPothole = {};
           this.isEditClicked = !this.isEditClicked;
+          potholeService.list().then((r) => {
+            r.data.forEach((p) => {
+              this.$set(p, "isBig", false);
+              this.$set(p, "opacity", 1);
+            });
+            this.$store.commit("SET_POTHOLE_LIST", r.data);
+          });
         })
         .catch((e) => {
           console.log(e.status);
@@ -130,17 +139,8 @@ export default {
     },
     editThisPothole() {
       this.startEdit(this.pothole.id);
-      this.newPothole.id = this.pothole.id;
-      this.newPothole.latitude = this.pothole.latitude;
-      this.newPothole.longitude = this.pothole.longitude;
-      this.newPothole.imageLink = this.pothole.imageLink;
-      this.newPothole.reportedDate = this.pothole.reportedDate;
-      this.newPothole.reportingUserId = this.pothole.reportingUserId;
-      this.newPothole.severity = this.pothole.severity;
-      this.newPothole.repairStatus = this.pothole.repairStatus;
-      this.newPothole.inspectedDate = this.pothole.inspectedDate;
-      this.newPothole.repairedDate = this.pothole.repairedDate;
-      // Object.assign(this.newPothole, this.pothole)
+
+      Object.assign(this.newPothole, this.pothole);
 
       this.isEditClicked = !this.isEditClicked;
     },
