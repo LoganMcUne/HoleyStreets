@@ -1,8 +1,5 @@
 <template>
-  <div
-    id="ourmap"
-    v-bind:class="{ 'smaller-size-map': routeOnAccountOrEmployeePage }"
-  >
+  <div id="ourmap" v-bind:class="{ 'smaller-size-map': smallComp }">
     <l-map
       v-if="showMap"
       :zoom="zoom"
@@ -37,15 +34,19 @@
             alt=""
           /><br />
           <div style="text-align: center">
-            Lat: {{ pothole.latitude }}
-            <br />
-            Lng: {{ pothole.longitude }}
-            <br />
-            Reported: {{ pothole.reportedDate.substring(0, 10) }}
-            <br />
-            Status: {{ pothole.repairStatus }}
-            <br />
-            ID:<b> {{ pothole.id }}</b>
+            <div>Lat: {{ pothole.latitude }}</div>
+            <div>Lng: {{ pothole.longitude }}</div>
+            <div>Reported: {{ formatDate(pothole.reportedDate )}}</div>
+            <div v-show="pothole.inspectedDate">
+              Inspected: {{ formatDate(pothole.inspectedDate) }}
+            </div>
+            <div v-show="pothole.repairedDate">
+              Repaired: {{ formatDate(pothole.repairedDate )}}
+            </div>
+            <div>Repaired: {{ pothole.repairStatus }}</div>
+            <div>
+              ID:<b> {{ pothole.id }}</b>
+            </div>
           </div>
         </l-popup>
       </l-marker>
@@ -63,7 +64,7 @@ import { LMap, LTileLayer, LMarker, LPopup, LControl } from "vue2-leaflet";
 
 export default {
   name: "Map",
-  props: ["currentView", "latLongZoomInfoVisible", "mapKey", "isSmallMap"],
+  props: ["currentView", "latLongZoomInfoVisible", "mapKey", "isBigMap"],
   components: {
     LMap,
     LTileLayer,
@@ -96,6 +97,8 @@ export default {
         reportIcon: "marker-icon-red.png",
         inspectIcon: "marker-icon-yellow.png",
         repairIcon: "marker-icon-green.png",
+        userIcon: "marker-icon-gold.png",
+        nonUserIcon: "marker-icon-grey.png",
       },
     };
   },
@@ -129,8 +132,10 @@ export default {
       }
       if (this.currentView == "account") {
         if (p.reportingUserId == this.$store.state.user.userId) {
+          rColor = this.icons.userIcon;
           p.opacity = 1;
         } else {
+          rColor = this.icons.nonUserIcon;
           p.opacity = 0.5;
         }
       }
@@ -154,16 +159,19 @@ export default {
     makeLatLng(lat, lng) {
       return latLng(lat, lng);
     },
+    formatDate(d){
+      if (d){
+        return d.substring(0,10)
+      }
+    }
   },
   computed: {
-    routeOnAccountOrEmployeePage() {
-      let onAccountOrEmployeePage = false;
-
-      if (this.$route.path === "/account" || this.$route.path === "/employee") {
-        onAccountOrEmployeePage = true;
+    smallComp() {
+      if (this.isBigMap || this.currentView == "home") {
+        return false;
+      } else {
+        return true;
       }
-
-      return onAccountOrEmployeePage;
     },
   },
   created() {
