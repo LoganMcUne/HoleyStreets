@@ -14,7 +14,7 @@
       />
     </div>
 
-    <img class="center-marker" src="../../public/marker-icon-red.png" alt="Center marker" />
+    <img class="center-marker" src="../../public/traffic_cone_1.png" alt="Center marker" />
 
     <div class="home-page-map">
           <street-map v-bind:markers="markers" @sendupcoords="setCoordinates" v-bind:latLongZoomInfoVisible="false" />
@@ -103,10 +103,25 @@ div.home-page-map {
   justify-content: center;
 }
 
-.center-marker {
-  z-index: 1000;
-  position: relative;
-  top: 33.2vh;
-  left: 49.5vw;
+@media only screen and (min-width: 1024px) {
+  .center-marker {
+    z-index: 1000;
+    height: 45px;
+    width: auto;
+    position: relative;
+    top: 33.8vh;
+    left: 49vw;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .center-marker {
+    z-index: 1000;
+    height: 45px;
+    width: auto;
+    position: relative;
+    top: 33.2vh;
+    left: 48vw;
+  }
 }
 </style>
