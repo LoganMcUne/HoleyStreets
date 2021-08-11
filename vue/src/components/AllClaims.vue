@@ -16,7 +16,7 @@
               <th>Date of Damage</th>
               <th>City</th>
               <th>State</th>
-              <th class="image-link">Image Link</th>
+              <th class="image-link">Image</th>
               <th>Description of Damage</th>
               <th>Claim Status</th>
             </tr>
@@ -130,5 +130,6 @@ export default {
 
 button {
   background-color: #adc178;
+  border-radius: 5px;
 }
 </style>

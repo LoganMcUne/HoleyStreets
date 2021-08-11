@@ -53,7 +53,8 @@ export default {
 </script>
 
 <style>
-.remove{
-   background-color: rgb(248, 86, 86);
+.remove {
+  border-radius: 5px;
+  background-color: rgb(248, 86, 86);
 }
 </style>

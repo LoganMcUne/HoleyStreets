@@ -84,6 +84,7 @@ export default {
   }
   button {
     margin-right: 0;
+    border-radius: 5px;
   }
 }
 
@@ -94,8 +95,10 @@ th {
 }
 .deny {
   background-color: rgb(248, 86, 86);
+  border-radius: 5px;
 }
 .approve {
   background-color: #adc178;
+  border-radius: 5px;
 }
 </style>

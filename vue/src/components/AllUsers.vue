@@ -69,6 +69,7 @@ export default {
 <style>
 .give-access {
   background-color: #adc178;
+  border-radius: 5px;
 }
 
 h2.all-non-employee-users-subtitle {

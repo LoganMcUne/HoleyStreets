@@ -307,5 +307,6 @@ button.submit-button {
     width: 150px;
     margin-bottom: 20px;
     background-color: #acd178;
+    border-radius: 5px;
 }
 </style>
