@@ -19,7 +19,7 @@
             <p class="subtitle-claim-form"><em>Your claim will be reviewed by a Holey Streets administrator, and they will contact you with next steps in the claims process.</em></p>
         </div>
 
-        <form class="claim-form" v-if="$store.state.token != ''">
+        <form class="claim-form" v-if="$store.state.token != ''" v-on:submit.prevent="submitClaimForm">
             <div class="names form-block">
                 <div class="form-element">
                     <label for="firstName">First Name:</label><br />
@@ -165,7 +165,7 @@
                 <label class="description-of-damage" for="descriptionOfDamage">Please enter a detailed description of the damage caused by a pothole <em>(max. 1200 characters)</em>:</label>
                 <textarea id="descriptionOfDamage" name="descriptionOfDamage" v-model="claimForm.descriptionOfDamage" />
             </div>
-            <button type="submit" class="submit-button" v-on:submit.prevent="submitClaimForm">
+            <button type="submit" class="submit-button">
             Submit Claim
             </button>
         </form>
@@ -197,7 +197,7 @@ export default {
         submitClaimForm() {
             const today = new Date();
             this.claimForm.dateOfClaim = today.toJSON();
-
+            console.log("bananas");
             claimFormService.submitClaimForm(this.claimForm)
             .then(response => {
                 if (response.status === 200) {
