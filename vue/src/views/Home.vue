@@ -14,7 +14,7 @@
       />
     </div>
 
-    <div class="home-page-spacer"></div>
+    <img class="center-marker" src="../../public/marker-icon-red.png" alt="Center marker" />
 
     <div class="home-page-map">
           <street-map v-bind:markers="markers" @sendupcoords="setCoordinates" v-bind:latLongZoomInfoVisible="false" />
@@ -103,7 +103,10 @@ div.home-page-map {
   justify-content: center;
 }
 
-div.home-page-spacer {
-  margin: 10px;
+.center-marker {
+  z-index: 1000;
+  position: relative;
+  top: 34.7vh;
+  left: 49.9vw;
 }
 </style>
