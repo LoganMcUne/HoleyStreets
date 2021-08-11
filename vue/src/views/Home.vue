@@ -17,7 +17,12 @@
     <img class="center-marker" src="../../public/traffic_cone_1.png" alt="Center marker" />
 
     <div class="home-page-map">
-          <street-map v-bind:markers="markers" @sendupcoords="setCoordinates" v-bind:latLongZoomInfoVisible="false" />
+      <street-map
+        currentView="home"
+        v-bind:mapKey="homeKey"
+        @sendupcoords="setCoordinates"
+        v-bind:latLongZoomInfoVisible="false"
+      />
     </div>
 
     <add-pothole v-bind:currentCenter="currentCenter" />
@@ -37,27 +42,16 @@ export default {
   data() {
     return {
       currentCenter: "",
+      homeKey: [
+        { icon: "marker-icon-red.png", name: "Reported" },
+        { icon: "marker-icon-yellow.png", name: "Inspected" },
+        { icon: "marker-icon-green.png", name: "Repaired" },
+      ],
     };
   },
   methods: {
     setCoordinates(incomingCurrentCenter) {
       this.currentCenter = incomingCurrentCenter;
-    },
-  },
-  computed: {
-    markers() {
-      let newMarkers = [];
-      this.$store.state.potholes.forEach((p) => {
-        let newP = {
-          iconUrl: "marker-icon-blue.png",
-          opacity: 1,
-          isBig: false,
-        };
-        Object.assign(newP, p)
-
-        newMarkers.push(newP);
-      });
-      return newMarkers;
     },
   },
 };

@@ -14,17 +14,24 @@
       />
     </div>
 
-    <div class="map-and-table-container">
+    <div id="map" class="map-and-table-container">
       <div class="map-div">
         <street-map
+          v-bind:isSmallMap="isExpandClicked"
           v-bind:markers="filteredMarkers"
+          currentView="account"
           v-bind:mapKey="accountKey"
           v-bind:latLongZoomInfoVisible="false"
         />
+        <button v-on:click="myFunction()">{{ !isExpandClicked ? "Expand" : "Minimize"}}</button>
       </div>
 
       <div class="hole-list-table">
-        <hole-list @mouse-on-tr="mouseOn" @mouse-off-tr="mouseOff" :potholes="filteredPotholes" />
+        <hole-list
+          @mouse-on-tr="mouseOn"
+          @mouse-off-tr="mouseOff"
+          :potholes="filteredPotholes"
+        />
       </div>
     </div>
   </div>
@@ -41,6 +48,7 @@ export default {
   },
   data() {
     return {
+      isExpandClicked: false,
       accountKey: [
         { icon: "marker-icon-gold.png", name: "User" },
         { icon: "marker-icon-grey.png", name: "Other" },
@@ -54,29 +62,15 @@ export default {
         return x.reportingUserId === this.$store.state.user.userId;
       });
     },
-    filteredMarkers() {
-      const newMarkers = [];
-      this.$store.state.potholes.forEach((p) => {
-        const isCurrentUser =
-          p.reportingUserId === this.$store.state.user.userId;
-        const url = isCurrentUser
-          ? "marker-icon-gold.png"
-          : "marker-icon-grey.png";
-        const opa = isCurrentUser ? 1 : 0.5;
-        const newP = {
-          isBig: false,
-          iconUrl: url,
-          opacity: opa,
-        };
-        Object.assign(newP, p);
-        newMarkers.push(newP);
-      });
-      return newMarkers;
-    },
   },
   methods: {
+    myFunction() {
+      var element = document.getElementById("map");
+      element.classList.toggle("expand-map");
+      this.isExpandClicked = !this.isExpandClicked;
+    },
     findPothole(id) {
-      return this.filteredMarkers.find((p) => p.id == id);
+      return this.$store.state.potholes.find((p) => p.id == id);
     },
     mouseOn(id) {
       this.findPothole(id).isBig = true;
@@ -97,7 +91,15 @@ export default {
     align-items: flex-start;
     justify-content: center;
   }
-}
+
+  div.expand-map {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5vw;
+  align-items: center;
+  justify-content: center;
+  }
+} 
 
 @media only screen and (max-width: 1024px) {
   div.map-and-table-container {
