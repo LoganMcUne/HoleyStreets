@@ -9,13 +9,15 @@
       :center="center"
       :options="mapOptions"
       style="height: 95%"
+      class="brown-border"
       @update:center="centerUpdate"
       @update:zoom="zoomUpdate"
+      
     >
       <l-control position="bottomright">
-        <div v-show="mapKey" id="key-div">
+        <div v-show="mapKey" id="key-div" class="brown-border">
           <div v-for="k in mapKey" v-bind:key="k.icon">
-            <img :src="k.icon" class="mapicon" alt="" />{{ k.name }}
+            <img :src="k.icon" class="key-icon" alt="" />{{ k.name }}
           </div>
         </div>
       </l-control>
@@ -29,7 +31,7 @@
         :icon="makeIcon(pothole)"
       >
         <l-popup>
-          <img :src="pothole.imageLink" style="height: 150px" alt="" /><br />
+          <img :src="pothole.imageLink" class="popup-image brown-border" alt="" /><br />
           <div style="text-align: center">
             Lat: {{ pothole.latitude }}
             <br />
@@ -74,7 +76,7 @@ export default {
     return {
       marks: this.markers,
       zoom: 12,
-      center: latLng(39.1558839, -84.51233),
+      center: latLng(39.157487, -84.463921),
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution: this.currentCenter,
       currentZoom: 12,
@@ -153,13 +155,18 @@ export default {
     width: 95vw;
   }
 }
-.mapicon {
+.brown-border{
+  border: 1px solid #6c584c;
+  border-radius: 5px;
+}
+.key-icon {
   height: 20px;
 }
 #key-div {
   background-color: rgba(255, 255, 240, 0.8);
   padding: 5px;
-  border: 1px solid black;
-  border-radius: 5px;
+}
+.popup-image{
+  height: 150px;
 }
 </style>
