@@ -86,8 +86,8 @@
                 </div>
             </div>
             <div class="form-block">
-                <div class="form-element">
-                    <label for="dateOfIncident">Date of Damage:</label><br />
+                <div class="form-element date-of-damage">
+                    <label for="dateOfIncident">Date of Damage:</label><br class="date-of-damage-br" />
                     <input
                     type="date"
                     id="dateOfIncident"
@@ -229,6 +229,17 @@ export default {
         flex-direction: column;
         align-items: center;
         gap: 0;
+    }
+
+    div.date-of-damage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+
+    br.date-of-damage-br {
+        display: none;
     }
 
     br.picture-link-break {
