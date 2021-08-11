@@ -6,7 +6,7 @@
         src="../../public/tire_track_left.jpg"
         alt="Tire track picture"
       />
-      <h1 class="centered-h1 title">Employee Dashboard</h1>
+      <h1 class="centered-h1 title">Employee <br class="small-screen-line-break" />Dashboard</h1>
       <img
         class="right-pic tire-pic"
         src="../../public/tire_track_right.jpg"
@@ -112,6 +112,10 @@ export default {
     align-items: flex-start;
     justify-content: center;
   }
+
+  .small-screen-line-break {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -121,6 +125,16 @@ export default {
     gap: 0.5vw;
     align-items: center;
     justify-content: center;
+  }
+
+  .small-screen-line-break {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 412px) {
+  .small-screen-line-break {
+    display: inline;
   }
 }
 
