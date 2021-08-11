@@ -141,4 +141,16 @@ td {
 table {
   margin: auto;
 }
+
+.table-size{
+    width: 100%;
+}
+
+.row-style {
+    border-top: 1px solid black;
+}
+
+.th-style{
+    text-align: center;
+}
 </style>

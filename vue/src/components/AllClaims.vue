@@ -3,22 +3,22 @@
     <div class="employee-access-table">
       <h1 class="admin-h1">Damage Claims</h1>
       <div class="scroll-section">
-        <table>
+        <table class="table-size">
           <thead>
             <tr>
-              <th>Claim Id</th>
-              <th>User Id</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
-              <th>Phone Number</th>
-              <th>Date of Claim</th>
-              <th>Date of Damage</th>
-              <th>City</th>
-              <th>State</th>
-              <th class="image-link">Image</th>
-              <th>Description of Damage</th>
-              <th>Claim Status</th>
+              <th class="th-style">Claim Id</th>
+              <th class="th-style">User Id</th>
+              <th class="th-style">First Name</th>
+              <th class="th-style">Last Name</th>
+              <th class="th-style">Email</th>
+              <th class="th-style">Phone Number</th>
+              <th class="th-style">Date of Claim</th>
+              <th class="th-style">Date of Damage</th>
+              <th class="th-style">City</th>
+              <th class="th-style">State</th>
+              <th class="th-style image-link">Image</th>
+              <th class="th-style">Description of Damage</th>
+              <th class="th-style">Claim Status</th>
             </tr>
           </thead>
 
@@ -26,6 +26,7 @@
             <tr
               v-for="claim in this.$store.state.claims"
               v-bind:key="claim.claimId"
+              class="row-style"
             >
               <td>{{ claim.claimId }}</td>
               <td>{{ claim.userId }}</td>
