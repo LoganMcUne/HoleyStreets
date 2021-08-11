@@ -66,15 +66,6 @@
             </div>
             <div class="dateOfIncident form-block">
                 <div class="form-element">
-                    <label for="dateOfIncident">Date of Damage:</label><br />
-                    <input
-                    type="date"
-                    id="dateOfIncident"
-                    name="dateOfIncident"
-                    v-model="claimForm.dateOfIncident"
-                    />
-                </div>
-                <div class="form-element">
                 <label for="locationOfincidentCity">Damage Location (City):</label><br />
                 <input
                 type="text"
@@ -94,14 +85,25 @@
                     />
                 </div>
             </div>
-            <div class="form-element picture-link">
-                <label for="imageLink">Link to Picture of Damage (optional):</label><br class="picture-link-break" />
-                <input
-                type="text"
-                id="imageLink"
-                name="imageLink"
-                v-model="claimForm.imageLink"
-                />
+            <div class="form-block">
+                <div class="form-element">
+                    <label for="dateOfIncident">Date of Damage:</label><br />
+                    <input
+                    type="date"
+                    id="dateOfIncident"
+                    name="dateOfIncident"
+                    v-model="claimForm.dateOfIncident"
+                    />
+                </div>
+                <div class="form-element picture-link">
+                    <label for="imageLink">Link to Picture of Damage (optional):</label><br class="picture-link-break" />
+                    <input
+                    type="text"
+                    id="imageLink"
+                    name="imageLink"
+                    v-model="claimForm.imageLink"
+                    />
+                </div>
             </div>
             <div class="form-element damage-description">
                 <label class="description-of-damage" for="descriptionOfDamage">Please enter a detailed description of the damage caused by a pothole <em>(max. 1200 characters)</em>:</label>
