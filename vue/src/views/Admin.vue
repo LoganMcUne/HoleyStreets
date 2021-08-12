@@ -220,7 +220,7 @@ export default {
   }
 
   .admin-tables-top {
-    height: 130vh;
+    height: 120vh;
     width: 100%;
     display: flex;
     flex-direction: column;
