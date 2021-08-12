@@ -3,7 +3,7 @@
     <b-dropdown
       id="dropdown-right"
       right
-      text="User Options"
+      :text="buttonTitle()"
       variant="light"
       class="m-md-2"
     >
@@ -24,6 +24,15 @@
         class="dropdown-btn"
       >
         Login
+      </router-link>
+
+      <router-link
+        v-if="$store.state.token == ''"
+        v-bind:to="{name: 'register'}"
+        tag="b-dropdown-item"
+        class="dropdown-btn"
+        >
+        Create an Account
       </router-link>
 
       <router-link
@@ -83,6 +92,17 @@ import RequestEmployment from "../components/RequestEmployment.vue";
 
 export default {
   components: { RequestEmployment },
+  methods: {
+      buttonTitle(){
+        if(this.$store.state.token != '')
+        {
+          return 'Welcome' + ' ' + this.$store.state.user.username.substring(0, 1).toUpperCase() + this.$store.state.user.username.substring(1)
+        }
+        else{
+          return 'Welcome'
+        }
+      }
+    }
 };
 </script>
 
