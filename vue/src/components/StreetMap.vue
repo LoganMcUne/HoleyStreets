@@ -5,7 +5,8 @@
       :zoom="zoom"
       :center="center"
       :options="mapOptions"
-
+      :max-bounds="bounds"
+     
       class="brown-border"
       @update:center="centerUpdate"
       @update:zoom="zoomUpdate"
@@ -18,6 +19,7 @@
           </div>
         </div>
       </l-control>
+      <l-control-scale position="bottomleft" :imperial="true" :metric="false" />
 
       <l-tile-layer :url="url" :attribution="attribution" />
       <l-marker
@@ -59,10 +61,9 @@
 </template>
 
 <script>
-import { latLng } from "leaflet";
+import {latLngBounds, latLng } from "leaflet";
 import L from "leaflet";
-import { LMap, LTileLayer, LMarker, LPopup, LControl } from "vue2-leaflet";
-
+import { LMap, LTileLayer, LMarker, LPopup, LControl, LControlScale } from "vue2-leaflet";
 export default {
   name: "Map",
   props: ["currentView", "latLongZoomInfoVisible", "mapKey", "isBigMap"],
@@ -72,6 +73,7 @@ export default {
     LMarker,
     LPopup,
     LControl,
+    LControlScale
   },
   watch: {
     currentCenter: function () {
@@ -87,6 +89,10 @@ export default {
       currentZoom: 12,
       currentCenter: latLng(39.157487, -84.463921),
       showParagraph: false,
+      bounds: latLngBounds([
+        [14.558205167291081, -185.09765625],
+        [53.27992461623911, -31.093255571223526],
+      ]),
       mapOptions: {
         zoomSnap: 0.5,
       },
@@ -162,8 +168,8 @@ export default {
     innerClick() {
       alert("Click!");
     },
-    startAdd(p){
-      this.markers.push(p)
+    startAdd(p) {
+      this.markers.push(p);
     },
     makeLatLng(lat, lng) {
       return latLng(lat, lng);
@@ -182,9 +188,9 @@ export default {
         return true;
       }
     },
-    markers(){
-      return this.$store.state.potholes
-    }
+    markers() {
+      return this.$store.state.potholes;
+    },
   },
   created() {
     return this.$emit("sendupcoords", this.currentCenter);
