@@ -6,7 +6,6 @@
       :center="center"
       :options="mapOptions"
       :max-bounds="bounds"
-     
       class="brown-border"
       @update:center="centerUpdate"
       @update:zoom="zoomUpdate"
@@ -40,13 +39,16 @@
             <div><b>Lat:</b> {{ pothole.latitude }}</div>
             <div><b>Lng:</b> {{ pothole.longitude }}</div>
             <div><b>Reported:</b> {{ formatDate(pothole.reportedDate) }}</div>
-            <div v-show="pothole.inspectedDate"><b>
-              Inspected:</b> {{ formatDate(pothole.inspectedDate) }}
+            <div v-show="pothole.inspectedDate">
+              <b> Inspected:</b> {{ formatDate(pothole.inspectedDate) }}
             </div>
-            <div v-show="pothole.repairedDate"><b>
-              Repaired:</b> {{ formatDate(pothole.repairedDate) }}
+            <div v-show="pothole.repairedDate">
+              <b> Repaired:</b> {{ formatDate(pothole.repairedDate) }}
             </div>
-            <div><b>Repaired:</b> {{ pothole.repairStatus }}</div>
+            <div><b>Status:</b> {{ pothole.repairStatus }}</div>
+            <div v-show="pothole.severity" :style="{ color: getSevColor(pothole.severity)}">
+              <b>Severity:</b> {{ getSevText(pothole.severity) }}
+            </div>
             <div>
               <b>ID: {{ pothole.id }}</b>
             </div>
@@ -61,9 +63,16 @@
 </template>
 
 <script>
-import {latLngBounds, latLng } from "leaflet";
+import { latLngBounds, latLng } from "leaflet";
 import L from "leaflet";
-import { LMap, LTileLayer, LMarker, LPopup, LControl, LControlScale } from "vue2-leaflet";
+import {
+  LMap,
+  LTileLayer,
+  LMarker,
+  LPopup,
+  LControl,
+  LControlScale,
+} from "vue2-leaflet";
 export default {
   name: "Map",
   props: ["currentView", "latLongZoomInfoVisible", "mapKey", "isBigMap"],
@@ -73,7 +82,7 @@ export default {
     LMarker,
     LPopup,
     LControl,
-    LControlScale
+    LControlScale,
   },
   watch: {
     currentCenter: function () {
@@ -82,12 +91,12 @@ export default {
   },
   data() {
     return {
-      zoom: 5,
-      center: latLng(39.157487, -99.6425623762905),
+      zoom: 13,
+      center: latLng(39.12859669871998, -84.50453381147379),
       url: "https://tile.thunderforest.com/atlas/{z}/{x}/{y}.png?apikey=68585e9a3c4f46788036058c0acfaa4e",
       attribution: this.currentCenter,
-      currentZoom: 5,
-      currentCenter: latLng(39.157487, -99.6425623762905),
+      currentZoom: 13,
+      currentCenter: latLng(39.12859669871998, -84.50453381147379),
       showParagraph: false,
       bounds: latLngBounds([
         [14.558205167291081, -185.09765625],
@@ -179,6 +188,26 @@ export default {
         return d.substring(0, 10);
       }
     },
+    getSevText(i) {
+      switch (i) {
+        case 1:
+          return "Low";
+        case 2:
+          return "Medium";
+        case 3:
+          return "High";
+      }
+    },
+    getSevColor(i) {
+      switch (i) {
+        case 1:
+          return "green";
+        case 2:
+          return "orange";
+        case 3:
+          return "red";
+      }
+    },
   },
   computed: {
     smallComp() {
@@ -199,6 +228,7 @@ export default {
 </script>
 
 <style scoped>
+
 #ourmap {
   height: 70vh;
   width: 95vw;
