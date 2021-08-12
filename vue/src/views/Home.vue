@@ -14,7 +14,12 @@
       />
     </div>
 
-    <img class="center-marker" src="../../public/traffic_cone_1.png" alt="Center marker" />
+    <img
+      v-show="ifAdding"
+      class="center-marker"
+      src="marker-icon-blue.png"
+      alt="Center marker"
+    />
 
     <div class="home-page-map">
       <street-map
@@ -22,10 +27,11 @@
         v-bind:mapKey="homeKey"
         @sendupcoords="setCoordinates"
         v-bind:latLongZoomInfoVisible="false"
+        ref="streetmap"
       />
     </div>
 
-    <add-pothole v-bind:currentCenter="currentCenter" />
+    <add-pothole @start-add="startAdd" @end-add="endAdd" v-bind:currentCenter="currentCenter" />
   </div>
 </template>
 
@@ -42,6 +48,7 @@ export default {
   data() {
     return {
       currentCenter: "",
+      ifAdding: false,
       homeKey: [
         { icon: "marker-icon-red.png", name: "Reported" },
         { icon: "marker-icon-yellow.png", name: "Inspected" },
@@ -52,6 +59,12 @@ export default {
   methods: {
     setCoordinates(incomingCurrentCenter) {
       this.currentCenter = incomingCurrentCenter;
+    },
+    startAdd() {
+      this.ifAdding = true;
+    },
+    endAdd() {
+      this.ifAdding = false;
     },
   },
 };

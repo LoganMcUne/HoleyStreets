@@ -21,7 +21,7 @@
 
       <l-tile-layer :url="url" :attribution="attribution" />
       <l-marker
-        v-for="pothole in $store.state.potholes"
+        v-for="pothole in markers"
         v-bind:key="pothole.id"
         :lat-lng="makeLatLng(pothole.latitude, pothole.longitude)"
         :opacity="pothole.opacity"
@@ -162,6 +162,9 @@ export default {
     innerClick() {
       alert("Click!");
     },
+    startAdd(p){
+      this.markers.push(p)
+    },
     makeLatLng(lat, lng) {
       return latLng(lat, lng);
     },
@@ -179,6 +182,9 @@ export default {
         return true;
       }
     },
+    markers(){
+      return this.$store.state.potholes
+    }
   },
   created() {
     return this.$emit("sendupcoords", this.currentCenter);

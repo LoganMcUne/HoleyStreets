@@ -12,6 +12,9 @@
       text-variant="white"
       bg-variant="secondary"
       title="New Pothole"
+      no-slide
+      @shown="startAdd"
+      @hidden="endAdd"
       width="250px"
     >
       <div class="px-4 pb-2">
@@ -37,7 +40,7 @@
             name="image-link"
             v-model="pothole.imageLink"
           /><br /><br />
-          <button class="add-button" type="button" v-on:click="addNewPothole">
+          <button class="add-button" type="button" v-b-toggle.sidebar-1 v-on:click="addNewPothole">
             Add New Pothole
           </button>
         </form>
@@ -70,6 +73,7 @@ export default {
   },
   methods: {
     addNewPothole() {
+
       potholeService.addPothole(this.pothole).then((r) => {
         if (r.status === 200) {
           this.setPotholes();
@@ -89,6 +93,12 @@ export default {
         this.$store.commit("SET_POTHOLE_LIST", r.data);
       });
     },
+    startAdd(){
+      this.$emit("start-add")
+    }
+    ,endAdd(){
+      this.$emit("end-add")
+    }
   },
 };
 </script>
