@@ -91,8 +91,8 @@ div.home-page-map {
     height: 45px;
     width: auto;
     position: relative;
-    top: -27.9vw;
-    left: 49.5vw;
+    top: -19.4vw;
+    left: 49.2vw;
   }
 
   #sidebar-1 > header.b-sidebar-header {
