@@ -5,7 +5,7 @@
       :zoom="zoom"
       :center="center"
       :options="mapOptions"
-      style="height: 95%"
+
       class="brown-border"
       @update:center="centerUpdate"
       @update:zoom="zoomUpdate"

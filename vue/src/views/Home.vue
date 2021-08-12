@@ -30,7 +30,6 @@
         ref="streetmap"
       />
     </div>
-
     <add-pothole @start-add="startAdd" @end-add="endAdd" v-bind:currentCenter="currentCenter" />
   </div>
 </template>
