@@ -110,6 +110,10 @@ export default {
     align-items: center;
     justify-content: center;
   }
+
+  button.resize-button {
+    display: none;
+  }
 }
 
 div.map-div {

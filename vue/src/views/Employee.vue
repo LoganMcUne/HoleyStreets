@@ -122,6 +122,10 @@ export default {
   .small-screen-line-break {
     display: none;
   }
+
+  button.resize-button {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 412px) {
