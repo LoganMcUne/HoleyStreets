@@ -3,7 +3,7 @@
     <b-dropdown
       id="dropdown-right"
       right
-      text="User Options"
+      :text="buttonTitle()"
       variant="light"
       class="m-md-2"
     >
@@ -83,6 +83,17 @@ import RequestEmployment from "../components/RequestEmployment.vue";
 
 export default {
   components: { RequestEmployment },
+  methods: {
+      buttonTitle(){
+        if(this.$store.state.token != '')
+        {
+          return 'Welcome' + ' ' + this.$store.state.user.username
+        }
+        else{
+          return 'Welcome'
+        }
+      }
+    }
 };
 </script>
 
