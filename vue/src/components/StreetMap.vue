@@ -82,12 +82,12 @@ export default {
   },
   data() {
     return {
-      zoom: 12,
-      center: latLng(39.157487, -84.463921),
+      zoom: 5,
+      center: latLng(39.157487, -99.6425623762905),
       url: "https://tile.thunderforest.com/atlas/{z}/{x}/{y}.png?apikey=68585e9a3c4f46788036058c0acfaa4e",
       attribution: this.currentCenter,
-      currentZoom: 12,
-      currentCenter: latLng(39.157487, -84.463921),
+      currentZoom: 5,
+      currentCenter: latLng(39.157487, -99.6425623762905),
       showParagraph: false,
       bounds: latLngBounds([
         [14.558205167291081, -185.09765625],
