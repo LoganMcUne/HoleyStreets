@@ -5,7 +5,8 @@
       :zoom="zoom"
       :center="center"
       :options="mapOptions"
-
+      :max-bounds="bounds"
+     
       class="brown-border"
       @update:center="centerUpdate"
       @update:zoom="zoomUpdate"
@@ -18,6 +19,7 @@
           </div>
         </div>
       </l-control>
+      <l-control-scale position="bottomleft" :imperial="true" :metric="false" />
 
       <l-tile-layer :url="url" :attribution="attribution" />
       <l-marker
@@ -35,18 +37,18 @@
             alt=""
           /><br />
           <div style="text-align: center">
-            <div>Lat: {{ pothole.latitude }}</div>
-            <div>Lng: {{ pothole.longitude }}</div>
-            <div>Reported: {{ formatDate(pothole.reportedDate) }}</div>
-            <div v-show="pothole.inspectedDate">
-              Inspected: {{ formatDate(pothole.inspectedDate) }}
+            <div><b>Lat:</b> {{ pothole.latitude }}</div>
+            <div><b>Lng:</b> {{ pothole.longitude }}</div>
+            <div><b>Reported:</b> {{ formatDate(pothole.reportedDate) }}</div>
+            <div v-show="pothole.inspectedDate"><b>
+              Inspected:</b> {{ formatDate(pothole.inspectedDate) }}
             </div>
-            <div v-show="pothole.repairedDate">
-              Repaired: {{ formatDate(pothole.repairedDate) }}
+            <div v-show="pothole.repairedDate"><b>
+              Repaired:</b> {{ formatDate(pothole.repairedDate) }}
             </div>
-            <div>Repaired: {{ pothole.repairStatus }}</div>
+            <div><b>Repaired:</b> {{ pothole.repairStatus }}</div>
             <div>
-              ID:<b> {{ pothole.id }}</b>
+              <b>ID: {{ pothole.id }}</b>
             </div>
           </div>
         </l-popup>
@@ -59,10 +61,9 @@
 </template>
 
 <script>
-import { latLng } from "leaflet";
+import {latLngBounds, latLng } from "leaflet";
 import L from "leaflet";
-import { LMap, LTileLayer, LMarker, LPopup, LControl } from "vue2-leaflet";
-
+import { LMap, LTileLayer, LMarker, LPopup, LControl, LControlScale } from "vue2-leaflet";
 export default {
   name: "Map",
   props: ["currentView", "latLongZoomInfoVisible", "mapKey", "isBigMap"],
@@ -72,6 +73,7 @@ export default {
     LMarker,
     LPopup,
     LControl,
+    LControlScale
   },
   watch: {
     currentCenter: function () {
@@ -80,13 +82,17 @@ export default {
   },
   data() {
     return {
-      zoom: 12,
-      center: latLng(39.157487, -84.463921),
-      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      zoom: 5,
+      center: latLng(39.157487, -99.6425623762905),
+      url: "https://tile.thunderforest.com/atlas/{z}/{x}/{y}.png?apikey=68585e9a3c4f46788036058c0acfaa4e",
       attribution: this.currentCenter,
-      currentZoom: 12,
-      currentCenter: latLng(39.157487, -84.463921),
+      currentZoom: 5,
+      currentCenter: latLng(39.157487, -99.6425623762905),
       showParagraph: false,
+      bounds: latLngBounds([
+        [14.558205167291081, -185.09765625],
+        [53.27992461623911, -31.093255571223526],
+      ]),
       mapOptions: {
         zoomSnap: 0.5,
       },
@@ -162,8 +168,8 @@ export default {
     innerClick() {
       alert("Click!");
     },
-    startAdd(p){
-      this.markers.push(p)
+    startAdd(p) {
+      this.markers.push(p);
     },
     makeLatLng(lat, lng) {
       return latLng(lat, lng);
@@ -182,9 +188,9 @@ export default {
         return true;
       }
     },
-    markers(){
-      return this.$store.state.potholes
-    }
+    markers() {
+      return this.$store.state.potholes;
+    },
   },
   created() {
     return this.$emit("sendupcoords", this.currentCenter);
