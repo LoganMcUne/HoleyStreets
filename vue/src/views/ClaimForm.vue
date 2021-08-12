@@ -231,27 +231,28 @@ export default {
         });
     },
     methods: {
-        submitClaimForm() {
-            const today = new Date();
-            this.claimForm.dateOfClaim = today.toJSON();
+      submitClaimForm() {
+        const today = new Date();
+        this.claimForm.dateOfClaim = today.toJSON();
 
-            claimFormService.submitClaimForm(this.claimForm)
-            .then(response => {
-                if (response.status === 200) {
-                    alert("Thank you! We will never get back to you about this.");
-                }
-                this.claimForm = {};
-            })
-            .catch(error => {
-                this.handleError(error);
-            })
-        },
-        handleError(error) {
-            console.log(error);
-        }
-    }
-}
-}
+        claimFormService
+          .submitClaimForm(this.claimForm)
+          .then((response) => {
+            if (response.status === 200) {
+              alert("Thank you! We will never get back to you about this.");
+            }
+            this.claimForm = {};
+          })
+          .catch((error) => {
+            this.handleError(error);
+          });
+      },
+      handleError(error) {
+        console.log(error);
+      },
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -342,9 +343,11 @@ export default {
 }
 
 button.submit-button {
-    width: 150px;
-    margin-bottom: 20px;
-    background-color: #acd178;
-    border-radius: 5px;
+  width: 150px;
+  margin-bottom: 20px;
+  background-color: #acd178;
+  border: 1px solid black;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 </style>

@@ -25,7 +25,11 @@
         />
       </div>
 
-      <add-pothole @start-add="startAdd" @end-add="endAdd" v-bind:currentCenter="currentCenter" />
+      <add-pothole
+        @start-add="startAdd"
+        @end-add="endAdd"
+        v-bind:currentCenter="currentCenter"
+      />
     </div>
 
     <img
@@ -96,15 +100,17 @@ div.home-page-map {
   }
 
   #sidebar-1 > header.b-sidebar-header {
-  display: flex;
-  flex-direction: column-reverse;
-  gap: 3px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 3px;
   }
 
   #sidebar-1 > header.b-sidebar-header > button {
     background-color: #adc178;
     height: 25px;
     width: 25px;
+    border: 1px solid black;
+    border-radius: 5px;
   }
 
   #sidebar-1 > header.b-sidebar-header > button > svg {
@@ -134,15 +140,17 @@ div.home-page-map {
   }
 
   #sidebar-1 > header.b-sidebar-header {
-  display: flex;
-  flex-direction: column-reverse;
-  gap: 3px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 3px;
   }
 
   #sidebar-1 > header.b-sidebar-header > button {
     background-color: #adc178;
     height: 25px;
     width: 25px;
+    border: 1px solid black;
+    border-radius: 5px;
   }
 
   #sidebar-1 > header.b-sidebar-header > button > svg {
@@ -163,8 +171,8 @@ div.home-page-map {
 
 @media only screen and (max-width: 768px) {
   #sidebar-1 {
-  height: 230px;
-  top: 70px;
+    height: 230px;
+    top: 70px;
   }
 
   div#sidebar-1 header.b-sidebar-header {
@@ -176,10 +184,10 @@ div.home-page-map {
   }
 
   #sidebar-1 > header.b-sidebar-header {
-  display: flex;
-  flex-direction: row;
-  gap: 3px;
-  height: 15%;
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+    height: 15%;
   }
 
   #sidebar-1 > header.b-sidebar-header > #sidebar-1___title__ {
@@ -188,7 +196,7 @@ div.home-page-map {
     font-family: "Luckiest Guy", cursive;
     text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000;
   }
-  
+
   .center-marker {
     z-index: 1000;
     height: 45px;

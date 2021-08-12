@@ -122,10 +122,11 @@ div.map-div {
 
 button.resize-button {
   color: black;
-  font-family: "Luckiest Guy", cursive;
+  font-weight: bold;
   font-size: 16px;
   background-color: #adc178;
   width: 175px;
+  border: 1px solid black;
   border-radius: 5px;
 }
 </style>

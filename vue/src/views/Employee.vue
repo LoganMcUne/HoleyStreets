@@ -6,7 +6,9 @@
         src="../../public/tire_track_left.jpg"
         alt="Tire track picture"
       />
-      <h1 class="centered-h1 title">Employee <br class="small-screen-line-break" />Dashboard</h1>
+      <h1 class="centered-h1 title">
+        Employee <br class="small-screen-line-break" />Dashboard
+      </h1>
       <img
         class="right-pic tire-pic"
         src="../../public/tire_track_right.jpg"
@@ -23,7 +25,9 @@
           v-bind:mapKey="employeeKey"
           v-bind:latLongZoomInfoVisible="false"
         />
-        <button class="resize-button" v-on:click="resizeMap()">{{ !isExpandClicked ? "Expand" : "Minimize"}}</button>
+        <button class="resize-button" v-on:click="resizeMap()">
+          {{ !isExpandClicked ? "Expand" : "Minimize" }}
+        </button>
       </div>
 
       <div class="hole-list-table">
@@ -64,7 +68,7 @@ export default {
       var element = document.getElementById("map");
       element.classList.toggle("expand-map");
       this.isExpandClicked = !this.isExpandClicked;
-      this.$refs.streetmap.redrawSize()
+      this.$refs.streetmap.redrawSize();
     },
     findPothole(id) {
       return this.$store.state.potholes.find((p) => p.id == id);
@@ -102,11 +106,11 @@ export default {
   }
 
   div.expand-map {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5vw;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -139,10 +143,11 @@ div.map-div {
 }
 
 button.resize-button {
-  color: black;
-  font-family: "Luckiest Guy", cursive;
   font-size: 16px;
+  font-weight: bold;
   background-color: #adc178;
   width: 175px;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 </style>

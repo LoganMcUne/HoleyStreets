@@ -124,6 +124,7 @@ button.add-button {
   font-size: 16px;
   background-color: #adc178;
   width: 175px;
+  border: 1px solid black;
   border-radius: 5px;
 }
 

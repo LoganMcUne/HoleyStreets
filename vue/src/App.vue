@@ -162,4 +162,8 @@ div.subtitle-box-claim-form {
   align-items: center;
   justify-content: center;
 }
+button{
+  border: 1px solid black;
+  border-radius: 5px;
+}
 </style>
