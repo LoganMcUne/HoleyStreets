@@ -93,7 +93,7 @@ export default {
 </script>
 
 <style>
-@media only screen and (min-width: 1220px) {
+@media only screen and (min-width: 1440px) {
   .admin-tables {
     display: flex;
     flex-direction: column;
@@ -129,7 +129,89 @@ export default {
   }
 
   .scroll-section-all-users {
-    height: 19vh;
+    height: 22vh;
+    overflow: auto;
+  }
+}
+
+@media only screen and (max-width: 1440px) {
+  .admin-tables {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5vh;
+    margin: 0 5vh 5vh 5vh;
+  }
+
+  .admin-tables-top {
+    height: 35vh;
+    gap: 3vh;
+    min-height: 250px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .admin-tables-bottom {
+    height: 50vh;
+    min-height: 250px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+
+  .scroll-section {
+    height: 27vh;
+    overflow: auto;
+  }
+
+  .scroll-section-all-users {
+    height: 20vh;
+    overflow: auto;
+  }
+}
+
+@media only screen and (max-width: 1220px) {
+  .admin-tables {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5vh;
+    margin: 0 5vh 5vh 5vh;
+  }
+
+  .admin-tables-top {
+    height: 35vh;
+    gap: 3vh;
+    min-height: 250px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .admin-tables-bottom {
+    height: 50vh;
+    min-height: 250px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+
+  .scroll-section {
+    height: 27vh;
+    overflow: auto;
+  }
+
+  .scroll-section-all-users {
+    height: 22vh;
     overflow: auto;
   }
 }
