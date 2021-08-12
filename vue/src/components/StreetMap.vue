@@ -37,18 +37,18 @@
             alt=""
           /><br />
           <div style="text-align: center">
-            <div>Lat: {{ pothole.latitude }}</div>
-            <div>Lng: {{ pothole.longitude }}</div>
-            <div>Reported: {{ formatDate(pothole.reportedDate) }}</div>
-            <div v-show="pothole.inspectedDate">
-              Inspected: {{ formatDate(pothole.inspectedDate) }}
+            <div><b>Lat:</b> {{ pothole.latitude }}</div>
+            <div><b>Lng:</b> {{ pothole.longitude }}</div>
+            <div><b>Reported:</b> {{ formatDate(pothole.reportedDate) }}</div>
+            <div v-show="pothole.inspectedDate"><b>
+              Inspected:</b> {{ formatDate(pothole.inspectedDate) }}
             </div>
-            <div v-show="pothole.repairedDate">
-              Repaired: {{ formatDate(pothole.repairedDate) }}
+            <div v-show="pothole.repairedDate"><b>
+              Repaired:</b> {{ formatDate(pothole.repairedDate) }}
             </div>
-            <div>Repaired: {{ pothole.repairStatus }}</div>
+            <div><b>Repaired:</b> {{ pothole.repairStatus }}</div>
             <div>
-              ID:<b> {{ pothole.id }}</b>
+              <b>ID: {{ pothole.id }}</b>
             </div>
           </div>
         </l-popup>
@@ -84,7 +84,7 @@ export default {
     return {
       zoom: 12,
       center: latLng(39.157487, -84.463921),
-      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      url: "https://tile.thunderforest.com/atlas/{z}/{x}/{y}.png?apikey=68585e9a3c4f46788036058c0acfaa4e",
       attribution: this.currentCenter,
       currentZoom: 12,
       currentCenter: latLng(39.157487, -84.463921),
