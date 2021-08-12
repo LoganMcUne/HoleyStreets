@@ -25,21 +25,21 @@
             id="latitude"
             name="latitude"
             v-model.number="pothole.latitude"
-          /><br /><br />
+          /><br class="add-pothole-form-break" /><br class="add-pothole-form-break" />
           <label for="longitude">Longitude:</label><br />
           <input
             type="text"
             id="longitude"
             name="longitude"
             v-model.number="pothole.longitude"
-          /><br /><br />
+          /><br class="add-pothole-form-break" /><br class="add-pothole-form-break" />
           <label for="image-link">Image Link:</label><br />
           <input
             type="url"
             id="image-link"
             name="image-link"
             v-model="pothole.imageLink"
-          /><br /><br />
+          /><br class="add-pothole-form-break"  /><br class="add-pothole-form-break" />
           <button class="add-button" type="button" v-b-toggle.sidebar-1 v-on:click="addNewPothole">
             Add New Pothole
           </button>
@@ -111,7 +111,6 @@ button.add-new {
   font-family: "Luckiest Guy", cursive;
   position: relative;
   left: 2.5vw;
-  bottom: 20px;
   border-radius: 5px;
 }
 

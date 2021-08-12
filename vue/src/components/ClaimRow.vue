@@ -92,7 +92,8 @@ export default {
 
 <style scoped>
 .image-link {
-  width: 5vw;
+  width: auto;
+  height: 75px;
 }
 
 button {

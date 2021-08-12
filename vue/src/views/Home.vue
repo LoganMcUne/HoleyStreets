@@ -14,23 +14,26 @@
       />
     </div>
 
+    <div class="home-page-map-and-sidebar">
+      <div class="home-page-map">
+        <street-map
+          currentView="home"
+          v-bind:mapKey="homeKey"
+          @sendupcoords="setCoordinates"
+          v-bind:latLongZoomInfoVisible="false"
+          ref="streetmap"
+        />
+      </div>
+
+      <add-pothole @start-add="startAdd" @end-add="endAdd" v-bind:currentCenter="currentCenter" />
+    </div>
+
     <img
       v-show="ifAdding"
       class="center-marker"
       src="marker-icon-blue.png"
       alt="Center marker"
     />
-
-    <div class="home-page-map">
-      <street-map
-        currentView="home"
-        v-bind:mapKey="homeKey"
-        @sendupcoords="setCoordinates"
-        v-bind:latLongZoomInfoVisible="false"
-        ref="streetmap"
-      />
-    </div>
-    <add-pothole @start-add="startAdd" @end-add="endAdd" v-bind:currentCenter="currentCenter" />
   </div>
 </template>
 
@@ -70,33 +73,6 @@ export default {
 </script>
 
 <style>
-#sidebar-1 > header.b-sidebar-header {
-  display: flex;
-  flex-direction: column-reverse;
-  gap: 3px;
-}
-
-#sidebar-1 > header.b-sidebar-header > button {
-  background-color: #adc178;
-  height: 25px;
-  width: 25px;
-}
-
-#sidebar-1 > header.b-sidebar-header > button > svg {
-  color: black;
-  position: relative;
-  right: 4px;
-  bottom: 12px;
-  font-size: 18px;
-}
-
-#sidebar-1 > header.b-sidebar-header > #sidebar-1___title__ {
-  font-size: 33px;
-  color: #adc178;
-  font-family: "Luckiest Guy", cursive;
-  text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000;
-}
-
 h1.centered-h1 {
   padding-top: 10px;
   text-align: center;
@@ -115,8 +91,35 @@ div.home-page-map {
     height: 45px;
     width: auto;
     position: relative;
-    top: 33.8vh;
-    left: 49vw;
+    top: -27.9vw;
+    left: 49.5vw;
+  }
+
+  #sidebar-1 > header.b-sidebar-header {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 3px;
+  }
+
+  #sidebar-1 > header.b-sidebar-header > button {
+    background-color: #adc178;
+    height: 25px;
+    width: 25px;
+  }
+
+  #sidebar-1 > header.b-sidebar-header > button > svg {
+    color: black;
+    position: relative;
+    right: 4px;
+    bottom: 12px;
+    font-size: 18px;
+  }
+
+  #sidebar-1 > header.b-sidebar-header > #sidebar-1___title__ {
+    font-size: 33px;
+    color: #adc178;
+    font-family: "Luckiest Guy", cursive;
+    text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000;
   }
 }
 
@@ -126,8 +129,78 @@ div.home-page-map {
     height: 45px;
     width: auto;
     position: relative;
-    top: 33.2vh;
-    left: 48vw;
+    top: -35vw;
+    left: 48.65vw;
+  }
+
+  #sidebar-1 > header.b-sidebar-header {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 3px;
+  }
+
+  #sidebar-1 > header.b-sidebar-header > button {
+    background-color: #adc178;
+    height: 25px;
+    width: 25px;
+  }
+
+  #sidebar-1 > header.b-sidebar-header > button > svg {
+    color: black;
+    position: relative;
+    right: 4px;
+    bottom: 12px;
+    font-size: 18px;
+  }
+
+  #sidebar-1 > header.b-sidebar-header > #sidebar-1___title__ {
+    font-size: 33px;
+    color: #adc178;
+    font-family: "Luckiest Guy", cursive;
+    text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #sidebar-1 {
+  height: 230px;
+  top: 70px;
+  }
+
+  div#sidebar-1 header.b-sidebar-header {
+    padding: 2px;
+  }
+
+  div#sidebar-1 br.add-pothole-form-break {
+    display: none;
+  }
+
+  #sidebar-1 > header.b-sidebar-header {
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+  height: 15%;
+  }
+
+  #sidebar-1 > header.b-sidebar-header > #sidebar-1___title__ {
+    font-size: 33px;
+    color: #adc178;
+    font-family: "Luckiest Guy", cursive;
+    text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000;
+  }
+  
+  .center-marker {
+    z-index: 1000;
+    height: 45px;
+    width: auto;
+    position: relative;
+    top: -52.3vw;
+    left: 48.45vw;
+  }
+
+  .home-page-map-and-sidebar {
+    display: flex;
+    flex-direction: column;
   }
 }
 </style>
