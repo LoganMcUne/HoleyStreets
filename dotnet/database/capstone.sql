@@ -29,7 +29,7 @@ CREATE TABLE potholes (
 	pothole_id int IDENTITY(1,1) NOT NULL,
 	latitude decimal(8,6) NOT NULL,
 	longitude decimal(9,6) NOT NULL,
-	image_link varchar(150),
+	image_link varchar(300),
 	reported_date DATE NOT NULL,
 	reporting_user_id int NOT NULL,
 	inspected_date DATE,
@@ -62,7 +62,7 @@ CREATE TABLE claims (
 	date_of_incident DATE NOT NULL,
 	location_of_incident_city VARCHAR(120) NOT NULL,
 	location_of_incident_state VARCHAR(120) NOT NULL,
-	image_link VARCHAR(600),
+	image_link VARCHAR(1200),
 	description_of_damage VARCHAR(1200) NOT NULL,
 	claim_status VARCHAR (30) NOT NULL DEFAULT 'Pending',
 	CONSTRAINT PK_claims PRIMARY KEY (claim_id),
@@ -83,6 +83,15 @@ INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user
 INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user_id, repair_status) VALUES (39.180460, -84.501135, 'https://kdvr.com/wp-content/uploads/sites/11/2019/03/gettyimages-183851840.jpg','8/2/2021',3, 'Inspected');
 INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user_id, repair_status) VALUES (39.133231, -84.413645, 'https://media1.fdncms.com/chicago/imager/u/original/71086724/potholes010.jpg','8/2/2021',3, 'Repaired');
 INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user_id, repair_status) VALUES (39.158086, -84.463604, 'https://www.thebalance.com/thmb/VlnrT3pRKvtegoumE0fXWmA4pWI=/2121x1193/smart/filters:no_upscale()/pothole-174662203-5a7dc84aae9ab80036c6ad36.jpg','8/2/2021',4, 'Repaired');
+INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user_id, repair_status) VALUES (37.798505, -122.4583, 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/A_Pothole_Is_Decorated_-_Mid-City_New_Orleans.jpg/800px-A_Pothole_Is_Decorated_-_Mid-City_New_Orleans.jpg','8/7/2021',2, 'Reported');
+INSERT INTO potholes(latitude,longitude,image_link, reported_date, reporting_user_id, repair_status) VALUES (39.779730, -104.8827,'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Pothole_in_an_asphalt_pavement.jpg/800px-Pothole_in_an_asphalt_pavement.jpg', '8/1/2021',3, 'Inspected');
+INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user_id, repair_status) VALUES (29.267419, -98.559569,'https://upload.wikimedia.org/wikipedia/commons/c/c7/Pothole_Big.jpg','8/2/2021',1, 'Repaired');
+INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user_id, repair_status) VALUES (39.001061, -94.496286,'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Moon_Dedal_crater-crop.jpg/800px-Moon_Dedal_crater-crop.jpg','8/7/2021',1, 'Reported');
+INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user_id, repair_status) VALUES (46.829766, -96.803063,'https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Marked_Pothole.jpg/640px-Marked_Pothole.jpg','8/3/2021',2, 'Inspected');
+INSERT INTO potholes(latitude,longitude,reported_date, reporting_user_id, repair_status) VALUES (32.746343, -79.986972,'8/6/2021',4, 'Repaired');
+INSERT INTO potholes(latitude,longitude,reported_date, reporting_user_id, repair_status) VALUES (39.324023, -82.105083,'8/5/2021',3, 'Inspected');
+INSERT INTO potholes(latitude,longitude,reported_date, reporting_user_id, repair_status) VALUES (38.299890, -83.175415,'8/1/2021',2, 'Repaired');
+INSERT INTO potholes(latitude,longitude,reported_date, reporting_user_id, repair_status) VALUES (29.619924, -82.359311,'8/2/2021',1, 'Reported');
 
 INSERT INTO requests (user_id, active_status) VALUES (1, 1);
 INSERT INTO requests (user_id, active_status) VALUES (5, 1);
