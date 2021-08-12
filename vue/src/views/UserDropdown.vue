@@ -27,6 +27,15 @@
       </router-link>
 
       <router-link
+        v-if="$store.state.token == ''"
+        v-bind:to="{name: 'register'}"
+        tag="b-dropdown-item"
+        class="dropdown-btn"
+        >
+        Create an Account
+      </router-link>
+
+      <router-link
         v-if="$store.state.token != ''"
         v-bind:to="{ name: 'account' }"
         tag="b-dropdown-item"
