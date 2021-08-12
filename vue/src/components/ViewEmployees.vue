@@ -1,32 +1,34 @@
 <template>
-  <div class="employee-access-table">
+  <div class="employee-access-table employee-access-table-top">
     <h1 class="admin-h1">All Current Employees</h1>
 
-    <table class="table-size">
-      <thead>
-        <tr>
-          <th class="th-style">User Id</th>
-          <th class="th-style">User Name</th>
-          <th class="th-style">Remove Employee Access</th>
-        </tr>
-      </thead>
+    <div class="scroll-section">
+      <table class="table-size">
+        <thead>
+          <tr>
+            <th class="th-style">User Id</th>
+            <th class="th-style">User Name</th>
+            <th class="th-style">Remove Employee Access</th>
+          </tr>
+        </thead>
 
-      <tbody>
-        <tr
-          v-for="employee in $store.state.employees"
-          v-bind:key="employee.userid"
-          class="row-style"
-        >
-          <td>{{ employee.userId }}</td>
-          <td>{{ employee.username }}</td>
-          <td>
-            <button @click="removeEmployeeRole(employee.userId)" class="remove">
-              Remove Employee
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <tbody>
+          <tr
+            v-for="employee in $store.state.employees"
+            v-bind:key="employee.userid"
+            class="row-style"
+          >
+            <td>{{ employee.userId }}</td>
+            <td>{{ employee.username }}</td>
+            <td>
+              <button @click="removeEmployeeRole(employee.userId)" class="remove">
+                Remove Employee
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 

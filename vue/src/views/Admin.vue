@@ -16,13 +16,13 @@
 
     <br />
 
-    <div>
-      <div class="admin-tables">
+    <div class="admin-tables">
+      <div class="admin-tables-top">
         <active-requests />
         <view-employees />
         <all-users />
       </div>
-      <div class="admin-tables">
+      <div class="admin-tables-bottom">
         <all-claims />
       </div>
     </div>
@@ -93,36 +93,174 @@ export default {
 </script>
 
 <style>
-@media only screen and (min-width: 950px) {
+@media only screen and (min-width: 1220px) {
   .admin-tables {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
+    gap: 5vh;
+    margin: 0 5vh 5vh 5vh;
   }
 
-  div.employee-access-table {
-    margin: 0 3vh 3vh 3vh;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding-bottom: 10px;
+  .admin-tables-top {
+    height: 35vh;
+    gap: 3vh;
+    min-height: 250px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .admin-tables-bottom {
+    height: 50vh;
+    min-height: 250px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+
+  .scroll-section {
+    height: 27vh;
+    overflow: auto;
+  }
+
+  .scroll-section-all-users {
+    height: 19vh;
+    overflow: auto;
   }
 }
 
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: 1220px) {
+    .admin-tables {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5vh;
+    margin: 0 5vh 5vh 5vh;
+  }
+
+  .admin-tables-top {
+    height: 35vh;
+    gap: 3vh;
+    min-height: 250px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .admin-tables-bottom {
+    height: 50vh;
+    min-height: 250px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+
+  .scroll-section {
+    height: 27vh;
+    overflow: auto;
+  }
+
+  .scroll-section-all-users {
+    height: 19vh;
+    overflow: auto;
+  }
+}
+
+@media only screen and (max-width: 1060px) {
   .admin-tables {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3vh;
+  }
+
+  .admin-tables-top {
+    height: 120vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
 
-  div.employee-access-table {
-    margin: 0 3vh 3vh 3vh;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding-bottom: 10px;
-    width: 90vw;
+  div.employee-access-table-top {
+  height: 50vh;
+  min-height: 250px;
+  width: 100%;
   }
+
+  .scroll-section {
+    height: 28vh;
+    overflow: auto;
+  }
+
+  .scroll-section-all-users {
+    height: 24vh;
+    overflow: auto;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .admin-tables {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3vh;
+  }
+
+  .admin-tables-top {
+    height: 130vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  div.employee-access-table-top {
+  height: 50vh;
+  min-height: 250px;
+  width: 100%;
+  }
+
+  .scroll-section {
+    height: 28vh;
+    overflow: auto;
+  }
+
+  .scroll-section-all-users {
+    height: 17vh;
+    overflow: auto;
+  }
+}
+
+div.employee-access-table {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding-bottom: 10px;
+}
+
+div.employee-access-table-top {
+  height: 35vh;
+  min-height: 250px;
+  width: 100%;
+}
+
+div.employee-access-table-bottom {
+  width: 100%;
+  height: 50vh;
+  min-height: 250px;
 }
 
 h1.admin-h1 {
@@ -152,5 +290,8 @@ table {
 
 .th-style{
     text-align: center;
+    position: sticky;
+    top: 0;
+    background-color: #adc178;
 }
 </style>

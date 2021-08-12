@@ -1,33 +1,36 @@
 <template>
-  <div class="employee-access-table">
+  <div class="employee-access-table employee-access-table-top">
     <h1 class="admin-h1">Users Requesting Employee Access</h1>
-    <table class="table-size">
-      <thead>
-        <tr>
-          <th class="th-style">User Id</th>
-          <th class="th-style">User Name</th>
-          <th class="th-style">Approve</th>
-          <th class="th-style">Deny</th>
-        </tr>
-      </thead>
 
-      <tbody>
-        <tr
-          v-for="request in this.$store.state.requests"
-          v-bind:key="request.userid"
-          class="row-style"
-        >
-          <td>{{ request.userId }}</td>
-          <td>{{ request.username }}</td>
-          <td>
-            <button @click="approveRequest(request.userId)" class="approve">Approve</button>
-          </td>
-          <td>
-            <button @click="denyRequest(request.userId)" class="deny">Deny</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="scroll-section">
+      <table class="table-size">
+        <thead>
+          <tr>
+            <th class="th-style">User Id</th>
+            <th class="th-style">User Name</th>
+            <th class="th-style">Approve</th>
+            <th class="th-style">Deny</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr
+            v-for="request in this.$store.state.requests"
+            v-bind:key="request.userid"
+            class="row-style"
+          >
+            <td>{{ request.userId }}</td>
+            <td>{{ request.username }}</td>
+            <td>
+              <button @click="approveRequest(request.userId)" class="approve">Approve</button>
+            </td>
+            <td>
+              <button @click="denyRequest(request.userId)" class="deny">Deny</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 <script>
