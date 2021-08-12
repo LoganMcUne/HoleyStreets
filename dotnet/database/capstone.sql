@@ -88,10 +88,10 @@ INSERT INTO potholes(latitude,longitude,image_link, reported_date, inspected_dat
 INSERT INTO potholes(latitude,longitude,image_link,reported_date, inspected_date, repaired_date, reporting_user_id, repair_status) VALUES (29.267419, -98.559569,'https://upload.wikimedia.org/wikipedia/commons/c/c7/Pothole_Big.jpg','8/2/2021','8/3/2021','8/11/2021',1, 'Repaired');
 INSERT INTO potholes(latitude,longitude,image_link,reported_date, reporting_user_id, repair_status) VALUES (39.001061, -94.496286,'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Clausius_crater_4148_h2_h3.jpg/600px-Clausius_crater_4148_h2_h3.jpg','8/7/2021',1, 'Reported');
 INSERT INTO potholes(latitude,longitude,image_link,reported_date, inspected_date, reporting_user_id, repair_status) VALUES (46.829766, -96.803063,'https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Marked_Pothole.jpg/640px-Marked_Pothole.jpg','8/3/2021','8/4/2021',2, 'Inspected');
-INSERT INTO potholes(latitude,longitude,reported_date, reporting_user_id, repair_status) VALUES (32.746343, -79.986972,'8/6/2021',4, 'Repaired');
-INSERT INTO potholes(latitude,longitude,reported_date, reporting_user_id, repair_status) VALUES (39.324023, -82.105083,'8/5/2021',3, 'Inspected');
-INSERT INTO potholes(latitude,longitude,reported_date, reporting_user_id, repair_status) VALUES (38.299890, -83.175415,'8/1/2021',2, 'Repaired');
-INSERT INTO potholes(latitude,longitude,reported_date, reporting_user_id, repair_status) VALUES (29.619924, -82.359311,'8/2/2021',1, 'Reported');
+INSERT INTO potholes(latitude,longitude,image_link,reported_date, inspected_date, repaired_date,reporting_user_id, repair_status) VALUES (32.746343, -79.986972,'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Sinkhole.jpg/800px-Sinkhole.jpg','8/6/2021','8/7/2021','8/8/2021', 4, 'Repaired');
+INSERT INTO potholes(latitude,longitude, image_link,reported_date, inspected_date, reporting_user_id, repair_status) VALUES (39.324023, -82.105083,'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Nuuksio_pothole.jpg/800px-Nuuksio_pothole.jpg','8/5/2021','8/6/2021',3, 'Inspected');
+INSERT INTO potholes(latitude,longitude, image_link,reported_date, inspected_date, repaired_date, reporting_user_id, repair_status) VALUES (38.299890, -83.175415,'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Gold_fish_in_a_pothole_11.jpg/800px-Gold_fish_in_a_pothole_11.jpg','8/1/2021', '8/2/2021','8/3/2021',2, 'Repaired');
+INSERT INTO potholes(latitude,longitude,image_link,reported_date,reporting_user_id, repair_status) VALUES (29.619924, -82.359311, 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Pothole%2C_Vas%C3%BAt_utca%2C_Zichy%C3%BAjfalu_001.jpg/800px-Pothole%2C_Vas%C3%BAt_utca%2C_Zichy%C3%BAjfalu_001.jpg','8/2/2021',1, 'Reported');
 
 INSERT INTO requests (user_id, active_status) VALUES (1, 1);
 INSERT INTO requests (user_id, active_status) VALUES (5, 1);
