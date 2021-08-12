@@ -96,7 +96,7 @@ export default {
       buttonTitle(){
         if(this.$store.state.token != '')
         {
-          return 'Welcome' + ' ' + this.$store.state.user.username
+          return 'Welcome' + ' ' + this.$store.state.user.username.substring(0, 1).toUpperCase() + this.$store.state.user.username.substring(1)
         }
         else{
           return 'Welcome'
