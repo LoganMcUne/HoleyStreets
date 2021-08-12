@@ -21,7 +21,7 @@
           ref="streetmap"
           currentView="employee"
           v-bind:mapKey="employeeKey"
-          v-bind:latLongZoomInfoVisible="true"
+          v-bind:latLongZoomInfoVisible="false"
         />
         <button class="resize-button" v-on:click="resizeMap()">{{ !isExpandClicked ? "Expand" : "Minimize"}}</button>
       </div>
