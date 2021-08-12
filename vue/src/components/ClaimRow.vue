@@ -13,20 +13,22 @@
     <td><img v-bind:src="claim.imageLink" class="image-link" /></td>
     <td>{{ claim.descriptionOfDamage }}</td>
     <td v-if="!isEditClicked">
-      {{ claim.claimStatus }}<br /><br />
+      {{ claim.claimStatus }}
+      <div class="text-button-spacer"></div>
       <button v-if="!isEditClicked" v-on:click="changeIsEditClicked">
         Edit
       </button>
     </td>
     <td v-if="isEditClicked">
-      <select id="claimStatus" name="claimStatus" v-model="newClaim.claimStatus">
-        <option>Pending</option>
-        <option>Approved</option>
-        <option>Denied</option></select
-      >
-      <button v-on:click="updateClaim(claim)" v-if="isEditClicked">
-        Submit Status
-      </button>
+        <select id="claimStatus" name="claimStatus" v-model="newClaim.claimStatus">
+            <option>Pending</option>
+            <option>Approved</option>
+            <option>Denied</option>
+        </select>
+        <div class="text-button-spacer"></div>
+        <button v-on:click="updateClaim(claim)" v-if="isEditClicked">
+            Submit Status
+        </button>
     </td>
   </tr>
 </template>
@@ -96,5 +98,9 @@ export default {
 button {
   background-color: #adc178;
   border-radius: 5px;
+}
+
+.text-button-spacer {
+    height: 5px;
 }
 </style>
