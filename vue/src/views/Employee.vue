@@ -78,12 +78,10 @@ export default {
     startEdit(id) {
       let p = this.findPothole(id);
       this.$set(p, "isBig", true);
-      this.$set(p, "iconUrl", this.emColor);
     },
     endEdit(id) {
       let p = this.findPothole(id);
       this.$set(p, "isBig", false);
-      this.$set(p, "iconUrl", p.startColor);
     },
   },
 };

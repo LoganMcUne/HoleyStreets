@@ -30,14 +30,19 @@ export default {
     Dropdown,
   },
   created() {
-    potholeService.list().then((r) => {
+    this.setPotholes()
+  },
+  methods: {
+    setPotholes(){
+      potholeService.list().then((r) => {
       r.data.forEach((p) => {
         this.$set(p, "isBig", false);
         this.$set(p, "opacity", 1);
       });
       this.$store.commit("SET_POTHOLE_LIST", r.data);
     });
-  },
+    }
+  }
 };
 </script>
 

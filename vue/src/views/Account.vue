@@ -122,5 +122,6 @@ button.resize-button {
   font-size: 16px;
   background-color: #adc178;
   width: 175px;
+  border-radius: 5px;
 }
 </style>

@@ -1,93 +1,79 @@
 <template>
   <div>
-    <div class="employee-access-table">
+    <div class="employee-access-table all-claims-table">
       <h1 class="admin-h1">Damage Claims</h1>
       <div class="scroll-section">
-      <table>
-        <thead>
-          <tr>
-            <th>Claim Id</th>
-            <th>User Id</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Phone Number</th>
-            <th>Date of Claim</th>
-            <th>Date of Damage</th>
-            <th>City</th>
-            <th>State</th>
-            <th class="image-link">Image Link</th>
-            <th>Description of Damage</th>
-            <th>Claim Status</th>
-          </tr>
-        </thead>
+        <table class="table-size">
+          <thead>
+            <tr>
+              <th class="th-style">Claim Id</th>
+              <th class="th-style">User Id</th>
+              <th class="th-style">First Name</th>
+              <th class="th-style">Last Name</th>
+              <th class="th-style">Email</th>
+              <th class="th-style">Phone Number</th>
+              <th class="th-style">Date of Claim</th>
+              <th class="th-style">Date of Damage</th>
+              <th class="th-style">City</th>
+              <th class="th-style">State</th>
+              <th class="th-style image-link">Image</th>
+              <th class="th-style">Description of Damage</th>
+              <th class="th-style">Claim Status</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          <tr
+          <tbody>
+            <claim-row
             v-for="claim in this.$store.state.claims"
+            v-bind:claim="claim"
             v-bind:key="claim.claimId"
-          >
-            <td>{{ claim.claimId }}</td>
-            <td>{{ claim.userId }}</td>
-            <td>{{ claim.firstName }}</td>
-            <td>{{ claim.lastName }}</td>
-            <td>{{ claim.email }}</td>
-            <td>{{ claim.phoneNumber }}</td>
-            <td>{{ formatDate(claim.dateOfClaim) }}</td>
-            <td>{{ formatDate(claim.dateOfIncident) }}</td>
-            <td>{{ claim.locationOfIncidentCity }}</td>
-            <td>{{ claim.locationOfIncidentState }}</td>
-            <td><img v-bind:src="claim.imageLink" class="image-link" /></td>
-            <td>{{ claim.descriptionOfDamage }}</td>
-            <td>{{ claim.claimStatus }}</td>
-          </tr>
-        </tbody>
-      </table>
+            class="row-style"
+            />
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import ClaimFormService from "../services/ClaimFormService.js";
+import claimFormService from "../services/ClaimFormService.js";
+import ClaimRow from "./ClaimRow.vue";
 
 export default {
-  data() {
-    return {};
-  },
-  methods: {
-    formatDate(date) {
-      if (date != null) {
-        const month = date.substring(5, 7);
-        const day = date.substring(8, 10);
-        const year = date.substring(0, 4);
-
-        date = month + "-" + day + "-" + year;
-      }
-
-      return date;
-    },
+  components: {
+    ClaimRow
   },
   created() {
-    ClaimFormService.list()
+      claimFormService
+      .list()
       .then((response) => {
-        if (response.status === 200) {
+          if (response.status === 200) {
           this.$store.commit("SET_CLAIMS_LIST", response.data);
-        }
+          }
       })
       .catch((error) => {
-        console.log(error.response.status);
+          console.log(error.response.status);
       });
   },
 };
 </script>
 
 <style scoped>
-.image-link {
-  width: 5vw;
+.scroll-section {
+  height: 43vh;
+  overflow: auto;
 }
 
-.scroll-section {
-    overflow: auto;
+thead > tr > th.th-style {
+  font-size: 14px;
+  padding: 3px;
+  position: sticky;
+  top: 0;
+  background-color: #adc178;
+}
+
+.all-claims-table {
+  width: 94vw;
 }
 </style>

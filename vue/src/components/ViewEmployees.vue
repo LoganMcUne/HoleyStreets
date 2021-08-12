@@ -2,12 +2,12 @@
   <div class="employee-access-table">
     <h1 class="admin-h1">All Current Employees</h1>
 
-    <table>
+    <table class="table-size">
       <thead>
         <tr>
-          <th>User Id</th>
-          <th>User Name</th>
-          <th>Remove Employee Access</th>
+          <th class="th-style">User Id</th>
+          <th class="th-style">User Name</th>
+          <th class="th-style">Remove Employee Access</th>
         </tr>
       </thead>
 
@@ -15,6 +15,7 @@
         <tr
           v-for="employee in $store.state.employees"
           v-bind:key="employee.userid"
+          class="row-style"
         >
           <td>{{ employee.userId }}</td>
           <td>{{ employee.username }}</td>
@@ -53,7 +54,8 @@ export default {
 </script>
 
 <style>
-.remove{
-   background-color: rgb(248, 86, 86);
+.remove {
+  border-radius: 5px;
+  background-color: rgb(248, 86, 86);
 }
 </style>
